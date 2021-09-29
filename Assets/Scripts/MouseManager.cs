@@ -4,46 +4,72 @@ using UnityEngine;
 
 public class MouseManager : MonoBehaviour
 {
-  
-    GameObject selectedObject;
-    
+    public GameObject selection;
+    Camera cam;
+    RaycastHit2D hitInfo;
+    bool selected=false;
+    bool create = false;
     void Start()
     {
+        cam = Camera.main; //On garde la camera dans une variable
         
     }
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Position de la souris
-        RaycastHit hitInfo; // Variable pour stocker la position de la souris
-
-        if( Physics.Raycast(ray, out hitInfo)) // Si y a un objet à la position de la souris et son LayerMask est le bon
+        SelectAnObject(); //fonction pour selectionner l'objet
+    }
+    private void SelectAnObject()
+    {
+        if(Input.GetMouseButtonDown(0))
         {
-            GameObject hitObject = hitInfo.transform.root.gameObject;
-            SelectObject(hitObject);
-        }
-        else
-        {
-            ClearSelection();
-        }
-
-        void SelectObject(GameObject obj)//Fonction pour selectionner l'objet 
-        {
-            if(selectedObject!=null)//si l'objet selectionner existe
+            Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition); //Le rayon pour récupére l'info de quel object on a touché
+            RaycastHit2D hitInfo = Physics2D.Raycast(rayCastPos, Vector2.zero); //On fait le rayon et on l'enrengistre dans une variable
+            if(hitInfo.collider!=null) //Si on a touché quelques chose c'est bon
             {
-                if(obj==selectedObject)// et que l'objet selectionné est le même arrêter la fonction
-                {
-                    return; //Forcer la fin de la fonction vu que c'est void il return rien
-                }
-                else 
-                {
-                    ClearSelection(); //Vider la selection
-                }
+               GameObject obj = hitInfo.collider.gameObject;
+                switch(obj.tag)
+               {
+                    case "Joueur": 
+                        selected = true;
+                        create = true;
+                        PlayersAction(obj);
+                        break;
+                    case "Ennemy":
+                        EnnemysAction(obj);
+                        break;
+                    default:
+                        selected = false;
+                        break;
+               }
             }
-            selectedObject = obj;//Selectionner l'objet si tout est bon
-        }
-        void ClearSelection() // Methode pour vider la selection
-        {
-            selectedObject = null;
         }
     }
+    public void PlayersAction(GameObject obj)
+    {
+        if(create)
+        {
+            selection.transform.position = obj.transform.position;
+            selection.GetComponent<SpriteRenderer>().enabled = true;
+            create = false;
+        }
+        while(Input.GetMouseButtonDown(0))
+        {
+            selection.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        
+    }
+    public void EnnemysAction(GameObject obj)
+    {
+        if(create)
+        {
+            selection.GetComponent<SpriteRenderer>().enabled=true;
+            selection.transform.position = obj.transform.position;
+            create = false;
+        }
+        while(Input.GetMouseButtonDown(0))
+        {
+            selection.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
+   
 }
