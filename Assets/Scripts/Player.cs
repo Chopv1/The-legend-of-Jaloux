@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private int pv;
     private float attack;
     private int reach = 1;
+    private bool isSelected = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,18 @@ public class Player : MonoBehaviour
     void Update()
     {
         CanAttack();
+    }
+
+    public void setIsSelected()
+    {
+        if(isSelected)
+        {
+            isSelected = false;
+        }
+        else
+        {
+            isSelected = true;
+        }
     }
     public void CanAttack()
     {

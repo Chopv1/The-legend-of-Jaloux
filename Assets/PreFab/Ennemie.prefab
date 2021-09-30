@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4629836607283420009}
   - component: {fileID: 4896844154988702997}
   - component: {fileID: 870905820270031538}
-  - component: {fileID: 5250826490477101474}
+  - component: {fileID: 7521140974883582776}
   m_Layer: 0
   m_Name: Ennemie
   m_TagString: Ennemi
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc8451754ae70243a51805f949070c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!70 &5250826490477101474
+--- !u!70 &7521140974883582776
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,5 +110,5 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 1, y: 2}
   m_Direction: 0

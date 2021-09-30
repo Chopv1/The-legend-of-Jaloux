@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private bool isSelected = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,5 +14,16 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
+    }
+    public void setIsSelected()
+    {
+        if (isSelected)
+        {
+            isSelected = false;
+        }
+        else
+        {
+            isSelected = true;
+        }
     }
 }
