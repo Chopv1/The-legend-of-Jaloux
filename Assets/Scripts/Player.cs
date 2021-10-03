@@ -5,14 +5,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private int pv;
-    private float attack;
+    private int attack = 5;
     private int reach = 1;
     private bool isSelected = false;
+    private Enemy enemy;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        Debug.Log("Les pv ennemis sont de : " + enemy.hp);
+        enemy.hp -= attack - enemy.defense;
+        Debug.Log("Les pv ennemis sont de : " + enemy.hp);
     }
 
     // Update is called once per frame
