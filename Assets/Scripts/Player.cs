@@ -13,9 +13,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Les pv ennemis sont de : " + enemy.hp);
-        enemy.hp -= attack - enemy.defense;
-        Debug.Log("Les pv ennemis sont de : " + enemy.hp); 
+        
     }
 
     // Update is called once per frame
@@ -48,5 +46,12 @@ public class Player : MonoBehaviour
     public void IsSelected()
     {
 
+    }
+
+    public void Infliger()
+    {
+        Debug.Log("Les pv ennemis étaient de : " + enemy.hp);
+        enemy.hp -= attack - enemy.defense;
+        Debug.Log("Les pv ennemis sont maintenant de : " + enemy.hp); 
     }
 }

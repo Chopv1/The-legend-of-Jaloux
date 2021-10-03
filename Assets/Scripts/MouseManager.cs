@@ -7,6 +7,7 @@ public class MouseManager : MonoBehaviour
     public GameObject selectedObject;
     private Camera cam;
     private RaycastHit2D hitInfo;
+    public Player player;
     void Start()
     {
         cam = Camera.main; //On garde la camera dans une variable
@@ -49,6 +50,9 @@ public class MouseManager : MonoBehaviour
 
         GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
         hexagone.GetComponent<SpriteRenderer>().enabled = true;
+        Debug.Log("Vous pouvez attaquer "+hitObject);
+        Attack();
+
 
         selectedObject = hitObject;
 
@@ -64,4 +68,15 @@ public class MouseManager : MonoBehaviour
         
         selectedObject = null;
     }
+
+    void Attack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            player.Infliger();
+            
+        }
+    }
+
 }
