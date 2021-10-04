@@ -320,13 +320,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2437962646427969611, guid: 93f901e5da714b445ba61082feb4055b, type: 3}
-      propertyPath: m_Name
-      value: Ennemie (1)
+    - target: {fileID: 870905820270031538, guid: 93f901e5da714b445ba61082feb4055b, type: 3}
+      propertyPath: MaxPv
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2437962646427969611, guid: 93f901e5da714b445ba61082feb4055b, type: 3}
-      propertyPath: m_Layer
-      value: 0
+      propertyPath: m_Name
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4629836607283420009, guid: 93f901e5da714b445ba61082feb4055b, type: 3}
       propertyPath: m_RootOrder
@@ -1962,11 +1962,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2437962646427969611, guid: 93f901e5da714b445ba61082feb4055b, type: 3}
       propertyPath: m_Name
-      value: Ennemie
-      objectReference: {fileID: 0}
-    - target: {fileID: 2437962646427969611, guid: 93f901e5da714b445ba61082feb4055b, type: 3}
-      propertyPath: m_Layer
-      value: 0
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4629836607283420009, guid: 93f901e5da714b445ba61082feb4055b, type: 3}
       propertyPath: m_RootOrder

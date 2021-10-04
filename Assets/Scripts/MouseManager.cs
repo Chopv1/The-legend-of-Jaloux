@@ -5,8 +5,10 @@ using UnityEngine;
 public class MouseManager : MonoBehaviour
 {
     public GameObject selectedObject;
+
     private Camera cam;
     private RaycastHit2D hitInfo;
+    private LayerMask layerMask;
     void Start()
     {
         cam = Camera.main; //On garde la camera dans une variable
@@ -21,7 +23,7 @@ public class MouseManager : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition); //Le rayon pour récupére l'info de quel object on a touché
-            RaycastHit2D hitInfo = Physics2D.Raycast(rayCastPos, Vector2.zero); //On fait le rayon et on l'enrengistre dans une variable
+            hitInfo = Physics2D.Raycast(rayCastPos, Vector2.zero); //On fait le rayon et on l'enrengistre dans une variable
             if (hitInfo.collider != null) //Si on a touché quelques chose c'est bon
             {
                 GameObject hitObject = hitInfo.transform.gameObject;
@@ -49,8 +51,17 @@ public class MouseManager : MonoBehaviour
 
         GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
         hexagone.GetComponent<SpriteRenderer>().enabled = true;
-
         selectedObject = hitObject;
+
+        if(selectedObject.CompareTag("PlayeR"))
+        {
+            hitObject.GetComponent<Player>().SetIsSelected();
+        }
+        if(selectedObject.CompareTag("Enemy"))
+        { 
+            hitObject.GetComponent<Enemy>().SetIsSelected();
+        }
+
 
 
     }
@@ -60,6 +71,7 @@ public class MouseManager : MonoBehaviour
         {
             GameObject hexagone = selectedObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = false;
+            hexagone.GetComponent<SpriteRenderer>().color = Color.white;
         }
         
         selectedObject = null;

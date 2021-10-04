@@ -4,26 +4,45 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int MaxPv = 100;
+    private int currentPv;
+    private float attack;
+    private int reach;
     private bool isSelected = false;
     // Start is called before the first frame update
+    
     void Start()
     {
+        this.currentPv = MaxPv;
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+ 
     }
-    public void setIsSelected()
+    public void SetIsSelected()
     {
-        if (isSelected)
+        if (this.isSelected)
         {
-            isSelected = false;
+            this.isSelected = false;
         }
         else
         {
-            isSelected = true;
+            this.isSelected = true;
         }
+    }
+    private void IsDead()
+    {
+        if (currentPv <= 0)
+        {
+            this.currentPv = 0;
+            this.gameObject.SetActive(false);
+        }
+    }
+    public void IsAttacked(int damage)
+    {
+        this.currentPv -=damage;
+        IsDead();
     }
 }

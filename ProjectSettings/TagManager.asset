@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ennemi
-  - Joueur
+  - Enemy
+  - PlayeR
   layers:
   - Default
   - TransparentFX
@@ -13,8 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Joueur
-  - Ennemi
+  - Player
+  - Enemy
   - 
   - 
   - 
