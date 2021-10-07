@@ -9,6 +9,7 @@ public class MouseManager : MonoBehaviour
     private Camera cam;
     private RaycastHit2D hitInfo;
     private LayerMask layerMask;
+    private bool heroSelected =false;
     void Start()
     {
         cam = Camera.main; //On garde la camera dans une variable
@@ -20,7 +21,7 @@ public class MouseManager : MonoBehaviour
     }
     private void SelectAnObject()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0)&&!heroSelected)
         {
             Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition); //Le rayon pour récupére l'info de quel object on a touché
             hitInfo = Physics2D.Raycast(rayCastPos, Vector2.zero); //On fait le rayon et on l'enrengistre dans une variable
@@ -56,14 +57,12 @@ public class MouseManager : MonoBehaviour
         if(selectedObject.CompareTag("PlayeR"))
         {
             hitObject.GetComponent<Player>().SetIsSelected();
+            setHeroSelected();
         }
         if(selectedObject.CompareTag("Enemy"))
         { 
             hitObject.GetComponent<Enemy>().SetIsSelected();
         }
-
-
-
     }
     void ClearSelection()
     {
@@ -75,5 +74,16 @@ public class MouseManager : MonoBehaviour
         }
         
         selectedObject = null;
+    }
+    public void setHeroSelected()
+    {
+        if(heroSelected)
+        {
+            heroSelected = false;
+        }
+        else
+        {
+            heroSelected = true;
+        }
     }
 }

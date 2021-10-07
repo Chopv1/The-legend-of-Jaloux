@@ -6,11 +6,12 @@ public class Player : MonoBehaviour
 {
     public LayerMask enemyLayer;
     public int MaxPv=100;
+    public MouseManager mouse;
 
     private Camera cam;
     private int currentPv;
     private int attack = 40;
-    private int reach = 1;
+    private float reach = 1f;
     private bool isSelected = false;
 
     // Start is called before the first frame update
@@ -50,10 +51,19 @@ public class Player : MonoBehaviour
                 hexagone.GetComponent<SpriteRenderer>().color = Color.black;
             }
             Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D obj = Physics2D.Raycast(rayCastPos, Vector2.zero);
-            if (Input.GetMouseButtonDown(0) && !obj.transform.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
+            RaycastHit2D obj = Physics2D.Raycast(rayCastPos, Vector2.zero, enemyLayer);
+            if (Input.GetMouseButtonDown(0) && obj.transform.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
             {
                 obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack);
+                Debug.Log("-"+attack);
+                this.SetIsSelected();
+                mouse.GetComponent<MouseManager>().setHeroSelected();
+                foreach (Collider2D hit in hitInfo)
+                {
+                    GameObject hexagone = hit.transform.GetChild(0).gameObject;
+                    hexagone.GetComponent<SpriteRenderer>().enabled = false;
+                    hexagone.GetComponent<SpriteRenderer>().color = Color.white;
+                }
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -64,7 +74,7 @@ public class Player : MonoBehaviour
                     hexagone.GetComponent<SpriteRenderer>().enabled = false;
                     hexagone.GetComponent<SpriteRenderer>().color = Color.white;
                 }
-                SetIsSelected();
+                this.SetIsSelected();
             }
         }
     }
@@ -72,7 +82,9 @@ public class Player : MonoBehaviour
     private bool IsInReach(GameObject obj)
     {
         bool itIsInReach = false;
-        if(obj.transform.position.x-reach<=this.transform.position.x || obj.transform.position.y - reach <= this.transform.position.y)
+        float x = obj.transform.position.x - reach;
+        float y = obj.transform.position.y - reach;
+        if (x<=this.transform.position.x || y<= this.transform.position.y)
         {
             itIsInReach = true;
         }
