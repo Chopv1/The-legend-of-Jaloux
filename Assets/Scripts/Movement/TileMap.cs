@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class TileMap : MonoBehaviour
 {
-    public GameObject unit;
+    public Unit unit;
     public TileType[] tileTypes;
+    public ClickableTile target;
+    public Material appearance;
+    public GameObject path;
+    public bool action;
 
     public int[,] tiles;
     Node[,] graph;
@@ -34,10 +38,13 @@ public class TileMap : MonoBehaviour
             }
         }
 
-        tiles[4,4] = 1;
-        tiles[4,5] = 1;
-        tiles[4,6] = 1;
-        tiles[5,6] = 1;
+        tiles[4, 4] = 1;
+        tiles[4, 5] = 1;
+        tiles[4, 6] = 1;
+        tiles[5, 6] = 1;
+        tiles[6, 6] = 1;
+        tiles[6, 5] = 1;
+        tiles[6, 4] = 1;
     }
 
     
@@ -94,76 +101,107 @@ public class TileMap : MonoBehaviour
         return(new Vector3(x, y, 0));
     }
 
-    public void GeneratePathTo(int x, int y){
+    public void GeneratePathTo(int x, int y)
+    {
+        if (unit.launchMove == false)
+        {
+            unit.GetComponent<Unit>().target = this.target;
+            unit.GetComponent<Unit>().currentPath = null;
 
-        unit.GetComponent<Unit>().currentPath = null;
+            Dictionary<Node, float> dist = new Dictionary<Node, float>();
+            Dictionary<Node, Node> prev = new Dictionary<Node, Node>();
 
-        Dictionary<Node, float> dist = new Dictionary<Node, float>();
-        Dictionary<Node, Node> prev = new Dictionary<Node, Node>();
-        
-        List<Node> unvisited = new List<Node>();
-
-
-        Node source = graph[
-            unit.GetComponent<Unit>().tileX, 
-            unit.GetComponent<Unit>().tileY
-            ];
-
-        Node target = graph[x, y];
+            List<Node> unvisited = new List<Node>();
 
 
-        
-        dist[source] = 0;
-        prev[source] = null;
+            Node source = graph[
+                unit.GetComponent<Unit>().tileX,
+                unit.GetComponent<Unit>().tileY
+                ];
 
-        foreach(Node v in graph){
-            if(v != source){
-                dist[v] = Mathf.Infinity;
-                prev[v] = null;
+            Node target = graph[x, y];
+
+
+
+            dist[source] = 0;
+            prev[source] = null;
+
+            foreach (Node v in graph)
+            {
+                if (v != source)
+                {
+                    dist[v] = Mathf.Infinity;
+                    prev[v] = null;
+                }
+                unvisited.Add(v);
             }
-            unvisited.Add(v);
-        }
 
-        while(unvisited.Count > 0){
-            Node closer = null;
+            while (unvisited.Count > 0)
+            {
+                Node closer = null;
 
-            foreach(Node possible in unvisited){
-                if(closer == null || dist[possible] < dist[closer]){
-                    closer = possible;
+                foreach (Node possible in unvisited)
+                {
+                    if (closer == null || dist[possible] < dist[closer])
+                    {
+                        closer = possible;
+                    }
+                }
+
+                if (closer == target)
+                {
+                    break;
+                }
+
+                unvisited.Remove(closer);
+
+                foreach (Node v in closer.neighbours)
+                {
+                    //float totDist = dist[closer] + closer.DistantTo(v);
+                    float totDist = dist[closer] + CostToEnterTile(v.x, v.y);
+                    if (totDist < dist[v])
+                    {
+                        dist[v] = totDist;
+                        prev[v] = closer;
+                    }
                 }
             }
-
-            if(closer == target){
-                break;
+            if (prev[target] == null)
+            {
+                return;
             }
 
-            unvisited.Remove(closer);
+            List<Node> currentPath = new List<Node>();
 
-            foreach(Node v in closer.neighbours){
-                //float totDist = dist[closer] + closer.DistantTo(v);
-                float totDist = dist[closer] + CostToEnterTile(v.x, v.y);
-                if(totDist < dist[v]){
-                    dist[v] = totDist;
-                    prev[v] = closer;
-                }
+            Node curr = target;
+            int i = 0;
+            int pa = 10;
+            while (curr != null)
+            {
+                i++;
+                currentPath.Add(curr);
+                curr = prev[curr];
+
             }
+
+            if (i > pa)
+            {
+                print("vous n avez pas assez de pa");
+                path.GetComponent<Renderer>().material.color = Color.red;
+                action = false;
+            }
+            else
+            {
+                path.GetComponent<Renderer>().material.color = Color.white;
+                action = true;
+            }
+
+
+            currentPath.Reverse();
+
+            unit.GetComponent<Unit>().currentPath = currentPath;
         }
-        if(prev[target] == null){
-            return;
-        }
-
-        List<Node> currentPath = new List<Node>();
-
-        Node curr = target;
-
-        while(curr != null){
-            currentPath.Add(curr);
-            curr = prev[curr];
-        }
-
-        currentPath.Reverse();
-
-        unit.GetComponent<Unit>().currentPath = currentPath;
     }
+
     
 }
