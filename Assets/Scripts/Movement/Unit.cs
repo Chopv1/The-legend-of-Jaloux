@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
@@ -14,18 +15,29 @@ public class Unit : MonoBehaviour
     List<GameObject> pathList = new List<GameObject>();
     public bool launchMove = false;
     public int points = 5;
+    public GameObject boutonAvancer;
+
 
 
     public List<Node> currentPath = null;
 
     void Start()
     {
+        boutonAvancer = GameObject.Find("Button Avance");
+        Debug.Log(boutonAvancer);
+
+        
+
         movePoint.GetComponent<Renderer>().enabled = false;
     }
 
     void Update(){
-        if(currentPath != null){
+
+        print(map.pa);
+        if (currentPath != null){
             int currNode = 0;
+
+
 
             while (currNode < currentPath.Count - 1){
                 //Vector3 start = map.TileCoordToWorldCoord(currentPath[currNode].x, currentPath[currNode].y);
@@ -38,13 +50,14 @@ public class Unit : MonoBehaviour
                     pathList.Add(go);
 
                     currNode++;
+                    
                 
                 
             }
-
             foreach (GameObject go in pathList)
             {
                 Destroy(go, 0.1f);
+
             }
             pathList.Clear();
             Debug.Log(pathList.Count);
@@ -56,23 +69,28 @@ public class Unit : MonoBehaviour
             transform.position = map.TileCoordToWorldCoord(currentPath[0].x, currentPath[0].y);
             tileX = currentPath[0].x;
             tileY = currentPath[0].y;
+            
 
-            if(currentPath.Count == 1){
+            if (currentPath.Count == 1){
+                map.pa = map.pa - map.i + 1;
                 currentPath = null;
                 launchMove = false;
                 //target.GetComponent<Renderer>().material.color = new Color(0.5849056f, 0.5403813f, 0.4773051f, 1);
                 movePoint.GetComponent<Renderer>().enabled = false;
+                
 
             }
-        } 
-    }
+        }
 
+    }
 
 
     public void Move(){
         if ( map.action==true) //vérification nombre de pa
         {
+  
             launchMove = true;
+  
        }
       
 

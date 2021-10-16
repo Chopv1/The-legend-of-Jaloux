@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TileMap : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class TileMap : MonoBehaviour
     public Material appearance;
     public GameObject path;
     public bool action;
+    public int pa = 10;
+    public int i = 0;
+
+
+
 
     public int[,] tiles;
     Node[,] graph;
@@ -22,7 +28,6 @@ public class TileMap : MonoBehaviour
         //unit.GetComponent<Unit>().tileX = (int)unit.transform.position.x;
         //unit.GetComponent<Unit>().tileY = (int)unit.transform.position.y;
         unit.GetComponent<Unit>().map = this;
-        
         GenerateMapData();
         GeneratePathFfindingGraph();
         GenerateMapVisual();
@@ -171,11 +176,11 @@ public class TileMap : MonoBehaviour
                 return;
             }
 
-            List<Node> currentPath = new List<Node>();
+             i = 0;
+             List<Node> currentPath = new List<Node>();
 
             Node curr = target;
-            int i = 0;
-            int pa = 10;
+            
             while (curr != null)
             {
                 i++;
@@ -184,16 +189,19 @@ public class TileMap : MonoBehaviour
 
             }
 
-            if (i > pa)
+            if (i > pa+1)
             {
                 print("vous n avez pas assez de pa");
                 path.GetComponent<Renderer>().material.color = Color.red;
                 action = false;
+                unit.boutonAvancer.GetComponent<Button>().interactable = false;
             }
             else
             {
                 path.GetComponent<Renderer>().material.color = Color.white;
                 action = true;
+                unit.boutonAvancer.GetComponent<Button>().interactable = true;
+
             }
 
 
@@ -201,6 +209,12 @@ public class TileMap : MonoBehaviour
 
             unit.GetComponent<Unit>().currentPath = currentPath;
         }
+    }
+
+    public void finirTour()
+    {
+        print("AHAHAAH");
+        pa = 10;
     }
 
     
