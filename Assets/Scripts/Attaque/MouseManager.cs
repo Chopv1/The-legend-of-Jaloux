@@ -25,6 +25,7 @@ public class MouseManager : MonoBehaviour
         {
             Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition); //Le rayon pour récupére l'info de quel object on a touché
             hitInfo = Physics2D.Raycast(rayCastPos, Vector2.zero); //On fait le rayon et on l'enrengistre dans une variable
+            
             if (hitInfo.collider != null) //Si on a touché quelques chose c'est bon
             {
                 GameObject hitObject = hitInfo.transform.gameObject;
@@ -64,15 +65,23 @@ public class MouseManager : MonoBehaviour
             hitObject.GetComponent<Enemy>().SetIsSelected();
         }
     }
-    void ClearSelection()
+    public void ClearSelection()
     {
         if(selectedObject!=null)
         {
+            if (selectedObject.CompareTag("PlayeR"))
+            {
+                selectedObject.GetComponent<Player>().SetIsSelected();
+                setHeroSelected();
+            }
+            if (selectedObject.CompareTag("Enemy"))
+            {
+                selectedObject.GetComponent<Enemy>().SetIsSelected();
+            }
             GameObject hexagone = selectedObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = false;
             hexagone.GetComponent<SpriteRenderer>().color = Color.white;
         }
-        
         selectedObject = null;
     }
     public void setHeroSelected()
