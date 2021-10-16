@@ -213,9 +213,10 @@ public class TileMap : MonoBehaviour
 
     public void finirTour()
     {
-        print("AHAHAAH");
         pa = 10;
+        unit.GetComponent<Unit>().currentPath = null;
+        unit.boutonAvancer.GetComponent<Button>().interactable = true;
     }
 
-    
+
 }
