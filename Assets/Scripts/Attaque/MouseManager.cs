@@ -9,7 +9,6 @@ public class MouseManager : MonoBehaviour
     private Camera cam;
     private RaycastHit2D hitInfo;
     private LayerMask layerMask;
-    private bool heroSelected =false;
     void Start()
     {
         cam = Camera.main; //On garde la camera dans une variable
@@ -21,7 +20,7 @@ public class MouseManager : MonoBehaviour
     }
     private void SelectAnObject()
     {
-        if(Input.GetMouseButtonDown(0)&&!heroSelected)
+        if(Input.GetMouseButtonDown(0))
         {
             Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition); //Le rayon pour récupére l'info de quel object on a touché
             hitInfo = Physics2D.Raycast(rayCastPos, Vector2.zero); //On fait le rayon et on l'enrengistre dans une variable
@@ -55,12 +54,11 @@ public class MouseManager : MonoBehaviour
         hexagone.GetComponent<SpriteRenderer>().enabled = true;
         selectedObject = hitObject;
 
-        if(selectedObject.CompareTag("PlayeR"))
+        if(selectedObject == GameObject.Find("Player"))
         {
             hitObject.GetComponent<Player>().SetIsSelected();
-            setHeroSelected();
         }
-        if(selectedObject.CompareTag("Enemy"))
+        if(selectedObject == GameObject.Find("Enemy"))
         { 
             hitObject.GetComponent<Enemy>().SetIsSelected();
         }
@@ -69,30 +67,11 @@ public class MouseManager : MonoBehaviour
     {
         if(selectedObject!=null)
         {
-            if (selectedObject.CompareTag("PlayeR"))
-            {
-                selectedObject.GetComponent<Player>().SetIsSelected();
-                setHeroSelected();
-            }
-            if (selectedObject.CompareTag("Enemy"))
-            {
-                selectedObject.GetComponent<Enemy>().SetIsSelected();
-            }
             GameObject hexagone = selectedObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = false;
             hexagone.GetComponent<SpriteRenderer>().color = Color.white;
         }
         selectedObject = null;
     }
-    public void setHeroSelected()
-    {
-        if(heroSelected)
-        {
-            heroSelected = false;
-        }
-        else
-        {
-            heroSelected = true;
-        }
-    }
+
 }
