@@ -18,6 +18,7 @@ public class TileMap : MonoBehaviour
 
 
 
+
     public int[,] tiles;
     Node[,] graph;
 
@@ -31,6 +32,8 @@ public class TileMap : MonoBehaviour
         GenerateMapData();
         GeneratePathFfindingGraph();
         GenerateMapVisual();
+
+
     }
     
     
@@ -213,9 +216,12 @@ public class TileMap : MonoBehaviour
 
     public void finirTour()
     {
-        pa = 10;
-        unit.GetComponent<Unit>().currentPath = null;
-        unit.boutonAvancer.GetComponent<Button>().interactable = true;
+        if (unit.launchMove == false)
+        {
+            pa = 10;
+            unit.GetComponent<Unit>().currentPath = null;
+            unit.boutonAvancer.GetComponent<Button>().interactable = true;
+        }
     }
 
 

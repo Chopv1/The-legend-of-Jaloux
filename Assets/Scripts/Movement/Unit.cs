@@ -16,6 +16,8 @@ public class Unit : MonoBehaviour
     public bool launchMove = false;
     public int points = 5;
     public GameObject boutonAvancer;
+    public GameObject boutonFinTour;
+    public GameObject compteurPA;
 
 
 
@@ -23,10 +25,18 @@ public class Unit : MonoBehaviour
 
     void Start()
     {
+
+        compteurPA = GameObject.Find("Compteur PA");
+        Debug.Log(compteurPA);
+
+        compteurPA.GetComponent<Text>().enabled = true;
+        
+
         boutonAvancer = GameObject.Find("Button Avance");
         Debug.Log(boutonAvancer);
 
-        
+        boutonFinTour = GameObject.Find("Button FinTour");
+        Debug.Log(boutonFinTour);
 
         movePoint.GetComponent<Renderer>().enabled = false;
     }
@@ -64,6 +74,7 @@ public class Unit : MonoBehaviour
         }
 
         if(currentPath != null && Vector3.Distance(player.transform.position, movePoint.position) == 0 && launchMove == true){
+            boutonFinTour.GetComponent<Button>().interactable = false;
             movePoint.GetComponent<Renderer>().enabled = true;
             currentPath.RemoveAt(0);
             transform.position = map.TileCoordToWorldCoord(currentPath[0].x, currentPath[0].y);
@@ -77,11 +88,11 @@ public class Unit : MonoBehaviour
                 launchMove = false;
                 //target.GetComponent<Renderer>().material.color = new Color(0.5849056f, 0.5403813f, 0.4773051f, 1);
                 movePoint.GetComponent<Renderer>().enabled = false;
-                
+                boutonFinTour.GetComponent<Button>().interactable = true;
 
             }
         }
-
+        compteurPA.GetComponent<Text>().text = "PA : " + map.pa.ToString();
     }
 
 
