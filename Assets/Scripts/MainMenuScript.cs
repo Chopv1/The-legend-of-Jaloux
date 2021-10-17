@@ -11,7 +11,10 @@ public class MainMenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(leveltoload);
     } 
-
+    public void TrueStartGame() 
+    {
+        SceneManager.LoadScene(leveltoload);
+    }
     public void MenuParametres () 
     {
         settingsWindow.SetActive(true);
