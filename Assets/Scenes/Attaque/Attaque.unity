@@ -324,10 +324,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 2437962646427969611, guid: 93f901e5da714b445ba61082feb4055b, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 4629836607283420009, guid: 93f901e5da714b445ba61082feb4055b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1979,10 +1975,6 @@ PrefabInstance:
       propertyPath: mouse
       value: 
       objectReference: {fileID: 1078482409}
-    - target: {fileID: 6992752479796427519, guid: 1361318394792464eba777bc13106ac7, type: 3}
-      propertyPath: posiitonHero
-      value: 
-      objectReference: {fileID: 4876178072803304478, guid: 1361318394792464eba777bc13106ac7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1361318394792464eba777bc13106ac7, type: 3}
 --- !u!1001 &2622801288677741057

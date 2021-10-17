@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7164156770006239732}
   - component: {fileID: 6992752479796427519}
   - component: {fileID: 4294661922656973281}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Player
   m_TagString: PlayeR
   m_Icon: {fileID: 0}
@@ -98,9 +98,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64
   MaxPv: 100
   mouse: {fileID: 1788104452917420740, guid: 84046244d4346b4499427db4e5bcd25b, type: 3}
+  posiitonHero: {fileID: 4876178072803304478}
 --- !u!70 &4294661922656973281
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
