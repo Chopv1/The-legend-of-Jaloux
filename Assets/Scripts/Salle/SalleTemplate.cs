@@ -19,10 +19,10 @@ public class SalleTemplate : MonoBehaviour
 
 	void Update()
 	{
-
+		/*
 		if (tempsAttente <= 0 && spawnedBoss == false)
 		{
-			for (int i = 0; i < 4 /*salles.Count*/; i++)
+			for (int i = 0; i < 4 ; i++)
 			{
 				if (i == salles.Count - 1)
 				{
@@ -35,5 +35,7 @@ public class SalleTemplate : MonoBehaviour
 		{
 			tempsAttente -= Time.deltaTime;
 		}
+*/
+
 	}
 }

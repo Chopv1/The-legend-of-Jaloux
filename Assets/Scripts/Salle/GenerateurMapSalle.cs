@@ -19,7 +19,7 @@ public class GenerateurMapSalle : MonoBehaviour {
 
 	void Start(){
 		Destroy(gameObject, waitTime);
-		templates = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
+		//templates = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
 		Invoke("Spawn", 0.99f);
 	}
 
