@@ -11,15 +11,19 @@ public class Player : MonoBehaviour
 
     private Camera cam;
     private int currentPv;
-    private int attack = 40;
-    private float reach = 1f;
-    private bool isSelected = false;
+    private int attack;
+    private float reach;
+    private bool isSelected;
+
 
     // Start is called before the first frame update
     void Start()
     {
         currentPv = MaxPv;
         cam = Camera.main;
+        isSelected = false;
+        attack = 40;
+        reach = 1f;
     }
 
     // Update is called once per frame
@@ -32,14 +36,13 @@ public class Player : MonoBehaviour
     {
         if(isSelected)
         {
-            mouse.GetComponent<MouseManager>().ClearSelection();
             isSelected = false;
-            
         }
         else
         {
             isSelected = true;
         }
+        
     }
     public void CanAttack()
     {
@@ -55,23 +58,24 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonDown(0)&& obj.collider != null && obj.transform.gameObject.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
             {
                 obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack);
-                this.SetIsSelected();
+                SetIsSelected();
                 ChangeHexagoneColorToWhite(hitInfo);
+                mouse.GetComponent<MouseManager>().ClearSelection();
+                
             }
-            if(Input.GetMouseButtonDown(0) && obj.collider != null && !obj.transform.gameObject.CompareTag("Enemy"))
+            rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition);
+            obj = Physics2D.Raycast(rayCastPos, Vector2.zero, enemyLayer);
+            if (Input.GetMouseButtonDown(0)&& obj.collider == null)
             {
+                SetIsSelected();
                 ChangeHexagoneColorToWhite(hitInfo);
-                this.SetIsSelected();
+                mouse.GetComponent<MouseManager>().ClearSelection();
+                
             }
-        }
-        else
-        {
-            Collider2D[] hitInfo = Physics2D.OverlapCircleAll(posiitonHero.position, reach, enemyLayer);
-            ChangeHexagoneColorToWhite(hitInfo);
         }
     }
     
-    private bool IsInReach(GameObject obj)
+    public bool IsInReach(GameObject obj)
     {
         bool reachable = false;
         Collider2D[] hitInfo = Physics2D.OverlapCircleAll(posiitonHero.position, reach, enemyLayer);
