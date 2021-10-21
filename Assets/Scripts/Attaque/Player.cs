@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public LayerMask enemyLayer;
     public int MaxPv=100;
     public MouseManager mouse;
-    public Transform posiitonHero;
+    public Transform positionHero;
 
     private Camera cam;
     private int currentPv;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     {
         if(isSelected)
         {
-             Collider2D[] hitInfo = Physics2D.OverlapCircleAll(posiitonHero.position, reach, enemyLayer);
+             Collider2D[] hitInfo = Physics2D.OverlapCircleAll(positionHero.position, reach, enemyLayer);
 
             ChangeHexagoneColorToBlack(hitInfo);
 
@@ -58,19 +58,16 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonDown(0)&& obj.collider != null && obj.transform.gameObject.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
             {
                 obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack);
-                SetIsSelected();
+                this.SetIsSelected();
                 ChangeHexagoneColorToWhite(hitInfo);
                 mouse.GetComponent<MouseManager>().ClearSelection();
-                
             }
-            rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition);
-            obj = Physics2D.Raycast(rayCastPos, Vector2.zero, enemyLayer);
+
             if (Input.GetMouseButtonDown(0)&& obj.collider == null)
             {
                 SetIsSelected();
                 ChangeHexagoneColorToWhite(hitInfo);
                 mouse.GetComponent<MouseManager>().ClearSelection();
-                
             }
         }
     }
@@ -78,7 +75,7 @@ public class Player : MonoBehaviour
     public bool IsInReach(GameObject obj)
     {
         bool reachable = false;
-        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(posiitonHero.position, reach, enemyLayer);
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(positionHero.position, reach, enemyLayer);
         foreach(Collider2D hit in hitInfo)
         {
             if(hit.gameObject == obj)
@@ -88,7 +85,7 @@ public class Player : MonoBehaviour
         }
         return reachable;
     }
-    public bool getSelected()
+    public bool GetSelected()
     {
         return this.isSelected;
     }

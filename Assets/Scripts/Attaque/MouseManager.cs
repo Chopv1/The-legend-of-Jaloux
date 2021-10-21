@@ -10,6 +10,7 @@ public class MouseManager : MonoBehaviour
     private Camera cam;
     private RaycastHit2D hitInfo;
     private GameObject hitObject;
+
     void Start()
     {
         cam = Camera.main; //On garde la camera dans une variable
@@ -54,6 +55,7 @@ public class MouseManager : MonoBehaviour
                 ClearSelection();
             }
         }
+
         if (selectedObject1 != GameObject.Find("Player") && hitObject != GameObject.Find("Player"))
         {
             selectedObject1 = hitObject;
@@ -62,6 +64,7 @@ public class MouseManager : MonoBehaviour
         {
             selectedObject1 = hitObject;
         }
+
         GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
         hexagone.GetComponent<SpriteRenderer>().enabled = true;
         
