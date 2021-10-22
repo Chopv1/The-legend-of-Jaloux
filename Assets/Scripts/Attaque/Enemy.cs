@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
     public int MaxPv = 100;
     private int currentPv;
-    private float attack;
-    private int reach;
+    private float attack=20;
+    private int reach=1;
     private bool isSelected;
+    private bool attacked = false;
+
     // Start is called before the first frame update
-    
+
     void Start()
     {
         this.currentPv = MaxPv;
@@ -22,29 +25,24 @@ public class Enemy : MonoBehaviour
     {
  
     }
-    public void SetIsSelected()
+    public void SetIsSelected(bool selected)
     {
-        if (this.isSelected)
+        isSelected = selected;
+        if(!isSelected)
         {
-            this.isSelected = false;
             ChangeHexagoneColorToWhite(this);
-        }
-        else
-        {
-            this.isSelected = true;
         }
     }
-    public void SetIsSelectedObject2()
+    public void SetIsSelectedObject2(bool selected)
     {
-        if (this.isSelected)
+        isSelected = selected;
+        if(isSelected)
         {
-            this.isSelected = false;
-            ChangeHexagoneColorToWhite(this);
+            ChangeHexagoneColorToBleu(this);
         }
         else
         {
-            this.isSelected = true;
-            ChangeHexagoneColorToBleu(this);
+            ChangeHexagoneColorToWhite(this);
         }
     }
     private void IsDead()
@@ -54,12 +52,20 @@ public class Enemy : MonoBehaviour
             this.currentPv = 0;
             this.gameObject.SetActive(false);
             ChangeHexagoneColorToWhite(this);
+            attacked = false;
         }
     }
-    public void IsAttacked(int damage)
+    public bool IsAttacked(int damage)
     {
-        this.currentPv -=damage;
-        IsDead();
+        if(currentPv>0)
+        {
+            this.currentPv -= damage;
+            IsDead();
+            ChangeHexagoneColorToWhite(this);
+            attacked = true;
+            isSelected = false;
+        }
+        return attacked;
 
     }
 
@@ -74,5 +80,14 @@ public class Enemy : MonoBehaviour
         GameObject hexagone = obj.transform.GetChild(0).gameObject;
         hexagone.GetComponent<SpriteRenderer>().enabled = false;
         hexagone.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    public bool GetAttacked()
+    {
+        return attacked;
+    }
+    public void ChangeAttacked(bool attacked)
+    {
+        this.attacked = attacked;
     }
 }

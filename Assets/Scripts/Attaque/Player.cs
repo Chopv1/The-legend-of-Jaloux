@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public LayerMask enemyLayer;
     public int MaxPv=100;
     public MouseManager mouse;
-    public Transform positionHero;
 
     private Camera cam;
     private int currentPv;
@@ -29,53 +28,49 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        CanAttack();
+        if (isSelected)
+        {
+            CanAttack();
+        }
     }
 
-    public void SetIsSelected()
+    public void SetIsSelected(bool selected)
     {
-        if(isSelected)
-        {
-            isSelected = false;
-        }
-        else
-        {
-            isSelected = true;
-        }
+        isSelected = selected;
         
     }
     public void CanAttack()
     {
-        if(isSelected)
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
+
+        ChangeHexagoneColorToBlack(hitInfo);
+
+        Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D obj = Physics2D.Raycast(rayCastPos, Vector2.zero, enemyLayer);
+
+        if (Input.GetMouseButtonDown(0) && obj.collider != null && obj.transform.gameObject.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
         {
-             Collider2D[] hitInfo = Physics2D.OverlapCircleAll(positionHero.position, reach, enemyLayer);
-
-            ChangeHexagoneColorToBlack(hitInfo);
-
-            Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D obj = Physics2D.Raycast(rayCastPos, Vector2.zero, enemyLayer);
-
-            if (Input.GetMouseButtonDown(0)&& obj.collider != null && obj.transform.gameObject.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
-            {
-                obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack);
-                this.SetIsSelected();
-                ChangeHexagoneColorToWhite(hitInfo);
-                mouse.GetComponent<MouseManager>().ClearSelection();
-            }
-
-            if (Input.GetMouseButtonDown(0)&& obj.collider == null)
-            {
-                SetIsSelected();
-                ChangeHexagoneColorToWhite(hitInfo);
-                mouse.GetComponent<MouseManager>().ClearSelection();
-            }
+            obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack);
+            ChangeHexagoneColorToWhite(hitInfo);
+            mouse.GetComponent<MouseManager>().ClearSelection();
         }
+
+        if (Input.GetMouseButtonDown(0) && obj.collider == null)
+        {
+            ChangeHexagoneColorToWhite(hitInfo);
+            mouse.GetComponent<MouseManager>().ClearSelection();
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            isSelected = false;
+        }
+        
     }
     
     public bool IsInReach(GameObject obj)
     {
         bool reachable = false;
-        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(positionHero.position, reach, enemyLayer);
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
         foreach(Collider2D hit in hitInfo)
         {
             if(hit.gameObject == obj)

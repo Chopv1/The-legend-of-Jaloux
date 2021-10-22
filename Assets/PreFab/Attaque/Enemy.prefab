@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc8451754ae70243a51805f949070c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 128
   MaxPv: 100
 --- !u!70 &7521140974883582776
 CapsuleCollider2D:

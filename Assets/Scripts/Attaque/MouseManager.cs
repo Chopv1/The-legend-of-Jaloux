@@ -41,14 +41,14 @@ public class MouseManager : MonoBehaviour
     {
         if(selectedObject1 != null)
         {
-            if(hitObject== selectedObject1)
+            if(hitObject == selectedObject1)
             {
                 return;
             }
             else if(selectedObject1 == GameObject.Find("Player") && !selectedObject1.GetComponent<Player>().IsInReach(hitObject))
             {
                 selectedObject2 = hitObject;
-                selectedObject2.GetComponent<Enemy>().SetIsSelectedObject2();
+                selectedObject2.GetComponent<Enemy>().SetIsSelectedObject2(true);
             }
             else
             {
@@ -56,27 +56,38 @@ public class MouseManager : MonoBehaviour
             }
         }
 
-        if (selectedObject1 != GameObject.Find("Player") && hitObject != GameObject.Find("Player"))
+        if (selectedObject1 != GameObject.Find("Player") && hitObject != GameObject.Find("Player") && !hitObject.GetComponent<Enemy>().GetAttacked())
         {
             selectedObject1 = hitObject;
+            GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
+            hexagone.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else if(selectedObject1 != GameObject.Find("Player") && selectedObject2 != null && hitObject != GameObject.Find("Player") && hitObject.GetComponent<Enemy>().GetAttacked())
+        {
+            hitObject.GetComponent<Enemy>().ChangeAttacked(false);
         }
         else if(hitObject==GameObject.Find("Player"))
         {
             selectedObject1 = hitObject;
+            GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
+            hexagone.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else
+        {
+            hitObject.GetComponent<Enemy>().ChangeAttacked(false);
         }
 
-        GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
-        hexagone.GetComponent<SpriteRenderer>().enabled = true;
         
-        if(selectedObject2==null)
+
+        if (selectedObject2==null)
         {
             if(selectedObject1 == GameObject.Find("Player"))
             {
-                hitObject.GetComponent<Player>().SetIsSelected();
+                hitObject.GetComponent<Player>().SetIsSelected(true);
             }
             if(selectedObject1 == GameObject.Find("Enemy"))
             { 
-                hitObject.GetComponent<Enemy>().SetIsSelected();
+                hitObject.GetComponent<Enemy>().SetIsSelected(true);
             }
         }
     }
@@ -86,11 +97,11 @@ public class MouseManager : MonoBehaviour
         {
             if (selectedObject1 == GameObject.Find("Player"))
             {
-                selectedObject1.GetComponent<Player>().SetIsSelected();
+                selectedObject1.GetComponent<Player>().SetIsSelected(false);
             }
             if (selectedObject1 == GameObject.Find("Enemy"))
             {
-                selectedObject1.GetComponent<Enemy>().SetIsSelected();
+                selectedObject1.GetComponent<Enemy>().SetIsSelected(false);
             }
             GameObject hexagone = selectedObject1.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = false;
@@ -101,11 +112,18 @@ public class MouseManager : MonoBehaviour
                 hexagone = selectedObject2.transform.GetChild(0).gameObject;
                 hexagone.GetComponent<SpriteRenderer>().enabled = false;
                 hexagone.GetComponent<SpriteRenderer>().color = Color.white;
+                selectedObject2.GetComponent<Enemy>().SetIsSelectedObject2(false);
             }
-            
         }
         selectedObject1 = null;
         selectedObject2 = null;
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(new Vector2(0,0), 50);
+        foreach (Collider2D hit in hitInfo)
+        {
+            GameObject hexagone = hit.transform.GetChild(0).gameObject;
+            hexagone.GetComponent<SpriteRenderer>().enabled = false;
+            hexagone.GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
     public GameObject getSelection()
     {
