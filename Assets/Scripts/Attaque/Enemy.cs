@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
 
     public int MaxPv = 100;
     private int currentPv;
-    private float attack=20;
-    private int reach=1;
+    private float attack = 20;
+    private int reach = 1;
     private bool isSelected;
     private bool attacked = false;
 
@@ -23,12 +23,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
- 
+
     }
     public void SetIsSelected(bool selected)
     {
         isSelected = selected;
-        if(!isSelected)
+        if (!isSelected)
         {
             ChangeHexagoneColorToWhite(this);
         }
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     public void SetIsSelectedObject2(bool selected)
     {
         isSelected = selected;
-        if(isSelected)
+        if (isSelected)
         {
             ChangeHexagoneColorToBleu(this);
         }
@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
     }
     public bool IsAttacked(int damage)
     {
-        if(currentPv>0)
+        if (currentPv > 0)
         {
             this.currentPv -= damage;
             IsDead();
@@ -71,9 +71,9 @@ public class Enemy : MonoBehaviour
 
     public void ChangeHexagoneColorToBleu(Enemy obj)
     {
-         GameObject hexagone = obj.transform.GetChild(0).gameObject;
-         hexagone.GetComponent<SpriteRenderer>().enabled = true;
-         hexagone.GetComponent<SpriteRenderer>().color = Color.blue;
+        GameObject hexagone = obj.transform.GetChild(0).gameObject;
+        hexagone.GetComponent<SpriteRenderer>().enabled = true;
+        hexagone.GetComponent<SpriteRenderer>().color = Color.blue;
     }
     public void ChangeHexagoneColorToWhite(Enemy obj)
     {
