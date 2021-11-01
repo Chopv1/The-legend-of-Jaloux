@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,8 +12,10 @@ public class Player : MonoBehaviour
     private Camera cam;
     private int currentPv;
     private int attack;
+    private int defense;
     private float reach;
     private bool isSelected;
+    private int pa;
 
 
     // Start is called before the first frame update
@@ -21,8 +24,10 @@ public class Player : MonoBehaviour
         currentPv = MaxPv;
         cam = Camera.main;
         isSelected = false;
-        attack = 40;
+        attack = 70;
         reach = 1f;
+        pa = 10;
+        defense = 50;
     }
 
     // Update is called once per frame
@@ -51,6 +56,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && obj.collider != null && obj.transform.gameObject.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
         {
             obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack);
+            pa -= 1;
             ChangeHexagoneColorToWhite(hitInfo);
             mouse.GetComponent<MouseManager>().ClearSelection();
         }
@@ -103,5 +109,14 @@ public class Player : MonoBehaviour
             hexagone.GetComponent<SpriteRenderer>().enabled = true;
             hexagone.GetComponent<SpriteRenderer>().color = Color.black;
         }
+    }
+
+    public void AfficherStats()
+    {
+        GameObject fenêtre = this.transform.GetChild(1).gameObject;
+        fenêtre.GetComponent<SpriteRenderer>().enabled = true;
+        GameObject stats = GameObject.Find("Stats");
+        stats.GetComponent<Text>().enabled = true;
+        stats.GetComponent<Text>().text = "Stats\n----------------\nPV : " + currentPv + "/" + MaxPv + "\nAttaque : " + attack + "\nDéfense : " + defense+"\nPA : "+pa;
     }
 }

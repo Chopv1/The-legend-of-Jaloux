@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
 
     public int MaxPv = 100;
     private int currentPv;
-    private float attack = 20;
+    private int attack = 20;
+    private int defense = 30;
     private int reach = 1;
     private bool isSelected;
     private bool attacked = false;
@@ -59,7 +61,7 @@ public class Enemy : MonoBehaviour
     {
         if (currentPv > 0)
         {
-            this.currentPv -= damage;
+            this.currentPv -= (damage-defense);
             IsDead();
             ChangeHexagoneColorToWhite(this);
             attacked = true;
@@ -89,5 +91,14 @@ public class Enemy : MonoBehaviour
     public void ChangeAttacked(bool attacked)
     {
         this.attacked = attacked;
+    }
+
+    public void AfficherStats()
+    {
+        GameObject fenêtre = this.transform.GetChild(1).gameObject;
+        fenêtre.GetComponent<SpriteRenderer>().enabled = true;
+        GameObject stats = GameObject.Find("Stats");
+        stats.GetComponent<Text>().enabled = true;
+        stats.GetComponent<Text>().text = "Stats\n----------------\nPV : " + currentPv + "/" + MaxPv+"\nAttaque : "+attack+"\nDéfense : "+defense;
     }
 }
