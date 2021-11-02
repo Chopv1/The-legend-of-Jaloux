@@ -28,15 +28,20 @@ public class Unit : MonoBehaviour
 
         compteurPA = GameObject.Find("Compteur PA");
         Debug.Log(compteurPA);
+        compteurPA.transform.position = this.transform.position + new Vector3(180f, 280f, 0);
 
         compteurPA.GetComponent<Text>().enabled = true;
         
 
         boutonAvancer = GameObject.Find("Button Avance");
         Debug.Log(boutonAvancer);
+        boutonAvancer.GetComponent<Button>().transform.position = this.transform.position + new Vector3(180f,207.3f,0);
+        boutonAvancer.GetComponent<Button>().interactable = false;
+
 
         boutonFinTour = GameObject.Find("Button FinTour");
         Debug.Log(boutonFinTour);
+        boutonFinTour.GetComponent<Button>().transform.position = this.transform.position + new Vector3(180f, 240f, 0);
 
         movePoint.GetComponent<Renderer>().enabled = false;
     }
@@ -46,6 +51,8 @@ public class Unit : MonoBehaviour
         print(map.pa);
         if (currentPath != null){
             int currNode = 0;
+            boutonAvancer.GetComponent<Button>().interactable = true;
+
 
 
 
@@ -89,9 +96,11 @@ public class Unit : MonoBehaviour
                 //target.GetComponent<Renderer>().material.color = new Color(0.5849056f, 0.5403813f, 0.4773051f, 1);
                 movePoint.GetComponent<Renderer>().enabled = false;
                 boutonFinTour.GetComponent<Button>().interactable = true;
+                boutonAvancer.GetComponent<Button>().interactable = false;
+
 
             }
-        }
+        } 
         compteurPA.GetComponent<Text>().text = "PA : " + map.pa.ToString();
     }
 

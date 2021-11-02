@@ -113,8 +113,17 @@ public class TileMap : MonoBehaviour
     {
         if (unit.launchMove == false)
         {
+         
+              
             unit.GetComponent<Unit>().target = this.target;
             unit.GetComponent<Unit>().currentPath = null;
+
+            if (unit.GetComponent<Unit>().target.GetComponent<Transform>().position == unit.GetComponent<Unit>().GetComponent<Transform>().position)
+            {
+                unit.boutonAvancer.GetComponent<Button>().interactable = false;
+
+            }
+
 
             Dictionary<Node, float> dist = new Dictionary<Node, float>();
             Dictionary<Node, Node> prev = new Dictionary<Node, Node>();
@@ -183,7 +192,7 @@ public class TileMap : MonoBehaviour
              List<Node> currentPath = new List<Node>();
 
             Node curr = target;
-            
+          
             while (curr != null)
             {
                 i++;
@@ -191,6 +200,7 @@ public class TileMap : MonoBehaviour
                 curr = prev[curr];
 
             }
+            
 
             if (i > pa+1)
             {
@@ -220,7 +230,7 @@ public class TileMap : MonoBehaviour
         {
             pa = 10;
             unit.GetComponent<Unit>().currentPath = null;
-            unit.boutonAvancer.GetComponent<Button>().interactable = true;
+            unit.boutonAvancer.GetComponent<Button>().interactable = false;
         }
     }
 
