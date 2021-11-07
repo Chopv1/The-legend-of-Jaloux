@@ -18,6 +18,9 @@ public class Unit : MonoBehaviour
     public GameObject boutonAvancer;
     public GameObject boutonFinTour;
     public GameObject compteurPA;
+    public GameObject mapPreFab;
+    public GameObject mouseManagerObject;
+    private GameObject[] tableauTileGrass;
 
 
 
@@ -98,6 +101,13 @@ public class Unit : MonoBehaviour
                 boutonFinTour.GetComponent<Button>().interactable = true;
                 boutonAvancer.GetComponent<Button>().interactable = false;
 
+                tableauTileGrass = GameObject.FindGameObjectsWithTag("TileGrass");
+                foreach(GameObject tile909 in tableauTileGrass)
+                {
+                    tile909.GetComponent<BoxCollider>().enabled=false;
+                }
+                mouseManagerObject.GetComponent<MouseManager>().playerNotSelected();
+
 
             }
         } 
@@ -106,7 +116,7 @@ public class Unit : MonoBehaviour
 
 
     public void Move(){
-        if ( map.action==true) //vérification nombre de pa
+        if ( map.action==true) //vï¿½rification nombre de pa
         {
   
             launchMove = true;
@@ -114,7 +124,7 @@ public class Unit : MonoBehaviour
        }
       
 
-        //mettre la vérification de la distance dans une fonction de au clic sur la case et non le bouton
+        //mettre la vï¿½rification de la distance dans une fonction de au clic sur la case et non le bouton
         //permettre donc d'interdire cette fonction de clic sur une case lorsque launchMove est true
     }
 }

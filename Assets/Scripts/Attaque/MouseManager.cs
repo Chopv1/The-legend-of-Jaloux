@@ -7,28 +7,39 @@ public class MouseManager : MonoBehaviour
 {
     public GameObject selectedObject1;
     public GameObject selectedObject2;
+    public GameObject mapPreFab;
 
     private Camera cam;
     private RaycastHit2D hitInfo;
     private GameObject hitObject;
+    private bool playerSelected;
+    private GameObject[] tableauTileGrass;
+    private bool enemySelected;
 
     void Start()
     {
+        enemySelected = false;
+        playerSelected = false;
         cam = Camera.main; //On garde la camera dans une variable
     }
     void Update()
     {
         SelectAnObject(); //fonction pour selectionner l'objet
     }
+    public void playerNotSelected()
+    {
+        playerSelected = false;
+    }
     private void SelectAnObject()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition); //Le rayon pour récupére l'info de quel object on a touché
+            Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition); //Le rayon pour rï¿½cupï¿½re l'info de quel object on a touchï¿½
             hitInfo = Physics2D.Raycast(rayCastPos, Vector2.zero); //On fait le rayon et on l'enrengistre dans une variable
             
-            if (hitInfo.collider != null) //Si on a touché quelques chose c'est bon
+            if (hitInfo.collider != null ) //Si on a touchï¿½ quelques chose c'est bon
             {
+                playerSelected = true;
                 hitObject = hitInfo.transform.gameObject;
                 ObjectSelected(hitObject);
             }
@@ -38,6 +49,7 @@ public class MouseManager : MonoBehaviour
             }
         }
     }
+
     void ObjectSelected(GameObject hitObject)
     {
         if(selectedObject1 != null)
@@ -46,7 +58,7 @@ public class MouseManager : MonoBehaviour
             {
                 return;
             }
-            else if(selectedObject1 == GameObject.Find("Player") && !selectedObject1.GetComponent<Player>().IsInReach(hitObject))
+            else if(selectedObject1 == GameObject.Find("Unit") && !selectedObject1.GetComponent<Player>().IsInReach(hitObject))
             {
                 selectedObject2 = hitObject;
                 selectedObject2.GetComponent<Enemy>().SetIsSelectedObject2(true);
@@ -57,18 +69,18 @@ public class MouseManager : MonoBehaviour
             }
         }
 
-        if (selectedObject1 != GameObject.Find("Player") && hitObject != GameObject.Find("Player") && !hitObject.GetComponent<Enemy>().GetAttacked())
+        if (selectedObject1 != GameObject.Find("Unit") && hitObject != GameObject.Find("Unit") && !hitObject.GetComponent<Enemy>().GetAttacked())
         {
             selectedObject1 = hitObject;
             GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = true;
             hitObject.GetComponent<Enemy>().AfficherStats();
         }
-        else if(selectedObject1 != GameObject.Find("Player") && selectedObject2 != null && hitObject != GameObject.Find("Player") && hitObject.GetComponent<Enemy>().GetAttacked())
+        else if(selectedObject1 != GameObject.Find("Unit") && selectedObject2 != null && hitObject != GameObject.Find("Unit") && hitObject.GetComponent<Enemy>().GetAttacked())
         {
             hitObject.GetComponent<Enemy>().ChangeAttacked(false);
         }
-        else if(hitObject==GameObject.Find("Player"))
+        else if(hitObject==GameObject.Find("Unit"))
         {
             selectedObject1 = hitObject;
             GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
@@ -84,21 +96,30 @@ public class MouseManager : MonoBehaviour
 
         if (selectedObject2==null)
         {
-            if(selectedObject1 == GameObject.Find("Player"))
+            if(selectedObject1 == GameObject.Find("Unit"))
             {
                 hitObject.GetComponent<Player>().SetIsSelected(true);
+                Debug.Log("Clic sur le Joueur");
+            
+                tableauTileGrass = GameObject.FindGameObjectsWithTag("TileGrass");
+                foreach(GameObject tile909 in tableauTileGrass)
+                {
+                    tile909.GetComponent<BoxCollider>().enabled=true;
+                }
             }
             if(selectedObject1 == GameObject.Find("Enemy"))
             { 
                 hitObject.GetComponent<Enemy>().SetIsSelected(true);
+                Debug.Log("Clic sur l'ennemy");
             }
+
         }
     }
     public void ClearSelection()
     {
         if(selectedObject1 != null)
         {
-            if (selectedObject1 == GameObject.Find("Player"))
+            if (selectedObject1 == GameObject.Find("Unit"))
             {
                 selectedObject1.GetComponent<Player>().SetIsSelected(false);
             }
@@ -110,8 +131,8 @@ public class MouseManager : MonoBehaviour
             GameObject hexagone = selectedObject1.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = false;
             hexagone.GetComponent<SpriteRenderer>().color = Color.white;
-            GameObject fenêtre = selectedObject1.transform.GetChild(1).gameObject;
-            fenêtre.GetComponent<SpriteRenderer>().enabled = false;
+            GameObject fenetre = selectedObject1.transform.GetChild(1).gameObject;
+            fenetre.GetComponent<SpriteRenderer>().enabled = false;
             GameObject stats = GameObject.Find("Stats");
             stats.GetComponent<Text>().enabled = false;
             if (selectedObject2!=null)

@@ -9,6 +9,9 @@ TagManager:
   - Enemy
   - Map
   - Selection
+  - Joueur
+  - Ennemi
+  - TileGrass
   layers:
   - Default
   - TransparentFX

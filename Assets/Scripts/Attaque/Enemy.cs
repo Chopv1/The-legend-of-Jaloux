@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
 
     }
+    
     public void SetIsSelected(bool selected)
     {
         isSelected = selected;
@@ -95,10 +96,10 @@ public class Enemy : MonoBehaviour
 
     public void AfficherStats()
     {
-        GameObject fenêtre = this.transform.GetChild(1).gameObject;
-        fenêtre.GetComponent<SpriteRenderer>().enabled = true;
+        GameObject fenetre = this.transform.GetChild(0).gameObject;
+        fenetre.GetComponent<SpriteRenderer>().enabled = true;
         GameObject stats = GameObject.Find("Stats");
         stats.GetComponent<Text>().enabled = true;
-        stats.GetComponent<Text>().text = "Stats\n----------------\nPV : " + currentPv + "/" + MaxPv+"\nAttaque : "+attack+"\nDéfense : "+defense;
+        stats.GetComponent<Text>().text = "Stats\n----------------\nPV : " + currentPv + "/" + MaxPv+"\nAttaque : "+attack+"\nDï¿½fense : "+defense;
     }
 }
