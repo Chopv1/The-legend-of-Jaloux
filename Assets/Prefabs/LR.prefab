@@ -760,6 +760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4308900632172778}
   - component: {fileID: 114649445130249852}
+  - component: {fileID: -5689154781875220261}
   m_Layer: 0
   m_Name: LR
   m_TagString: Untagged
@@ -796,6 +797,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574b113a1431ad2489b46dd20fdf7dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5689154781875220261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982205314345556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d2d082040c4634f9705a0e4069ef87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: LR
+  description: ' new carte'
+  pointAction: 0
 --- !u!1 &2127571949296869351
 GameObject:
   m_ObjectHideFlags: 0

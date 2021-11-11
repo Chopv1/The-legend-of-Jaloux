@@ -8,6 +8,8 @@ public class SalleTemplate : MonoBehaviour
 	public GameObject[] salleHaut;
 	public GameObject[] salleGauche;
 	public GameObject[] salleDroite;
+	public GameObject[] cartes;
+
 
 	public GameObject sallefermer;
 
@@ -38,4 +40,6 @@ public class SalleTemplate : MonoBehaviour
 */
 
 	}
+
+	
 }

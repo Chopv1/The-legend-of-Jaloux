@@ -50,14 +50,17 @@ public class GenerateurMapSalle : MonoBehaviour {
 			construction = true;
 		}
 	}
-
+	/*
 	void OnTriggerEnter2D(Collider2D other){
 		if(other.CompareTag("SpawnPoint")){ // déclanchement au contacte d'un autre centre de salle 
 			if(other.GetComponent<GenerateurMapSalle>().construction == false && construction == false){
-				Instantiate(templates.sallefermer, transform.position, Quaternion.identity);
+				//Instantiate(templates.sallefermer, transform.position, Quaternion.identity);
 				Destroy(gameObject);
 			} 
 			construction = true;
+	
 		}
+
 	}
+*/
 }

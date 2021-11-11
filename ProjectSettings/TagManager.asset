@@ -8,6 +8,10 @@ TagManager:
   - Salle
   - Porte
   - Hero
+  - Carte1
+  - Carte2
+  - CameraCartes
+  - Camera
   layers:
   - Default
   - TransparentFX

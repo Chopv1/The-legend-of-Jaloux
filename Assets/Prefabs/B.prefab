@@ -87,7 +87,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004506553876976}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c57afa11372d564aad59cf02d01cec7, type: 3}
   m_Name: 
@@ -499,6 +499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4186792774406478}
   - component: {fileID: 114008165535306816}
+  - component: {fileID: 1982921020224438649}
   m_Layer: 0
   m_Name: B
   m_TagString: Untagged
@@ -535,6 +536,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574b113a1431ad2489b46dd20fdf7dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1982921020224438649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914693036162022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d2d082040c4634f9705a0e4069ef87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: B
+  description: bah jsp
+  pointAction: 0
+  gameObject: {fileID: 0}
 --- !u!1 &1993842130122838
 GameObject:
   m_ObjectHideFlags: 0
