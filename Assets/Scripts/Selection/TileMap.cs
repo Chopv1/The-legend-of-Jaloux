@@ -11,6 +11,7 @@ public class TileMap : MonoBehaviour
     public ClickableTile target;
     public Material appearance;
     public GameObject path;
+    public MouseManager reset;
     public bool action;
     public int pa = 10;
     public int i = 0;
@@ -231,6 +232,7 @@ public class TileMap : MonoBehaviour
             pa = 10;
             unit.GetComponent<Unit>().currentPath = null;
             unit.boutonAvancer.GetComponent<Button>().interactable = false;
+            reset.GetComponent<MouseManager>().CanMove(false);
         }
     }
 

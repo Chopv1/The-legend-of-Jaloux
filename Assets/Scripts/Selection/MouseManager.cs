@@ -74,7 +74,7 @@ public class MouseManager : MonoBehaviour
             selectedObject1 = hitObject;
             GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = true;
-            hitObject.GetComponent<Enemy>().AfficherStats();
+            //hitObject.GetComponent<Enemy>().AfficherStats();
         }
         else if(selectedObject1 != GameObject.Find("Unit") && selectedObject2 != null && hitObject != GameObject.Find("Unit") && hitObject.GetComponent<Enemy>().GetAttacked())
         {
@@ -85,7 +85,7 @@ public class MouseManager : MonoBehaviour
             selectedObject1 = hitObject;
             GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = true;
-            hitObject.GetComponent<Player>().AfficherStats();
+            //hitObject.GetComponent<Player>().AfficherStats();
         }
         else
         {
@@ -100,12 +100,8 @@ public class MouseManager : MonoBehaviour
             {
                 hitObject.GetComponent<Player>().SetIsSelected(true);
                 Debug.Log("Clic sur le Joueur");
-            
-                tableauTileGrass = GameObject.FindGameObjectsWithTag("TileGrass");
-                foreach(GameObject tile909 in tableauTileGrass)
-                {
-                    tile909.GetComponent<BoxCollider>().enabled=true;
-                }
+
+                CanMove(true);
             }
             if(selectedObject1 == GameObject.Find("Enemy"))
             { 
@@ -131,10 +127,10 @@ public class MouseManager : MonoBehaviour
             GameObject hexagone = selectedObject1.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = false;
             hexagone.GetComponent<SpriteRenderer>().color = Color.white;
-            GameObject fenetre = selectedObject1.transform.GetChild(1).gameObject;
+            /*GameObject fenetre = selectedObject1.transform.GetChild(1).gameObject;
             fenetre.GetComponent<SpriteRenderer>().enabled = false;
             GameObject stats = GameObject.Find("Stats");
-            stats.GetComponent<Text>().enabled = false;
+            stats.GetComponent<Text>().enabled = false;*/
             if (selectedObject2!=null)
             {
                 hexagone = selectedObject2.transform.GetChild(0).gameObject;
@@ -156,6 +152,14 @@ public class MouseManager : MonoBehaviour
     public GameObject getSelection()
     {
         return selectedObject1;
+    }
+    public void CanMove(bool yesOrNo)
+    {
+        tableauTileGrass = GameObject.FindGameObjectsWithTag("TileGrass");
+        foreach (GameObject tile909 in tableauTileGrass)
+        {
+            tile909.GetComponent<BoxCollider>().enabled = yesOrNo;
+        }
     }
 
 }
