@@ -46,17 +46,19 @@ public class Player : MonoBehaviour
     }
     public void CanAttack()
     {
+        Debug.Log("Attak");
+
         Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
 
         ChangeHexagoneColorToBlack(hitInfo);
 
         Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D obj = Physics2D.Raycast(rayCastPos, Vector2.zero, enemyLayer);
-
         if (Input.GetMouseButtonDown(0) && obj.collider != null && obj.transform.gameObject.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
         {
             obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack);
             pa -= 1;
+            Debug.Log("Attaque");
             ChangeHexagoneColorToWhite(hitInfo);
             mouse.GetComponent<MouseManager>().ClearSelection();
         }
@@ -65,10 +67,6 @@ public class Player : MonoBehaviour
         {
             ChangeHexagoneColorToWhite(hitInfo);
             mouse.GetComponent<MouseManager>().ClearSelection();
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            isSelected = false;
         }
         
     }
