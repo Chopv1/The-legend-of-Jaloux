@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2234577630556227089}
   m_Layer: 0
   m_Name: Unit
-  m_TagString: PlayeR
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678456980f5b87248b52978044441afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  MaxPv: 100
+  mouse: {fileID: 1788104452917420740, guid: 84046244d4346b4499427db4e5bcd25b, type: 3}
   tileX: 0
   tileY: 0
   map: {fileID: 4056387242903622628, guid: 2ab3328369d99ea4e9ff71c229e41d09, type: 3}

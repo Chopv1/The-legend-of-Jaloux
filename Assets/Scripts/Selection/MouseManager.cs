@@ -58,7 +58,7 @@ public class MouseManager : MonoBehaviour
             {
                 return;
             }
-            else if(selectedObject1 == GameObject.Find("Unit") && !selectedObject1.GetComponent<Player>().IsInReach(hitObject))
+            else if(selectedObject1.CompareTag("Unit") && !selectedObject1.GetComponent<Unit>().IsInReach(hitObject))
             {
                 selectedObject2 = hitObject;
                 selectedObject2.GetComponent<Enemy>().SetIsSelectedObject2(true);
@@ -69,18 +69,18 @@ public class MouseManager : MonoBehaviour
             }
         }
 
-        if (selectedObject1 != GameObject.Find("Unit") && hitObject != GameObject.Find("Unit") && !hitObject.GetComponent<Enemy>().GetAttacked())
+        if (!hitObject.CompareTag("Unit") && !hitObject.GetComponent<Enemy>().GetAttacked())
         {
             selectedObject1 = hitObject;
             GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = true;
             //hitObject.GetComponent<Enemy>().AfficherStats();
         }
-        else if(selectedObject1 != GameObject.Find("Unit") && selectedObject2 != null && hitObject != GameObject.Find("Unit") && hitObject.GetComponent<Enemy>().GetAttacked())
+        else if(selectedObject1 != null && !selectedObject1.CompareTag("Unit") && selectedObject2 != null && !hitObject.CompareTag("Unit") && hitObject.GetComponent<Enemy>().GetAttacked())
         {
             hitObject.GetComponent<Enemy>().ChangeAttacked(false);
         }
-        else if(hitObject==GameObject.Find("Unit"))
+        else if(hitObject.CompareTag("Unit"))
         {
             selectedObject1 = hitObject;
             GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
@@ -96,14 +96,14 @@ public class MouseManager : MonoBehaviour
 
         if (selectedObject2==null)
         {
-            if(selectedObject1 == GameObject.Find("Unit"))
+            if(selectedObject1!= null && selectedObject1.CompareTag("Unit"))
             {
-                hitObject.GetComponent<Player>().SetIsSelected(true);
+                hitObject.GetComponent<Unit>().SetIsSelected(true);
                 Debug.Log("Clic sur le Joueur");
 
                 CanMove(true);
             }
-            if(selectedObject1 == GameObject.Find("Enemy"))
+            if(selectedObject1 != null && selectedObject1.CompareTag("Enemy"))
             { 
                 hitObject.GetComponent<Enemy>().SetIsSelected(true);
                 Debug.Log("Clic sur l'ennemy");
@@ -115,11 +115,11 @@ public class MouseManager : MonoBehaviour
     {
         if(selectedObject1 != null)
         {
-            if (selectedObject1 == GameObject.Find("Unit"))
+            if (selectedObject1.CompareTag("Unit"))
             {
-                selectedObject1.GetComponent<Player>().SetIsSelected(false);
+                selectedObject1.GetComponent<Unit>().SetIsSelected(false);
             }
-            if (selectedObject1 == GameObject.Find("Enemy"))
+            if (selectedObject1.CompareTag("Enemy"))
             {
                 selectedObject1.GetComponent<Enemy>().SetIsSelected(false);
             }
@@ -127,10 +127,12 @@ public class MouseManager : MonoBehaviour
             GameObject hexagone = selectedObject1.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = false;
             hexagone.GetComponent<SpriteRenderer>().color = Color.white;
+
             /*GameObject fenetre = selectedObject1.transform.GetChild(1).gameObject;
             fenetre.GetComponent<SpriteRenderer>().enabled = false;
             GameObject stats = GameObject.Find("Stats");
             stats.GetComponent<Text>().enabled = false;*/
+
             if (selectedObject2!=null)
             {
                 hexagone = selectedObject2.transform.GetChild(0).gameObject;

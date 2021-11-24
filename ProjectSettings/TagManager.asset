@@ -5,13 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Undefined
-  - PlayeR
   - Enemy
   - Map
   - Selection
-  - Joueur
-  - Ennemi
   - TileGrass
+  - Unit
   layers:
   - Default
   - TransparentFX

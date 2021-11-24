@@ -3958,17 +3958,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1788104452917420741, guid: 84046244d4346b4499427db4e5bcd25b, type: 3}
   m_PrefabInstance: {fileID: 471235766}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &631701035 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1788104452917420740, guid: 84046244d4346b4499427db4e5bcd25b, type: 3}
-  m_PrefabInstance: {fileID: 471235766}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 631701034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17980ae748af09c46910774a2e4991d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &649018011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5687,39 +5676,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4629836607283420009, guid: 356a665b38d3b4445aa4b154dc925205, type: 3}
   m_PrefabInstance: {fileID: 2147034214}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &928327433 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8269061851478436541, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
-  m_PrefabInstance: {fileID: 8269061852303855028}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &928327435 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8269061851478436543, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
   m_PrefabInstance: {fileID: 8269061852303855028}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928327433}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 678456980f5b87248b52978044441afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &928327437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928327433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f41859a906e47f47ab8e11992033caf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  MaxPv: 100
-  mouse: {fileID: 631701035}
 --- !u!1 &929052547
 GameObject:
   m_ObjectHideFlags: 0

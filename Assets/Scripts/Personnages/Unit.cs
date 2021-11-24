@@ -5,6 +5,21 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
+
+    ///Variable du script player
+    private Camera cam;
+    private int currentPv;
+    private int attack;
+    private int defense;
+    private float reach;
+    private bool isSelected;
+    private int pa;
+
+    ///Variable du script player
+    public LayerMask enemyLayer;
+    public int MaxPv = 100;
+    public MouseManager mouse;
+    ///Variable du script initial
     public int tileX;
     public int tileY;
     public TileMap map;
@@ -28,7 +43,15 @@ public class Unit : MonoBehaviour
 
     void Start()
     {
-
+        //Player's Script
+        currentPv = MaxPv;
+        cam = Camera.main;
+        isSelected = false;
+        attack = 70;
+        reach = 1f;
+        pa = 10;
+        defense = 50;
+        //Unit's script
         compteurPA = GameObject.Find("Compteur PA");
         Debug.Log(compteurPA);
         compteurPA.transform.position = this.transform.position + new Vector3(180f, 280f, 0);
@@ -50,7 +73,12 @@ public class Unit : MonoBehaviour
     }
 
     void Update(){
-
+        //Player's Script
+        if (isSelected)
+        {
+            CanAttack();
+        }
+        //Unit's script
         print(map.pa);
         if (currentPath != null){
             int currNode = 0;
@@ -81,6 +109,9 @@ public class Unit : MonoBehaviour
             }
             pathList.Clear();
             Debug.Log(pathList.Count);
+
+            
+           
         }
 
         if(currentPath != null && Vector3.Distance(player.transform.position, movePoint.position) == 0 && launchMove == true){
@@ -126,5 +157,84 @@ public class Unit : MonoBehaviour
 
         //mettre la v�rification de la distance dans une fonction de au clic sur la case et non le bouton
         //permettre donc d'interdire cette fonction de clic sur une case lorsque launchMove est true
+    }
+
+    //Fusion des deux scripts pour avoir un seul scripts 
+    //Player's Script
+    public void SetIsSelected(bool selected)
+    {
+        isSelected = selected;
+
+    }
+    public void CanAttack()
+    {
+
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
+
+        ChangeHexagoneColorToBlack(hitInfo);
+
+        Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D obj = Physics2D.Raycast(rayCastPos, Vector2.zero, enemyLayer);
+        if (Input.GetMouseButtonDown(0) && obj.collider != null && obj.transform.gameObject.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
+        {
+            obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack);
+            pa -= 1;
+            ChangeHexagoneColorToWhite(hitInfo);
+            mouse.GetComponent<MouseManager>().ClearSelection();
+        }
+
+        if (Input.GetMouseButtonDown(0) && obj.collider == null)
+        {
+            ChangeHexagoneColorToWhite(hitInfo);
+            mouse.GetComponent<MouseManager>().ClearSelection();
+        }
+
+    }
+
+    public bool IsInReach(GameObject obj)
+    {
+        bool reachable = false;
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
+        foreach (Collider2D hit in hitInfo)
+        {
+            if (hit.gameObject == obj)
+            {
+                reachable = true;
+            }
+        }
+        return reachable;
+    }
+    public bool GetSelected()
+    {
+        return this.isSelected;
+    }
+
+    private void ChangeHexagoneColorToWhite(Collider2D[] hitInfo)
+    {
+        foreach (Collider2D hit in hitInfo)
+        {
+            GameObject hexagone = hit.transform.GetChild(0).gameObject;
+            hexagone.GetComponent<SpriteRenderer>().enabled = false;
+            hexagone.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
+
+    private void ChangeHexagoneColorToBlack(Collider2D[] hitInfo)
+    {
+        foreach (Collider2D hit in hitInfo)
+        {
+            GameObject hexagone = hit.transform.GetChild(0).gameObject;
+            hexagone.GetComponent<SpriteRenderer>().enabled = true;
+            hexagone.GetComponent<SpriteRenderer>().color = Color.black;
+        }
+    }
+
+    public void AfficherStats()
+    {
+        GameObject fenetre = this.transform.GetChild(1).gameObject;
+        fenetre.GetComponent<SpriteRenderer>().enabled = true;
+        GameObject stats = GameObject.Find("Stats");
+        stats.GetComponent<Text>().enabled = true;
+        stats.GetComponent<Text>().text = "Stats\n----------------\nPV : " + currentPv + "/" + MaxPv + "\nAttaque : " + attack + "\nD�fense : " + defense + "\nPA : " + pa;
     }
 }
