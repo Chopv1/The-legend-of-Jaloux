@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
 
-    ///Variable du script player
+    //Variable du script player
     private Camera cam;
     private int currentPv;
     private int attack;
@@ -15,11 +15,12 @@ public class Unit : MonoBehaviour
     private bool isSelected;
     private int pa;
 
-    ///Variable du script player
+    //Variable du script player
     public LayerMask enemyLayer;
     public int MaxPv = 100;
     public MouseManager mouse;
-    ///Variable du script initial
+
+    //Variable du script initial
     public int tileX;
     public int tileY;
     public TileMap map;
@@ -39,6 +40,7 @@ public class Unit : MonoBehaviour
 
 
 
+
     public List<Node> currentPath = null;
 
     void Start()
@@ -51,7 +53,9 @@ public class Unit : MonoBehaviour
         reach = 1f;
         pa = 10;
         defense = 50;
+
         //Unit's script
+
         compteurPA = GameObject.Find("Compteur PA");
         Debug.Log(compteurPA);
         compteurPA.transform.position = this.transform.position + new Vector3(180f, 280f, 0);
@@ -161,42 +165,53 @@ public class Unit : MonoBehaviour
 
     //Fusion des deux scripts pour avoir un seul scripts 
     //Player's Script
-    public void SetIsSelected(bool selected)
+    public void SetIsSelected(bool selected) ///Fonction pour sélectionner le perso ou pas
     {
         isSelected = selected;
 
     }
-    public void CanAttack()
+    public void CanAttack() ///On regard s'il peut attaquer ou pas
     {
 
-        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
+        ///La fonction trace un cercle de rayon 'reach' et enregistre tous les enemies dans ce cercle 
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer); 
 
-        ChangeHexagoneColorToBlack(hitInfo);
+        ChangeHexagoneColorToBlack(hitInfo);  //On affiche l'hexagone noir pour montrer qu'ils sont attackable
 
-        Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D obj = Physics2D.Raycast(rayCastPos, Vector2.zero, enemyLayer);
-        if (Input.GetMouseButtonDown(0) && obj.collider != null && obj.transform.gameObject.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
+        Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition); // On réupère la position de la souris au moment du clic
+        RaycastHit2D obj = Physics2D.Raycast(rayCastPos, Vector2.zero, enemyLayer); //On stock l'objet à l'endroit de la souris
+
+        //Vérification qu'il peut attacker l'ennemie choisi
+        if (Input.GetMouseButtonDown(0) && isSelected && obj.collider != null && obj.transform.gameObject.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
         {
-            obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack);
+            Debug.Log("Attacking");
+            SetIsSelected(false); // On déselectionne
+            mouse.GetComponent<MouseManager>().ClearSelection(); // On déselctionne
+            mouse.GetComponent<MouseManager>().CanMove(false); // Plus de déplacement faut reselectionner le joueur pour se redéplacer après l'attaque
+            obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack); //On change le statut de l'ennemy en attaqué
             pa -= 1;
-            ChangeHexagoneColorToWhite(hitInfo);
-            mouse.GetComponent<MouseManager>().ClearSelection();
+            ChangeHexagoneColorToWhite(hitInfo); //On remet les hexagones blanc et on les déaffiche
+            
+            
         }
 
-        if (Input.GetMouseButtonDown(0) && obj.collider == null)
+        if (Input.GetMouseButtonDown(0) && obj.collider == null)// Si on touche rien
         {
-            ChangeHexagoneColorToWhite(hitInfo);
-            mouse.GetComponent<MouseManager>().ClearSelection();
+            ChangeHexagoneColorToWhite(hitInfo);//On remet les hexagones blanc et on les déaffiche
+            mouse.GetComponent<MouseManager>().ClearSelection(); //On clear les séléctions
         }
-
+        SetIsSelected(false);
     }
 
+    //On vérifie que l'objet en paramètre est dans la portée
     public bool IsInReach(GameObject obj)
     {
         bool reachable = false;
+        ///La fonction trace un cercle de rayon 'reach' et enregistre tous les enemies dans ce cercle 
         Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
         foreach (Collider2D hit in hitInfo)
-        {
+        {   
+            //on vérifie si l'objet en paramètre est bien dans le cercle on renvoie true si il l'est
             if (hit.gameObject == obj)
             {
                 reachable = true;
@@ -204,13 +219,13 @@ public class Unit : MonoBehaviour
         }
         return reachable;
     }
-    public bool GetSelected()
+    public bool GetSelected() //Un getter
     {
         return this.isSelected;
     }
 
     private void ChangeHexagoneColorToWhite(Collider2D[] hitInfo)
-    {
+    {   
         foreach (Collider2D hit in hitInfo)
         {
             GameObject hexagone = hit.transform.GetChild(0).gameObject;
