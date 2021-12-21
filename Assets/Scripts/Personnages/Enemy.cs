@@ -54,48 +54,29 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if (currentPath != null){
-            Debug.Log("Avance ennemy !");
-            Move();
-            int currNode = 0;
-
-            while (currNode < currentPath.Count - 1 && currNode < pa - 1){
-                Debug.Log("Enemy : " + currNode);
-                Vector3 start = map.TileCoordToWorldCoord(currentPath[currNode].x, currentPath[currNode].y);
-                Vector3 end = map.TileCoordToWorldCoord(currentPath[currNode + 1].x, currentPath[currNode + 1].y);
-                Debug.Log("Start : " + start);
-                Debug.Log("End : " + end);
-
-                Debug.DrawLine(start, end, Color.red);
-
-        
-                GameObject go = (GameObject)Instantiate(path, end, Quaternion.identity);
-                pathList.Add(go);
-
-                currNode++;
-                
-            }
-            foreach (GameObject go in pathList)
-            {
-                Destroy(go, 0.1f);
-
-            }
-            pathList.Clear();
-            Debug.Log(pathList.Count);
+        if(currentPath != null && Vector3.Distance(ennemy.transform.position, movePoint.position) == 0 && launchMove == true && pa > 0){
             
-        
-        }
-
-
-
-        if(currentPath != null && Vector3.Distance(ennemy.transform.position, movePoint.position) == 0 && launchMove == true){
             currentPath.RemoveAt(0);
             transform.position = map.TileCoordToWorldCoord(currentPath[0].x, currentPath[0].y);
             tileX = currentPath[0].x;
             tileY = currentPath[0].y;
+            pa = pa - 1;
             
 
+            if (currentPath.Count == 1){
+                Debug.Log("Fin des haricots");
+                map.paEnemy = map.paEnemy - map.j + 1;
+                currentPath = null;
+                launchMove = false;
+                
+                //target.GetComponent<Renderer>().material.color = new Color(0.5849056f, 0.5403813f, 0.4773051f, 1);
+
+            }
         } 
+        else if(pa == 0) {
+            launchMove = false;
+            pa = 5;
+        }
 
     }
 

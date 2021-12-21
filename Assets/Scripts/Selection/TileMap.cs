@@ -16,7 +16,9 @@ public class TileMap : MonoBehaviour
     public MouseManager reset;
     public bool action;
     public int pa = 10;
+    public int paEnemy = 5;
     public int i = 0;
+    public int j = 0;
 
 
 
@@ -227,7 +229,10 @@ public class TileMap : MonoBehaviour
 
             unit.GetComponent<Unit>().currentPath = currentPath;
             
+        }
 
+        if (enemy.launchMove == false)
+        {
 
             //Création du chemin pour l'enemy
             Dictionary<Node, float> dist2 = new Dictionary<Node, float>();
@@ -293,20 +298,22 @@ public class TileMap : MonoBehaviour
                 return;
             }
 
-             i = 0;
+             j = 0;
              List<Node> currentPath2 = new List<Node>();
 
             Node curr2 = target2;
           
             while (curr2 != null)
             {
-                i++;
+                j++;
                 currentPath2.Add(curr2);
                 curr2 = prev2[curr2];
 
             }
             
             currentPath2.Reverse();
+
+            currentPath2.RemoveAt(currentPath2.Count - 1);
 
             enemy.GetComponent<Enemy>().currentPath = currentPath2;
         }
