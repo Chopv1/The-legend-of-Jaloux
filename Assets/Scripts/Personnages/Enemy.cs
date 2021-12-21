@@ -56,6 +56,7 @@ public class Enemy : MonoBehaviour
     {
         if (currentPath != null){
             Debug.Log("Avance ennemy !");
+            Move();
             int currNode = 0;
 
             while (currNode < currentPath.Count - 1 && currNode < pa - 1){
@@ -84,37 +85,18 @@ public class Enemy : MonoBehaviour
             
         
         }
-/*
+
+
+
         if(currentPath != null && Vector3.Distance(ennemy.transform.position, movePoint.position) == 0 && launchMove == true){
-            boutonFinTour.GetComponent<Button>().interactable = false;
-            movePoint.GetComponent<Renderer>().enabled = true;
             currentPath.RemoveAt(0);
             transform.position = map.TileCoordToWorldCoord(currentPath[0].x, currentPath[0].y);
             tileX = currentPath[0].x;
             tileY = currentPath[0].y;
             
 
-            if (currentPath.Count == 1){
-                map.pa = map.pa - map.i + 1;
-                currentPath = null;
-                launchMove = false;
-                //target.GetComponent<Renderer>().material.color = new Color(0.5849056f, 0.5403813f, 0.4773051f, 1);
-                movePoint.GetComponent<Renderer>().enabled = false;
-                boutonFinTour.GetComponent<Button>().interactable = true;
-                boutonAvancer.GetComponent<Button>().interactable = false;
-
-                tableauTileGrass = GameObject.FindGameObjectsWithTag("TileGrass");
-                foreach(GameObject tile909 in tableauTileGrass)
-                {
-                    tile909.GetComponent<BoxCollider>().enabled=false;
-                }
-                mouseManagerObject.GetComponent<MouseManager>().playerNotSelected();
-
-
-            }
         } 
-        compteurPA.GetComponent<Text>().text = "PA : " + map.pa.ToString();
-        */
+
     }
 
 

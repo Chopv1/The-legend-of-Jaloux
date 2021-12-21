@@ -7,7 +7,7 @@ public class MovementEnemy : MonoBehaviour
 
     public float moveSpeed = 5f;
     public Transform movePoint;
-    public Enemy enemy;
+    public Enemy unit;
     public float moveDelay = 0f;
     public float nextMove;
     void Start()
@@ -20,7 +20,7 @@ public class MovementEnemy : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime * 30);
-        if (Vector3.Distance(transform.position, movePoint.position) == 0 && enemy.currentPath != null){
+        if (Vector3.Distance(transform.position, movePoint.position) == 0 && unit.currentPath != null){
         }
         /*if (Vector3.Distance(transform.position, movePoint.position) == 0){
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f && Time.time > nextMove){

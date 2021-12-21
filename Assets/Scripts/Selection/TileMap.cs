@@ -32,6 +32,7 @@ public class TileMap : MonoBehaviour
         //unit.GetComponent<Unit>().tileX = (int)unit.transform.position.x;
         //unit.GetComponent<Unit>().tileY = (int)unit.transform.position.y;
         unit.GetComponent<Unit>().map = this;
+        enemy.GetComponent<Enemy>().map = this;
         GenerateMapData();
         GeneratePathFfindingGraph();
         GenerateMapVisual();
