@@ -31,20 +31,17 @@ public class Unit : MonoBehaviour
 
         compteurPA = GameObject.Find("Compteur PA");
         Debug.Log(compteurPA);
-        compteurPA.transform.position = this.transform.position + new Vector3(180f, 280f, 0);
 
         compteurPA.GetComponent<Text>().enabled = true;
         
 
         boutonAvancer = GameObject.Find("Button Avance");
         Debug.Log(boutonAvancer);
-        boutonAvancer.GetComponent<Button>().transform.position = this.transform.position + new Vector3(180f,207.3f,0);
         boutonAvancer.GetComponent<Button>().interactable = false;
 
 
         boutonFinTour = GameObject.Find("Button FinTour");
         Debug.Log(boutonFinTour);
-        boutonFinTour.GetComponent<Button>().transform.position = this.transform.position + new Vector3(180f, 240f, 0);
 
         movePoint.GetComponent<Renderer>().enabled = false;
     }

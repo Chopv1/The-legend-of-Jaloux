@@ -6,10 +6,13 @@ public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public Dropdown resolutionDropdown;
+    public bool isFullScreen;
     Resolution[] resolutions;
 
     public void Start()
     {
+        Screen.fullScreen = true;
+        isFullScreen = true;
 
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
@@ -33,6 +36,11 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
+    public void Update()
+    {
+        Screen.fullScreen = isFullScreen;
+
+    }
 
     public void SetVolume(float volume)
     {
@@ -40,9 +48,10 @@ public class SettingsMenu : MonoBehaviour
 
     }
 
-    public void SetFullScreen(bool isFullScreen)
+    public void SetFullScreen(bool isFullScreenn)
     {
-        Screen.fullScreen = isFullScreen;
+        isFullScreen = isFullScreenn;
+
     }
     public void SetResolution(int resolutionIndex)
     {
