@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-
+    public GameObject selection;
     public int MaxPv = 100;
     private int currentPv;
     private int attack = 20;
@@ -25,7 +25,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-
+        if(selection.GetComponent<MouseManager>().getSelection2()!=null)
+        {
+            if(selection.GetComponent<MouseManager>().getSelection()!=this)
+            {
+                this.SetIsSelected(false);
+                this.SetIsSelectedObject2(false);
+            }
+        }
     }
     
     public void SetIsSelected(bool selected)

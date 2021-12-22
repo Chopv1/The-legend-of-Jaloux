@@ -186,21 +186,19 @@ public class Unit : MonoBehaviour
         {
             Debug.Log("Attacking");
             SetIsSelected(false); // On déselectionne
-            mouse.GetComponent<MouseManager>().ClearSelection(); // On déselctionne
             mouse.GetComponent<MouseManager>().CanMove(false); // Plus de déplacement faut reselectionner le joueur pour se redéplacer après l'attaque
             obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack); //On change le statut de l'ennemy en attaqué
             pa -= 1;
-            ChangeHexagoneColorToWhite(hitInfo); //On remet les hexagones blanc et on les déaffiche
-            
-            
+            ChangeHexagoneColorToWhite(hitInfo); //On remet les hexagones blanc et on les désaffiche
+            mouse.GetComponent<MouseManager>().ClearSelection(); // On déselctionne
         }
 
         if (Input.GetMouseButtonDown(0) && obj.collider == null)// Si on touche rien
         {
             ChangeHexagoneColorToWhite(hitInfo);//On remet les hexagones blanc et on les déaffiche
             mouse.GetComponent<MouseManager>().ClearSelection(); //On clear les séléctions
+            SetIsSelected(false);
         }
-        SetIsSelected(false);
     }
 
     //On vérifie que l'objet en paramètre est dans la portée

@@ -92,9 +92,10 @@ public class MouseManager : MonoBehaviour
 
 
         }
-        else if(hitObject.CompareTag("Enemy")) //Si c'est un ennemy qu'on a touché on change son statut d'attaqué (lors de l'attaque)
+        else if(hitObject.CompareTag("Enemy") && hitObject.GetComponent<Enemy>().GetAttacked()) //Si c'est un ennemy qu'on a touché on change son statut d'attaqué (lors de l'attaque)
         {
             hitObject.GetComponent<Enemy>().ChangeAttacked(false);
+            ClearSelection();
         }
 
         
@@ -166,6 +167,10 @@ public class MouseManager : MonoBehaviour
     public GameObject getSelection()
     {
         return selectedObject1; //Simple getter
+    }
+    public GameObject getSelection2()
+    {
+        return selectedObject2; //Simple getter
     }
     public void CanMove(bool yesOrNo) //Pour activer les déplacement
     {

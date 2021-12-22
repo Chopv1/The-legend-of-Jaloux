@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc8451754ae70243a51805f949070c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selection: {fileID: 1788104452917420741, guid: 84046244d4346b4499427db4e5bcd25b, type: 3}
   MaxPv: 100
 --- !u!70 &7521140974883582776
 CapsuleCollider2D:
