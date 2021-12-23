@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class Unit : MonoBehaviour
 {
@@ -33,14 +34,13 @@ public class Unit : MonoBehaviour
     public int points = 5;
     public GameObject boutonAvancer;
     public GameObject boutonFinTour;
+    public GameObject boutonFouille;
     public GameObject compteurPA;
     public GameObject mapPreFab;
     public GameObject mouseManagerObject;
     private GameObject[] tableauTileGrass;
-
-
-
-
+    public List<int> listObjets;
+    public List<Items> listItems;
     public List<Node> currentPath = null;
 
     void Start()
@@ -74,6 +74,12 @@ public class Unit : MonoBehaviour
         boutonFinTour.GetComponent<Button>().transform.position = this.transform.position + new Vector3(180f, 240f, 0);
 
         movePoint.GetComponent<Renderer>().enabled = false;
+
+        boutonFouille = GameObject.Find("Button Fouille");
+        Debug.Log(boutonFouille);
+        boutonFouille.transform.position = this.transform.position + new Vector3(180f, 176.6f, 0);
+
+        boutonFouille.GetComponent<Button>().enabled = true;
     }
 
     void Update(){
@@ -155,9 +161,11 @@ public class Unit : MonoBehaviour
         {
   
             launchMove = true;
-  
-       }
-      
+            boutonFouille.GetComponent<Button>().interactable = true;
+
+
+        }
+
 
         //mettre la v�rification de la distance dans une fonction de au clic sur la case et non le bouton
         //permettre donc d'interdire cette fonction de clic sur une case lorsque launchMove est true
@@ -251,5 +259,40 @@ public class Unit : MonoBehaviour
         GameObject stats = GameObject.Find("Stats");
         stats.GetComponent<Text>().enabled = true;
         stats.GetComponent<Text>().text = "Stats\n----------------\nPV : " + currentPv + "/" + MaxPv + "\nAttaque : " + attack + "\nD�fense : " + defense + "\nPA : " + pa;
+    }
+
+    public void Fouille()
+    {
+        boutonFouille.GetComponent<Button>().interactable = false;
+        Random rand = new Random();
+        int number = rand.Next(5);
+        switch (number)
+        {
+            case 0:
+                listItems.Add(new Items("Casque en bronze", "casque", 3));
+                print("Un casque en bronze a été ajouté à votre inventaire!");
+                break;
+            case 1:
+                listItems.Add(new Items("Bottes de cuir", "bottes", 1));
+                print("Des bottes de cuir ont été ajoutées à votre inventaire!");
+                break;
+            case 2:
+                listItems.Add(new Items("Potion", "soin", 3));
+                print("Une potion a été ajoutée à votre inventaire!");
+                break;
+            case 3:
+                listItems.Add(new Items("Armure de mailles", "armure", 3));
+                print("Une armure de mailles a été ajoutée à votre inventaire!");
+                break;
+            case 4:
+                listItems.Add(new Items("Armure de Jaloux", "armure", 5));
+                print("Incroyable, vous avez trouvé l'armure de Jaloux !");
+                break;
+        }
+        map.pa = map.pa - 1;
+        foreach (Items o in listItems)
+        {
+            print(o.getNomItem());
+        }
     }
 }
