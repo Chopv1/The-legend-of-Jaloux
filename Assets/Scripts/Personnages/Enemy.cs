@@ -47,7 +47,10 @@ public class Enemy : MonoBehaviour
     {
         this.currentPv = MaxPv;
         isSelected = false;
- 
+        fenetre = GameObject.Find("CarréStats");
+        stats = GameObject.Find("Stats");
+        
+
         boutonAvancer = GameObject.Find("Button Avance");
         Debug.Log(boutonAvancer);
     }
