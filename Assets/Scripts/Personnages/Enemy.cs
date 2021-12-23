@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     private int reach = 1;
     private bool isSelected;
     private bool attacked = false;
-    private int pa;
+    private int pa = 5;
     public GameObject fenetre;
     public GameObject stats;
 
@@ -47,11 +47,7 @@ public class Enemy : MonoBehaviour
     {
         this.currentPv = MaxPv;
         isSelected = false;
-        fenetre = GameObject.Find("Carr�");
-        stats = GameObject.Find("Stats");
-        fenetre.SetActive(false);
-        pa = 5;
-
+ 
         boutonAvancer = GameObject.Find("Button Avance");
         Debug.Log(boutonAvancer);
     }
