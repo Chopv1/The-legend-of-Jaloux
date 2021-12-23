@@ -43,6 +43,13 @@ public class Unit : MonoBehaviour
 
     public List<Node> currentPath = null;
 
+    public int CurrentPv { get => currentPv; set => currentPv = value; }
+    public int Attack { get => attack; set => attack = value; }
+    public int Defense { get => defense; set => defense = value; }
+    public float Reach { get => reach; set => reach = value; }
+    public bool IsSelected { get => isSelected; set => isSelected = value; }
+    public int Pa { get => pa; set => pa = value; }
+
     void Start()
     {
         //Player's Script
@@ -80,7 +87,7 @@ public class Unit : MonoBehaviour
         //Player's Script
         if (isSelected)
         {
-            CanAttack();
+            ShowAttack();
         }
         //Unit's script
         print(map.pa);
@@ -118,7 +125,8 @@ public class Unit : MonoBehaviour
            
         }
 
-        if(currentPath != null && Vector3.Distance(player.transform.position, movePoint.position) == 0 && launchMove == true){
+        if(currentPath != null && Vector3.Distance(player.transform.position, movePoint.position) == 0 && launchMove == true)
+        {
             boutonFinTour.GetComponent<Button>().interactable = false;
             movePoint.GetComponent<Renderer>().enabled = true;
             currentPath.RemoveAt(0);
@@ -127,7 +135,8 @@ public class Unit : MonoBehaviour
             tileY = currentPath[0].y;
             
 
-            if (currentPath.Count == 1){
+            if (currentPath.Count == 1)
+            {
                 map.pa = map.pa - map.i + 1;
                 currentPath = null;
                 launchMove = false;
@@ -141,7 +150,6 @@ public class Unit : MonoBehaviour
                 {
                     tile909.GetComponent<BoxCollider>().enabled=false;
                 }
-                mouseManagerObject.GetComponent<MouseManager>().playerNotSelected();
 
 
             }
@@ -150,12 +158,14 @@ public class Unit : MonoBehaviour
     }
 
 
-    public void Move(){
+    public void Move()
+    {
         if ( map.action==true) //v�rification nombre de pa
         {
   
             launchMove = true;
   
+
        }
       
 
@@ -170,37 +180,26 @@ public class Unit : MonoBehaviour
         isSelected = selected;
 
     }
-    public void CanAttack() ///On regard s'il peut attaquer ou pas
+    public bool ShowAttack() ///On regard s'il peut attaquer ou pas
     {
 
         ///La fonction trace un cercle de rayon 'reach' et enregistre tous les enemies dans ce cercle 
         Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer); 
 
         ChangeHexagoneColorToBlack(hitInfo);  //On affiche l'hexagone noir pour montrer qu'ils sont attackable
-
-        Vector2 rayCastPos = cam.ScreenToWorldPoint(Input.mousePosition); // On réupère la position de la souris au moment du clic
-        RaycastHit2D obj = Physics2D.Raycast(rayCastPos, Vector2.zero, enemyLayer); //On stock l'objet à l'endroit de la souris
-
-        //Vérification qu'il peut attacker l'ennemie choisi
-        if (Input.GetMouseButtonDown(0) && isSelected && obj.collider != null && obj.transform.gameObject.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
-        {
-            Debug.Log("Attacking");
-            SetIsSelected(false); // On déselectionne
-            mouse.GetComponent<MouseManager>().CanMove(false); // Plus de déplacement faut reselectionner le joueur pour se redéplacer après l'attaque
-            obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack); //On change le statut de l'ennemy en attaqué
-            pa -= 1;
-            ChangeHexagoneColorToWhite(hitInfo); //On remet les hexagones blanc et on les désaffiche
-            mouse.GetComponent<MouseManager>().ClearSelection(); // On déselctionne
-        }
-
-        if (Input.GetMouseButtonDown(0) && obj.collider == null)// Si on touche rien
-        {
-            ChangeHexagoneColorToWhite(hitInfo);//On remet les hexagones blanc et on les déaffiche
-            mouse.GetComponent<MouseManager>().ClearSelection(); //On clear les séléctions
-            SetIsSelected(false);
-        }
+        
+        return false;
     }
-
+    public bool CanAttack(GameObject enemy)
+    {
+        Debug.Log(enemy);
+        //Vérification qu'il peut attacker l'ennemie choisi
+        if (IsInReach(enemy))
+        {
+            return true;
+        }
+        return false;
+    }
     //On vérifie que l'objet en paramètre est dans la portée
     public bool IsInReach(GameObject obj)
     {

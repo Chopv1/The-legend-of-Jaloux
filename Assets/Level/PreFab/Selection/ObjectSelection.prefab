@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17980ae748af09c46910774a2e4991d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedObject1: {fileID: 0}
-  selectedObject2: {fileID: 0}
   mapPreFab: {fileID: 3655715322753052326, guid: 999988b1bc4bd4b4389e7f479e91725a, type: 3}
-  ui: {fileID: 7888232407582570924, guid: 45b225c717670cc438e5a1e8775588b6, type: 3}
+  bExit: {fileID: 5938052004024664697, guid: 362c0c263e083494aa20b453d9d27084, type: 3}
+  bInfo: {fileID: 207399015041597327, guid: 7c68f8d0e50544746b0f7e988867f5b7, type: 3}
+  bAttaque: {fileID: 8056185596137972504, guid: f298c01f57dae0a40ad9809a793bf46a, type: 3}

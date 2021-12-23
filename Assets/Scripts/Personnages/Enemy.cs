@@ -7,12 +7,21 @@ public class Enemy : MonoBehaviour
 {
     public GameObject selection;
     public int MaxPv = 100;
+
+
+
     private int currentPv;
     private int attack = 20;
     private int defense = 30;
     private int reach = 1;
     private bool isSelected;
-    private bool attacked = false;
+
+    public int CurrentPv { get => currentPv; set => currentPv = value; }
+    public int Attack { get => attack; set => attack = value; }
+    public int Defense { get => defense; set => defense = value; }
+    public int Reach { get => reach; set => reach = value; }
+    public bool IsSelected { get => isSelected; set => isSelected = value; }
+
 
     // Start is called before the first frame update
 
@@ -25,14 +34,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if(selection.GetComponent<MouseManager>().getSelection2()!=null)
-        {
-            if(selection.GetComponent<MouseManager>().getSelection()!=this)
-            {
-                this.SetIsSelected(false);
-                this.SetIsSelectedObject2(false);
-            }
-        }
+ 
     }
     
     public void SetIsSelected(bool selected)
@@ -62,20 +64,18 @@ public class Enemy : MonoBehaviour
             this.currentPv = 0;
             this.gameObject.SetActive(false);
             ChangeHexagoneColorToWhite(this);
-            attacked = false;
         }
     }
-    public bool IsAttacked(int damage)
+    public void IsAttacked(int damage)
     {
         if (currentPv > 0)
         {
             this.currentPv -= (damage-defense);
+            Debug.Log("Enemy Attacked");
             IsDead();
             ChangeHexagoneColorToWhite(this);
-            attacked = true;
             isSelected = false;
         }
-        return attacked;
 
     }
 
@@ -92,14 +92,8 @@ public class Enemy : MonoBehaviour
         hexagone.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
-    public bool GetAttacked()
-    {
-        return attacked;
-    }
-    public void ChangeAttacked(bool attacked)
-    {
-        this.attacked = attacked;
-    }
+    
+  
 
     public void AfficherStats()
     {
@@ -109,4 +103,6 @@ public class Enemy : MonoBehaviour
         stats.GetComponent<Text>().enabled = true;
         stats.GetComponent<Text>().text = "Stats\n----------------\nPV : " + currentPv + "/" + MaxPv+"\nAttaque : "+attack+"\nD�fense : "+defense;
     }
+    
+    
 }
