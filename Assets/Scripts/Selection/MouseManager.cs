@@ -74,7 +74,7 @@ public class MouseManager : MonoBehaviour
             selectedObject1 = hitObject;
             GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = true;
-            //hitObject.GetComponent<Enemy>().AfficherStats();
+            hitObject.GetComponent<Enemy>().AfficherStats();
         }
         else if(selectedObject1 != GameObject.Find("Unit") && selectedObject2 != null && hitObject != GameObject.Find("Unit") && hitObject.GetComponent<Enemy>().GetAttacked())
         {
@@ -122,15 +122,13 @@ public class MouseManager : MonoBehaviour
             if (selectedObject1 == GameObject.Find("Enemy"))
             {
                 selectedObject1.GetComponent<Enemy>().SetIsSelected(false);
+                selectedObject1.GetComponent<Enemy>().EnleverStats();
             }
 
             GameObject hexagone = selectedObject1.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = false;
             hexagone.GetComponent<SpriteRenderer>().color = Color.white;
-            /*GameObject fenetre = selectedObject1.transform.GetChild(1).gameObject;
-            fenetre.GetComponent<SpriteRenderer>().enabled = false;
-            GameObject stats = GameObject.Find("Stats");
-            stats.GetComponent<Text>().enabled = false;*/
+            
             if (selectedObject2!=null)
             {
                 hexagone = selectedObject2.transform.GetChild(0).gameObject;

@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     private int reach = 1;
     private bool isSelected;
     private bool attacked = false;
+    public GameObject fenetre;
+    public GameObject stats;
 
     // Start is called before the first frame update
 
@@ -20,6 +22,7 @@ public class Enemy : MonoBehaviour
     {
         this.currentPv = MaxPv;
         isSelected = false;
+        fenetre.SetActive(false);
     }
 
     // Update is called once per frame
@@ -96,10 +99,12 @@ public class Enemy : MonoBehaviour
 
     public void AfficherStats()
     {
-        GameObject fenetre = this.transform.GetChild(0).gameObject;
-        fenetre.GetComponent<SpriteRenderer>().enabled = true;
-        GameObject stats = GameObject.Find("Stats");
-        stats.GetComponent<Text>().enabled = true;
-        stats.GetComponent<Text>().text = "Stats\n----------------\nPV : " + currentPv + "/" + MaxPv+"\nAttaque : "+attack+"\nD�fense : "+defense;
+        fenetre.SetActive(true);
+        stats.GetComponent<Text>().text = "Enemy\n----------------\nPV : " + currentPv + "/" + MaxPv+"\nAttaque : "+attack+"\nDefense : "+defense;
+    }
+
+    public void EnleverStats()
+    {
+        fenetre.SetActive(false);
     }
 }
