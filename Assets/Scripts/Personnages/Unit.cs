@@ -288,7 +288,7 @@ public class Unit : MonoBehaviour
             map.pa = map.pa - 1;
             foreach (Items o in listItems)
             {
-                print(o.getNomItem() + number);
+                print(o.getNomItem());
             }
         }
     }
