@@ -113,7 +113,6 @@ public class Unit : MonoBehaviour
 
             }
             pathList.Clear();
-            Debug.Log(pathList.Count);
 
             
            
@@ -258,36 +257,39 @@ public class Unit : MonoBehaviour
 
     public void Fouille()
     {
-        boutonFouille.GetComponent<Button>().interactable = false;
-        Random rand = new Random();
-        int number = rand.Next(5);
-        switch (number)
+        if (map.pa > 0)
         {
-            case 0:
-                listItems.Add(new Items("Casque en bronze", "casque", 3));
-                print("Un casque en bronze a été ajouté à votre inventaire!");
-                break;
-            case 1:
-                listItems.Add(new Items("Bottes de cuir", "bottes", 1));
-                print("Des bottes de cuir ont été ajoutées à votre inventaire!");
-                break;
-            case 2:
-                listItems.Add(new Items("Potion", "soin", 3));
-                print("Une potion a été ajoutée à votre inventaire!");
-                break;
-            case 3:
-                listItems.Add(new Items("Armure de mailles", "armure", 3));
-                print("Une armure de mailles a été ajoutée à votre inventaire!");
-                break;
-            case 4:
-                listItems.Add(new Items("Armure de Jaloux", "armure", 5));
-                print("Incroyable, vous avez trouvé l'armure de Jaloux !");
-                break;
-        }
-        map.pa = map.pa - 1;
-        foreach (Items o in listItems)
-        {
-            print(o.getNomItem());
+            boutonFouille.GetComponent<Button>().interactable = false;
+            Random rand = new Random();
+            int number = rand.Next(5);
+            switch (number)
+            {
+                case 0:
+                    listItems.Add(new Items("Casque en bronze", "casque", 3));
+                    print("Un casque en bronze a été ajouté à votre inventaire!");
+                    break;
+                case 1:
+                    listItems.Add(new Items("Bottes de cuir", "bottes", 1));
+                    print("Des bottes de cuir ont été ajoutées à votre inventaire!");
+                    break;
+                case 2:
+                    listItems.Add(new Items("Potion", "soin", 3));
+                    print("Une potion a été ajoutée à votre inventaire!");
+                    break;
+                case 3:
+                    listItems.Add(new Items("Armure de mailles", "armure", 3));
+                    print("Une armure de mailles a été ajoutée à votre inventaire!");
+                    break;
+                case 4:
+                    listItems.Add(new Items("Armure de Jaloux", "armure", 5));
+                    print("Incroyable, vous avez trouvé l'armure de Jaloux !");
+                    break;
+            }
+            map.pa = map.pa - 1;
+            foreach (Items o in listItems)
+            {
+                print(o.getNomItem() + number);
+            }
         }
     }
 }
