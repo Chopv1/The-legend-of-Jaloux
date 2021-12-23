@@ -111,6 +111,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void EquipeArme(int attackArme)
+    {
+        currentAttack = attackBrut + attackArme;
+    }
+
+    private void EquipeArmure(int defenseArmure)
+    {
+        currentDefense = defenseBrut + defenseArmure;
+    }
+
     /*public void AfficherStats()
     {
         GameObject fenetre = this.transform.GetChild(1).gameObject;
