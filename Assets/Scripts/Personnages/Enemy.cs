@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     {
         this.currentPv = MaxPv;
         isSelected = false;
+        fenetre = GameObject.Find("Carré");
+        stats = GameObject.Find("Stats");
         fenetre.SetActive(false);
     }
 
