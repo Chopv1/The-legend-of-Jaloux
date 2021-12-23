@@ -13,8 +13,33 @@ public class Enemy : MonoBehaviour
     private int reach = 1;
     private bool isSelected;
     private bool attacked = false;
+    private int pa;
     public GameObject fenetre;
     public GameObject stats;
+
+
+
+    //Variiables necessaires au mouvement
+    public int tileX;
+    public int tileY;
+    public TileMap map;
+    public GameObject ennemy;
+    public Transform movePoint;
+    public ClickableTile target;
+    public GameObject path;
+    List<GameObject> pathList = new List<GameObject>();
+    public bool launchMove = false;
+    public int points = 5;
+    public GameObject boutonAvancer;
+    public GameObject boutonFinTour;
+    public GameObject compteurPA;
+    public GameObject mapPreFab;
+    public GameObject mouseManagerObject;
+    private GameObject[] tableauTileGrass;
+
+    public List<Node> currentPath = null;
+
+
 
     // Start is called before the first frame update
 
@@ -22,15 +47,56 @@ public class Enemy : MonoBehaviour
     {
         this.currentPv = MaxPv;
         isSelected = false;
-        fenetre = GameObject.Find("Carré");
+        fenetre = GameObject.Find("Carrï¿½");
         stats = GameObject.Find("Stats");
         fenetre.SetActive(false);
+        pa = 5;
+
+        boutonAvancer = GameObject.Find("Button Avance");
+        Debug.Log(boutonAvancer);
     }
 
     // Update is called once per frame
     public void Update()
     {
+        if(currentPath != null && Vector3.Distance(ennemy.transform.position, movePoint.position) == 0 && launchMove == true && pa > 0){
+            
+            currentPath.RemoveAt(0);
+            transform.position = map.TileCoordToWorldCoord(currentPath[0].x, currentPath[0].y);
+            tileX = currentPath[0].x;
+            tileY = currentPath[0].y;
+            pa = pa - 1;
+            
 
+            if (currentPath.Count == 1){
+                Debug.Log("Fin des haricots");
+                map.paEnemy = map.paEnemy - map.j + 1;
+                currentPath = null;
+                launchMove = false;
+                
+                //target.GetComponent<Renderer>().material.color = new Color(0.5849056f, 0.5403813f, 0.4773051f, 1);
+
+            }
+        } 
+        else if(pa == 0) {
+            launchMove = false;
+            pa = 5;
+        }
+
+    }
+
+
+    public void Move(){
+        if ( map.action==true) //vï¿½rification nombre de pa
+        {
+  
+            launchMove = true;
+  
+       }
+      
+
+        //mettre la vï¿½rification de la distance dans une fonction de au clic sur la case et non le bouton
+        //permettre donc d'interdire cette fonction de clic sur une case lorsque launchMove est true
     }
     
     public void SetIsSelected(bool selected)
