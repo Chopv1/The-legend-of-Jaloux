@@ -10,16 +10,25 @@ public class Items : MonoBehaviour
 
     public Items(string nomItem, string typeItem, int valeurAttributs)
     {
-        if (typeItem.Equals("soin") || typeItem.Equals("bottes") || typeItem.Equals("armure") || typeItem.Equals("casque")) ;
         this.nomItem = nomItem;
         this.typeItem = typeItem;
-        this.valeurAttributs = valeurAttributs;
+        this.valeurAttributs = valeurAttributs; 
     }
 
     public string getNomItem()
     {
         return this.nomItem;
     }
+
+    public string getTypeItem()
+    {
+        return this.typeItem;
+    }
+    public int getValeurAttributs()
+    {
+        return this.valeurAttributs;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
