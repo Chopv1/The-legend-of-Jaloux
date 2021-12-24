@@ -260,35 +260,44 @@ public class Unit : MonoBehaviour
         {
             boutonFouille.GetComponent<Button>().interactable = false;
             Random rand = new Random();
-            int number = rand.Next(5);
+            int number = rand.Next(11);
             switch (number)
             {
                 case 0:
-                    listItems.Add(new Items("Casque en bronze", "Casque", 3));
-                    print("Un casque en bronze a été ajouté à votre inventaire!");
+                    listItems.Add(new Items("Casque en bronze", "Casque", 2));
                     break;
                 case 1:
-                    listItems.Add(new Items("Bottes de cuir", "Bottes", 1));
-                    print("Des bottes de cuir ont été ajoutées à votre inventaire!");
+                    listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
                     break;
                 case 2:
                     listItems.Add(new Items("Potion", "Soin", 10));
-                    print("Une potion a été ajoutée à votre inventaire!");
                     break;
                 case 3:
-                    listItems.Add(new Items("Armure de mailles", "Armure", 3));
-                    print("Une armure de mailles a été ajoutée à votre inventaire!");
+                    listItems.Add(new Items("Armure en bronze", "Armure", 2));
                     break;
                 case 4:
                     listItems.Add(new Items("Armure de Jaloux", "Armure", 5));
-                    print("Incroyable, vous avez trouvé l'armure de Jaloux !");
+                    break;
+                case 5:
+                    listItems.Add(new Items("Epée Divive", "Arme", 5));
+                    break;
+                case 6:
+                    listItems.Add(new Items("Epée de bronze", "Arme", 2));
+                    break;
+                case 7:
+                    listItems.Add(new Items("Casque en or", "Casque", 5));
+                    break;
+                case 8:
+                    listItems.Add(new Items("Bottes en or", "Bottes", 5));
+                    break;
+                case 9:
+                    listItems.Add(new Items("Jambière en bronze", "Jambières", 2));
+                    break;
+                case 10:
+                    listItems.Add(new Items("Jambière en or", "Jambières", 5));
                     break;
             }
             map.pa = map.pa - 1;
-            foreach (Items o in listItems)
-            {
-                print(o.getNomItem());
-            }
         }
     }
 }

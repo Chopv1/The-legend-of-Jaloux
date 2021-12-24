@@ -210,9 +210,9 @@ public class ObjetsInventaire : MonoBehaviour
     {
         string typeItem = HeroGuerrier.listItems[IndiceObjetVisé].getTypeItem();
 
-        if(typeItem == "soin")
+        if(typeItem == "Soin")
         {
-            HeroGuerrier.currentPv += HeroGuerrier.listItems[IndiceObjetVisé].getValeurAttributs();
+            HeroGuerrier.currentPv -= HeroGuerrier.listItems[IndiceObjetVisé].getValeurAttributs();
             if(HeroGuerrier.currentPv > HeroGuerrier.MaxPv)
             {
                 HeroGuerrier.currentPv = HeroGuerrier.MaxPv;
@@ -357,14 +357,24 @@ public class ObjetsInventaire : MonoBehaviour
         GameObject CanvaTitreStatsObjet = GameObject.Find("TitreStatsObjet");
         CanvaTitreStatsObjet.GetComponent<Text>().text = "Stats " + ObjectAAfficher.getNomItem() + " :";
 
+        string typeItem = ObjectAAfficher.getTypeItem();
         GameObject CanvaDetailseStatsObjet = GameObject.Find("DetailsStatsObjet");
-        CanvaDetailseStatsObjet.GetComponent<Text>().text = "Type d'item : " + ObjectAAfficher.getTypeItem() + "\nValeur d'Attribut : " + ObjectAAfficher.getValeurAttributs();
+        if (typeItem == "Armure" || typeItem == "Casque" || typeItem == "Jambières" || typeItem == "Bottes")
+        { CanvaDetailseStatsObjet.GetComponent<Text>().text = "Bonus : \n Cet objet fournit : " + ObjectAAfficher.getValeurAttributs() + " points d'armure."; }
+        else if(typeItem == "Arme")
+        { CanvaDetailseStatsObjet.GetComponent<Text>().text = "Bonus : \n Cet objet fournit : " + ObjectAAfficher.getValeurAttributs() + " points d'attaque."; }
+        else if(typeItem == "Soin")
+        { CanvaDetailseStatsObjet.GetComponent<Text>().text = "Bonus : \n L'utilisation de cet objet rend : " + ObjectAAfficher.getValeurAttributs() + " points de vie à votre Héro."; }
+
+        
     }
 
     public void AfficherStatsHero()
     {
         GameObject CanvaStatsHero = GameObject.Find("DetailsStatsHéro");
-        CanvaStatsHero.GetComponent<Text>().text = "Stats\n----------------\nPV : " + HeroGuerrier.currentPv + "/" + HeroGuerrier.MaxPv + "\nAttaque : " + HeroGuerrier.attack + "\nDefense : " + HeroGuerrier.defense + "\nPA : " + HeroGuerrier.pa;
+        int AttaqueGuerrier = HeroGuerrier.attack + listItemsEquipés[4].getValeurAttributs();
+        int DefenseGuerrier = HeroGuerrier.defense + listItemsEquipés[1].getValeurAttributs() + listItemsEquipés[2].getValeurAttributs() + listItemsEquipés[3].getValeurAttributs() + listItemsEquipés[0].getValeurAttributs();
+        CanvaStatsHero.GetComponent<Text>().text = "Stats\n----------------\nPV : " + HeroGuerrier.currentPv + "/" + HeroGuerrier.MaxPv + "\nAttaque : " + AttaqueGuerrier + "\nDefense : " + DefenseGuerrier + "\nPA : " + HeroGuerrier.pa;
     }   
 
 }
