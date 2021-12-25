@@ -15,6 +15,8 @@ public class Unit : MonoBehaviour
     public float reach;
     public bool isSelected;
     public int pa;
+    public int coutPa;
+    public int sort;
 
     //Variable du script player
     public LayerMask enemyLayer;
@@ -35,6 +37,7 @@ public class Unit : MonoBehaviour
     public GameObject boutonAvancer;
     public GameObject boutonFinTour;
     public GameObject boutonFouille;
+    public GameObject boutonAttaque;
     public GameObject compteurPA;
     public GameObject mapPreFab;
     public GameObject mouseManagerObject;
@@ -82,14 +85,11 @@ public class Unit : MonoBehaviour
 
 
         boutonFouille.GetComponent<Button>().enabled = true;
+
+        boutonAttaque = GameObject.Find("Attaquer");
     }
 
     void Update(){
-        //Player's Script
-        if (isSelected)
-        {
-            ShowAttack();
-        }
         //Unit's script
         if (currentPath != null){
             int currNode = 0;
@@ -180,25 +180,46 @@ public class Unit : MonoBehaviour
         isSelected = selected;
 
     }
-    public bool ShowAttack() ///On regard s'il peut attaquer ou pas
-    {
-
-        ///La fonction trace un cercle de rayon 'reach' et enregistre tous les enemies dans ce cercle 
-        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer); 
-
-        ChangeHexagoneColorToBlack(hitInfo);  //On affiche l'hexagone noir pour montrer qu'ils sont attackable
-        
-        return false;
-    }
+ 
     public bool CanAttack(GameObject enemy)
     {
-        Debug.Log(enemy);
         //Vérification qu'il peut attacker l'ennemie choisi
-        if (IsInReach(enemy))
+        if (IsInReach(enemy)&&map.pa>=coutPa)
         {
+            map.pa= map.pa-coutPa;
             return true;
         }
         return false;
+    }
+    public bool EnemyAround()
+    {
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
+        foreach (Collider2D hit in hitInfo)
+        {
+           if(hit!=null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public void HitAllEnemy()
+    {
+        if (map.pa >= coutPa)
+        {
+            Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
+
+            foreach(Collider2D hit in hitInfo)
+            {
+            
+                hit.GetComponent<Enemy>().IsAttacked(this.Attack);
+                Debug.Log(hit+" Touché");
+            }
+
+            map.pa = map.pa - coutPa;
+        }
+
+        ChangeHexagoneColorToWhite();
     }
     //On vérifie que l'objet en paramètre est dans la portée
     public bool IsInReach(GameObject obj)
@@ -212,6 +233,7 @@ public class Unit : MonoBehaviour
             if (hit.gameObject == obj)
             {
                 reachable = true;
+                ChangeHexagoneColorToBlackForOneEnemy(hit.gameObject);
             }
         }
         return reachable;
@@ -221,8 +243,9 @@ public class Unit : MonoBehaviour
         return this.isSelected;
     }
 
-    private void ChangeHexagoneColorToWhite(Collider2D[] hitInfo)
-    {   
+    private void ChangeHexagoneColorToWhite()
+    {
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
         foreach (Collider2D hit in hitInfo)
         {
             GameObject hexagone = hit.transform.GetChild(0).gameObject;
@@ -231,8 +254,9 @@ public class Unit : MonoBehaviour
         }
     }
 
-    private void ChangeHexagoneColorToBlack(Collider2D[] hitInfo)
+    private void ChangeHexagoneColorToBlack()
     {
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
         foreach (Collider2D hit in hitInfo)
         {
             GameObject hexagone = hit.transform.GetChild(0).gameObject;
@@ -240,20 +264,37 @@ public class Unit : MonoBehaviour
             hexagone.GetComponent<SpriteRenderer>().color = Color.black;
         }
     }
-
+    private void ChangeHexagoneColorToBlackForOneEnemy(GameObject hit)
+    {
+        GameObject hexagone = hit.transform.GetChild(0).gameObject;
+        hexagone.GetComponent<SpriteRenderer>().enabled = true;
+        hexagone.GetComponent<SpriteRenderer>().color = Color.black;
+    }
+    private void ChangeHexagoneColorToBlue()
+    {
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(this.transform.position, reach, enemyLayer);
+        foreach (Collider2D hit in hitInfo)
+        {
+            GameObject hexagone = hit.transform.GetChild(0).gameObject;
+            hexagone.GetComponent<SpriteRenderer>().enabled = true;
+            hexagone.GetComponent<SpriteRenderer>().color = Color.blue;
+        }
+    }
     public void AfficherStats()
     {
         GameObject fenetre = this.transform.GetChild(1).gameObject;
         fenetre.GetComponent<SpriteRenderer>().enabled = true;
-        GameObject stats = GameObject.Find("Stats");
+        GameObject stats = GameObject.Find("StatsHéros");
         stats.GetComponent<Text>().enabled = true;
         stats.GetComponent<Text>().text = "Stats\n----------------\nPV : " + currentPv + "/" + MaxPv + "\nAttaque : " + attack + "\nD�fense : " + defense + "\nPA : " + pa;
     }
 
     public void Fouille()
     {
-        if (map.pa > 0)
-        {
+        if (map.pa > 0)
+
+        {
+
             boutonFouille.GetComponent<Button>().interactable = false;
             Random rand = new Random();
             int number = rand.Next(11);
@@ -273,27 +314,84 @@ public class Unit : MonoBehaviour
                     break;
                 case 4:
                     listItems.Add(new Items("Armure de Jaloux", "Armure", 5));
-                    break;
+                    break;
+
                 case 5:
                     listItems.Add(new Items("Epée Divive", "Arme", 5));
-                    break;
+                    break;
+
                 case 6:
                     listItems.Add(new Items("Epée de bronze", "Arme", 2));
-                    break;
+                    break;
+
                 case 7:
                     listItems.Add(new Items("Casque en or", "Casque", 5));
-                    break;
+                    break;
+
                 case 8:
                     listItems.Add(new Items("Bottes en or", "Bottes", 5));
-                    break;
+                    break;
+
                 case 9:
                     listItems.Add(new Items("Jambière en bronze", "Jambières", 2));
-                    break;
+                    break;
+
                 case 10:
                     listItems.Add(new Items("Jambière en or", "Jambières", 5));
                     break;
             }
             map.pa = map.pa - 1;
+        }
+    }
+    public void Sort(int sort)
+    {
+        switch(sort)
+        {
+            case 1:
+                coutPa = 2;
+                if(map.pa>=coutPa)
+                {
+                    attack = 20;
+                    reach = 1f;
+                    this.sort = 1;
+                    ChangeHexagoneColorToBlue();
+                }
+                else
+                {
+                    boutonAttaque.GetComponent<Button>().interactable = false;
+                    print("Vous n'avez pas assez de PA pour utiliser cette compétence");
+                }
+                break;
+            case 2:
+                coutPa = 7;
+                if(map.pa>=coutPa)
+                {
+                    attack = 40;
+                    reach = 1f;
+                    this.sort = 2;
+                    ChangeHexagoneColorToBlack();
+                }
+                else
+                {
+                    boutonAttaque.GetComponent<Button>().interactable = false;
+                    print("Vous n'avez pas assez de PA pour utiliser cette compétence");
+                }
+                break;
+            case 3:
+                coutPa = 5;
+                if(map.pa>=coutPa)
+                {
+                    attack = 50;
+                    reach = 2f;
+                    this.sort = 3;
+                    ChangeHexagoneColorToBlue();
+                }
+                else
+                {
+                    boutonAttaque.GetComponent<Button>().interactable = false;
+                    print("Vous n'avez pas assez de PA pour utiliser cette compétence");
+                }
+                break;
         }
     }
 }

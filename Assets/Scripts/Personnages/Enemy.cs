@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     private int currentPv;
     private int attack = 20;
-    private int defense = 30;
+    private int defense = 10;
     private int reach = 1;
     private bool isSelected;
     private bool attacked = false;
@@ -113,19 +113,7 @@ public class Enemy : MonoBehaviour
         isSelected = selected;
         if (!isSelected)
         {
-            ChangeHexagoneColorToWhite(this);
-        }
-    }
-    public void SetIsSelectedObject2(bool selected)
-    {
-        isSelected = selected;
-        if (isSelected)
-        {
-            ChangeHexagoneColorToBleu(this);
-        }
-        else
-        {
-            ChangeHexagoneColorToWhite(this);
+            ChangeHexagoneColorToWhite(this.gameObject);
         }
     }
     private void IsDead()
@@ -134,7 +122,7 @@ public class Enemy : MonoBehaviour
         {
             this.currentPv = 0;
             this.gameObject.SetActive(false);
-            ChangeHexagoneColorToWhite(this);
+            ChangeHexagoneColorToWhite(this.gameObject);
         }
     }
     public void IsAttacked(int damage)
@@ -144,19 +132,19 @@ public class Enemy : MonoBehaviour
             this.currentPv -= (damage-defense);
             Debug.Log("Enemy Attacked");
             IsDead();
-            ChangeHexagoneColorToWhite(this);
+            ChangeHexagoneColorToWhite(this.gameObject);
             isSelected = false;
         }
 
     }
 
-    public void ChangeHexagoneColorToBleu(Enemy obj)
+    public void ChangeHexagoneColorToBleu(GameObject obj)
     {
         GameObject hexagone = obj.transform.GetChild(0).gameObject;
         hexagone.GetComponent<SpriteRenderer>().enabled = true;
         hexagone.GetComponent<SpriteRenderer>().color = Color.blue;
     }
-    public void ChangeHexagoneColorToWhite(Enemy obj)
+    public void ChangeHexagoneColorToWhite(GameObject obj)
     {
         GameObject hexagone = obj.transform.GetChild(0).gameObject;
         hexagone.GetComponent<SpriteRenderer>().enabled = false;

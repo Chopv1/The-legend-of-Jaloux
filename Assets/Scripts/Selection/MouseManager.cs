@@ -8,7 +8,8 @@ public class MouseManager : MonoBehaviour
     private GameObject selectedObject1;
     private GameObject selectedObject2;
     public GameObject mapPreFab;
-
+    public LayerMask enemyLayer;
+    private int sort = 0;
     private Camera cam;
     private RaycastHit2D hitInfo;
     private GameObject hitObject;
@@ -16,6 +17,7 @@ public class MouseManager : MonoBehaviour
     private GameObject bExit;
     private GameObject bInfo;
     private GameObject bAttaque;
+    private bool sortSelected = false;
 
     void Start()
     {
@@ -23,11 +25,12 @@ public class MouseManager : MonoBehaviour
 
         bExit = GameObject.Find("Ne rien faire");
         bAttaque = GameObject.Find("Attaquer");
-        bInfo = GameObject.Find("Information");
+        bAttaque.GetComponent<Button>().interactable = false;
     }
     void Update()
     {
         SelectAnObject(); //fonction pour selectionner l'objet
+        ShowUi();
     }
     
     private void SelectAnObject()
@@ -53,12 +56,10 @@ public class MouseManager : MonoBehaviour
             {
                 return;
             }
-            else if (selectedObject1.CompareTag("Unit") && hitObject.CompareTag("Enemy")) //si on clic sur un enemy on l'enregistre dans une variable
+            else if(selectedObject1.CompareTag("Unit") && hitObject.CompareTag("Enemy") &&selectedObject1.GetComponent<Unit>().IsInReach(hitObject))
             {
-                selectedObject2 = hitObject; //on stock l'ennemy dans une vriable
-                selectedObject2.GetComponent<Enemy>().SetIsSelectedObject2(true);
-                ShowUi();
-
+                selectedObject2 = hitObject;
+                selectedObject2.GetComponent<Enemy>().ChangeHexagoneColorToBleu(selectedObject2);
             }
             else if (hitObject.CompareTag("Enemy") && selectedObject2==null && (selectedObject1.CompareTag("Unit")&&!selectedObject1.GetComponent<Unit>().IsInReach(hitObject))) //Des vérifications pour clear si on touche personne
             {
@@ -69,20 +70,18 @@ public class MouseManager : MonoBehaviour
         //Vérification qu'on selection un ennemy 
         if ((selectedObject1==null || selectedObject1.CompareTag("Enemy")) && hitObject.CompareTag("Enemy") && hitObject!=selectedObject1)
         {
+            ClearSelection();
             selectedObject1 = hitObject;
             GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = true;
-            ShowUi();
             hitObject.GetComponent<Enemy>().AfficherStats();
         }
         else if (hitObject.CompareTag("Unit")) //Si c'est un héro on clear la sélection pour le sélectionner
         {
             ClearSelection();
             selectedObject1 = hitObject;
-            ShowUi();
             GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = true;
-            //hitObject.GetComponent<Unit>().AfficherStats();
 
 
         }
@@ -98,13 +97,11 @@ public class MouseManager : MonoBehaviour
                 selectedObject1.GetComponent<Unit>().SetIsSelected(true);
 
                 CanMove(true);
-                ShowUi();
             }
             //Verif pour selectionner l'ennemy
             if(selectedObject1 != null && selectedObject1.CompareTag("Enemy"))
             {
                 selectedObject1.GetComponent<Enemy>().SetIsSelected(true);
-                ShowUi();
 
             }
 
@@ -131,10 +128,6 @@ public class MouseManager : MonoBehaviour
             hexagone.GetComponent<SpriteRenderer>().enabled = false;
             hexagone.GetComponent<SpriteRenderer>().color = Color.white;
 
-            /*GameObject fenetre = selectedObject1.transform.GetChild(1).gameObject;
-            fenetre.GetComponent<SpriteRenderer>().enabled = false;
-            GameObject stats = GameObject.Find("Stats");
-            stats.GetComponent<Text>().enabled = false;*/
 
             //Verif pour déselectionner le deuxième
             if (selectedObject2 != null)
@@ -142,12 +135,13 @@ public class MouseManager : MonoBehaviour
                 hexagone = selectedObject2.transform.GetChild(0).gameObject;
                 hexagone.GetComponent<SpriteRenderer>().enabled = false;
                 hexagone.GetComponent<SpriteRenderer>().color = Color.white;
-                selectedObject2.GetComponent<Enemy>().SetIsSelectedObject2(false);
+                selectedObject2.GetComponent<Enemy>().SetIsSelected(false);
             }
         }
         //tout a null le but du déselection
-        selectedObject1 = null;
         selectedObject2 = null;
+        selectedObject1 = null;
+        sortSelected = false;
         Collider2D[] hitInfo = Physics2D.OverlapCircleAll(new Vector2(0, 0), 50); // Pour être sur on trace le plus grand cercle et on leur enlève l'hexagone
         foreach (Collider2D hit in hitInfo)
         {
@@ -175,53 +169,75 @@ public class MouseManager : MonoBehaviour
     }
     public void ShowUi()
     {
-        Vector3 pos = new Vector3(0, 18, 0);
-        if (Input.GetMouseButtonDown(0) && selectedObject1 != null)
+        if (selectedObject1 != null)
         {
-            if (selectedObject2 != null && selectedObject2.CompareTag("Enemy") && selectedObject1.CompareTag("Unit") && selectedObject1.GetComponent<Unit>().IsInReach(selectedObject2))
+            if (sort!=2 && selectedObject2 != null && selectedObject2.CompareTag("Enemy") && selectedObject1.CompareTag("Unit") && selectedObject1.GetComponent<Unit>().IsInReach(selectedObject2) && sortSelected)
             {
-                bAttaque.SetActive(true);
-                bExit.SetActive(true);
-                bInfo.SetActive(true);
+                bAttaque.GetComponent<Button>().interactable = true;
+            }
+            else if(sort==2 && selectedObject1.CompareTag("Unit"))
+            {
+                bAttaque.GetComponent<Button>().interactable = true;
             }
             else
             {
-                bAttaque.SetActive(false);
-                bExit.SetActive(true);
-                bInfo.SetActive(true);
+                bAttaque.GetComponent<Button>().interactable = false;
             }
-        }
-        else
-        {
-            Start();
         }
     }
     public void AfficherStats()
     {
-        if(selectedObject2==null)
-        {
-            if(selectedObject1!=null && selectedObject1.CompareTag("Unit"))
-            {
-                selectedObject1.GetComponent<Unit>().AfficherStats();
-            }
-            else if(selectedObject1 != null && selectedObject1.CompareTag("Enemy"))
-            {
-                selectedObject1.GetComponent<Enemy>().AfficherStats();
-            }
-        }
-        else
-        {
-            selectedObject2.GetComponent<Enemy>().AfficherStats();
-        }
+        
     }
     public void attack()
     {
-        Debug.Log(selectedObject1.GetComponent<Unit>().CanAttack(selectedObject2));
-        if (selectedObject1.CompareTag("Unit")&&selectedObject2.CompareTag("Enemy")&&selectedObject1.GetComponent<Unit>().CanAttack(selectedObject2))
+        if (sort!=2 && selectedObject1.CompareTag("Unit") && selectedObject2.CompareTag("Enemy") && selectedObject1.GetComponent<Unit>().CanAttack(selectedObject2))
         {
             selectedObject2.GetComponent<Enemy>().IsAttacked(selectedObject1.GetComponent<Unit>().Attack);
+            bAttaque.GetComponent<Button>().interactable = false;
+            ClearSelection();
+        }
+        else if(sort==2&&selectedObject1.CompareTag("Unit")&&selectedObject1.GetComponent<Unit>().EnemyAround())
+        {
+            selectedObject1.GetComponent<Unit>().HitAllEnemy();
+            bAttaque.GetComponent<Button>().interactable = false;
             ClearSelection();
         }
     }
-    
+    public void Sort1()
+    {
+        GameObject hero= GameObject.Find("Unit");
+        HecagoneWhite();
+        sort = 1;
+        hero.GetComponent<Unit>().Sort(sort);
+        sortSelected = true;
+    }
+    public void Sort2()
+    {
+        GameObject hero = GameObject.Find("Unit");
+        sort = 2;
+        HecagoneWhite();
+        hero.GetComponent<Unit>().Sort(sort);
+        sortSelected = true;
+
+    }
+    public void Sort3()
+    {
+        GameObject hero = GameObject.Find("Unit");
+        sort = 3;
+        HecagoneWhite();
+        hero.GetComponent<Unit>().Sort(sort);
+        sortSelected = true;
+    }
+    public void HecagoneWhite()
+    {
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(new Vector2(0, 0), 50,enemyLayer); // Pour être sur on trace le plus grand cercle et on leur enlève l'hexagone
+        foreach (Collider2D hit in hitInfo)
+        {
+            GameObject hexagone = hit.transform.GetChild(0).gameObject;
+            hexagone.GetComponent<SpriteRenderer>().enabled = false;
+            hexagone.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
+    }
 }
