@@ -72,9 +72,8 @@ public class MouseManager : MonoBehaviour
             selectedObject1 = hitObject;
             GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = true;
-            //hitObject.GetComponent<Enemy>().AfficherStats();
             ShowUi();
-
+            hitObject.GetComponent<Enemy>().AfficherStats();
         }
         else if (hitObject.CompareTag("Unit")) //Si c'est un héro on clear la sélection pour le sélectionner
         {
@@ -125,6 +124,7 @@ public class MouseManager : MonoBehaviour
             if (selectedObject1.CompareTag("Enemy"))
             {
                 selectedObject1.GetComponent<Enemy>().SetIsSelected(false);
+                selectedObject1.GetComponent<Enemy>().EnleverStats();
             }
             //Adios les hexagone
             GameObject hexagone = selectedObject1.transform.GetChild(0).gameObject;

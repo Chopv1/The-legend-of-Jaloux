@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class Unit : MonoBehaviour
 {
 
     //Variable du script player
     private Camera cam;
-    private int currentPv;
-    private int attack;
-    private int defense;
-    private float reach;
-    private bool isSelected;
-    private int pa;
+    public int currentPv;
+    public int attack;
+    public int defense;
+    public float reach;
+    public bool isSelected;
+    public int pa;
 
     //Variable du script player
     public LayerMask enemyLayer;
@@ -33,14 +34,13 @@ public class Unit : MonoBehaviour
     public int points = 5;
     public GameObject boutonAvancer;
     public GameObject boutonFinTour;
+    public GameObject boutonFouille;
     public GameObject compteurPA;
     public GameObject mapPreFab;
     public GameObject mouseManagerObject;
     private GameObject[] tableauTileGrass;
-
-
-
-
+    public List<int> listObjets;
+    public List<Items> listItems;
     public List<Node> currentPath = null;
 
     public int CurrentPv { get => currentPv; set => currentPv = value; }
@@ -64,23 +64,24 @@ public class Unit : MonoBehaviour
         //Unit's script
 
         compteurPA = GameObject.Find("Compteur PA");
-        Debug.Log(compteurPA);
-        compteurPA.transform.position = this.transform.position + new Vector3(180f, 280f, 0);
 
         compteurPA.GetComponent<Text>().enabled = true;
         
 
         boutonAvancer = GameObject.Find("Button Avance");
-        Debug.Log(boutonAvancer);
-        boutonAvancer.GetComponent<Button>().transform.position = this.transform.position + new Vector3(180f,207.3f,0);
+
         boutonAvancer.GetComponent<Button>().interactable = false;
 
 
         boutonFinTour = GameObject.Find("Button FinTour");
-        Debug.Log(boutonFinTour);
-        boutonFinTour.GetComponent<Button>().transform.position = this.transform.position + new Vector3(180f, 240f, 0);
+
 
         movePoint.GetComponent<Renderer>().enabled = false;
+
+        boutonFouille = GameObject.Find("Button Fouille");
+
+
+        boutonFouille.GetComponent<Button>().enabled = true;
     }
 
     void Update(){
@@ -90,7 +91,6 @@ public class Unit : MonoBehaviour
             ShowAttack();
         }
         //Unit's script
-        print(map.pa);
         if (currentPath != null){
             int currNode = 0;
             boutonAvancer.GetComponent<Button>().interactable = true;
@@ -119,7 +119,6 @@ public class Unit : MonoBehaviour
 
             }
             pathList.Clear();
-            Debug.Log(pathList.Count);
 
             
            
@@ -164,10 +163,11 @@ public class Unit : MonoBehaviour
         {
   
             launchMove = true;
-  
+            boutonFouille.GetComponent<Button>().interactable = true;
 
-       }
-      
+
+        }
+
 
         //mettre la v�rification de la distance dans une fonction de au clic sur la case et non le bouton
         //permettre donc d'interdire cette fonction de clic sur une case lorsque launchMove est true
@@ -248,5 +248,52 @@ public class Unit : MonoBehaviour
         GameObject stats = GameObject.Find("Stats");
         stats.GetComponent<Text>().enabled = true;
         stats.GetComponent<Text>().text = "Stats\n----------------\nPV : " + currentPv + "/" + MaxPv + "\nAttaque : " + attack + "\nD�fense : " + defense + "\nPA : " + pa;
+    }
+
+    public void Fouille()
+    {
+        if (map.pa > 0)
+        {
+            boutonFouille.GetComponent<Button>().interactable = false;
+            Random rand = new Random();
+            int number = rand.Next(11);
+            switch (number)
+            {
+                case 0:
+                    listItems.Add(new Items("Casque en bronze", "Casque", 2));
+                    break;
+                case 1:
+                    listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
+                    break;
+                case 2:
+                    listItems.Add(new Items("Potion", "Soin", 10));
+                    break;
+                case 3:
+                    listItems.Add(new Items("Armure en bronze", "Armure", 2));
+                    break;
+                case 4:
+                    listItems.Add(new Items("Armure de Jaloux", "Armure", 5));
+                    break;
+                case 5:
+                    listItems.Add(new Items("Epée Divive", "Arme", 5));
+                    break;
+                case 6:
+                    listItems.Add(new Items("Epée de bronze", "Arme", 2));
+                    break;
+                case 7:
+                    listItems.Add(new Items("Casque en or", "Casque", 5));
+                    break;
+                case 8:
+                    listItems.Add(new Items("Bottes en or", "Bottes", 5));
+                    break;
+                case 9:
+                    listItems.Add(new Items("Jambière en bronze", "Jambières", 2));
+                    break;
+                case 10:
+                    listItems.Add(new Items("Jambière en or", "Jambières", 5));
+                    break;
+            }
+            map.pa = map.pa - 1;
+        }
     }
 }

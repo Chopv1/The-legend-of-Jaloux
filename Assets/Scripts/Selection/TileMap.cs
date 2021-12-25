@@ -7,14 +7,18 @@ using UnityEngine.UI;
 public class TileMap : MonoBehaviour
 {
     public Unit unit;
+    public Enemy enemy;
     public TileType[] tileTypes;
     public ClickableTile target;
     public Material appearance;
-    public GameObject path;
+    public GameObject pathPlayer;
+    public GameObject pathEnemy;
     public MouseManager reset;
     public bool action;
     public int pa = 10;
+    public int paEnemy = 5;
     public int i = 0;
+    public int j = 0;
 
 
 
@@ -30,6 +34,7 @@ public class TileMap : MonoBehaviour
         //unit.GetComponent<Unit>().tileX = (int)unit.transform.position.x;
         //unit.GetComponent<Unit>().tileY = (int)unit.transform.position.y;
         unit.GetComponent<Unit>().map = this;
+        enemy.GetComponent<Enemy>().map = this;
         GenerateMapData();
         GeneratePathFfindingGraph();
         GenerateMapVisual();
@@ -118,6 +123,7 @@ public class TileMap : MonoBehaviour
               
             unit.GetComponent<Unit>().target = this.target;
             unit.GetComponent<Unit>().currentPath = null;
+            enemy.GetComponent<Enemy>().currentPath = null;
 
             if (unit.GetComponent<Unit>().target.GetComponent<Transform>().position == unit.GetComponent<Unit>().GetComponent<Transform>().position)
             {
@@ -125,7 +131,7 @@ public class TileMap : MonoBehaviour
 
             }
 
-
+            //Création du chemin pour le joueur
             Dictionary<Node, float> dist = new Dictionary<Node, float>();
             Dictionary<Node, Node> prev = new Dictionary<Node, Node>();
 
@@ -206,13 +212,13 @@ public class TileMap : MonoBehaviour
             if (i > pa+1)
             {
                 print("vous n avez pas assez de pa");
-                path.GetComponent<Renderer>().material.color = Color.red;
+                pathPlayer.GetComponent<Renderer>().material.color = Color.red;
                 action = false;
                 unit.boutonAvancer.GetComponent<Button>().interactable = false;
             }
             else
             {
-                path.GetComponent<Renderer>().material.color = Color.white;
+                pathPlayer.GetComponent<Renderer>().material.color = Color.white;
                 action = true;
                 unit.boutonAvancer.GetComponent<Button>().interactable = true;
 
@@ -222,6 +228,94 @@ public class TileMap : MonoBehaviour
             currentPath.Reverse();
 
             unit.GetComponent<Unit>().currentPath = currentPath;
+            
+        }
+
+        if (enemy.launchMove == false)
+        {
+
+            //Création du chemin pour l'enemy
+            Dictionary<Node, float> dist2 = new Dictionary<Node, float>();
+            Dictionary<Node, Node> prev2 = new Dictionary<Node, Node>();
+
+            List<Node> unvisited2 = new List<Node>();
+
+
+            Node source2 = graph[
+                enemy.GetComponent<Enemy>().tileX,
+                enemy.GetComponent<Enemy>().tileY
+                ];
+
+            Node target2 = graph[x, y];
+
+
+
+            dist2[source2] = 0;
+            prev2[source2] = null;
+
+            foreach (Node v in graph)
+            {
+                if (v != source2)
+                {
+                    dist2[v] = Mathf.Infinity;
+                    prev2[v] = null;
+                }
+                unvisited2.Add(v);
+            }
+
+            while (unvisited2.Count > 0)
+            {
+                Node closer = null;
+
+                foreach (Node possible in unvisited2)
+                {
+                    if (closer == null || dist2[possible] < dist2[closer])
+                    {
+                        closer = possible;
+                    }
+                }
+
+                if (closer == target2)
+                {
+                    break;
+                }
+
+                unvisited2.Remove(closer);
+
+                foreach (Node v in closer.neighbours)
+                {
+                    //float totDist = dist2[closer] + closer.DistantTo(v);
+                    float totDist = dist2[closer] + CostToEnterTile(v.x, v.y);
+                    if (totDist < dist2[v])
+                    {
+                        dist2[v] = totDist;
+                        prev2[v] = closer;
+                    }
+                }
+            }
+            if (prev2[target2] == null)
+            {
+                return;
+            }
+
+             j = 0;
+             List<Node> currentPath2 = new List<Node>();
+
+            Node curr2 = target2;
+          
+            while (curr2 != null)
+            {
+                j++;
+                currentPath2.Add(curr2);
+                curr2 = prev2[curr2];
+
+            }
+            
+            currentPath2.Reverse();
+
+            currentPath2.RemoveAt(currentPath2.Count - 1);
+
+            enemy.GetComponent<Enemy>().currentPath = currentPath2;
         }
     }
 
@@ -232,6 +326,7 @@ public class TileMap : MonoBehaviour
             pa = 10;
             unit.GetComponent<Unit>().currentPath = null;
             unit.boutonAvancer.GetComponent<Button>().interactable = false;
+            unit.boutonFouille.GetComponent<Button>().interactable = true;
             reset.GetComponent<MouseManager>().CanMove(false);
         }
     }

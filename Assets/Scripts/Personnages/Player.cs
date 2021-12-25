@@ -11,8 +11,10 @@ public class Player : MonoBehaviour
 
     private Camera cam;
     private int currentPv;
-    private int attack;
-    private int defense;
+    private int attackBrut;
+    private int currentAttack;
+    private int defenseBrut;
+    private int currentDefense;
     private float reach;
     private bool isSelected;
     private int pa;
@@ -22,12 +24,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentPv = MaxPv;
+        currentAttack = attackBrut;
+        currentDefense = defenseBrut;
         cam = Camera.main;
         isSelected = false;
-        attack = 70;
         reach = 1f;
         pa = 10;
-        defense = 50;
     }
 
     // Update is called once per frame
@@ -56,7 +58,7 @@ public class Player : MonoBehaviour
         RaycastHit2D obj = Physics2D.Raycast(rayCastPos, Vector2.zero, enemyLayer);
         if (Input.GetMouseButtonDown(0) && obj.collider != null && obj.transform.gameObject.CompareTag("Enemy") && IsInReach(obj.transform.gameObject))
         {
-            obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(attack);
+            obj.transform.gameObject.GetComponent<Enemy>().IsAttacked(currentAttack);
             pa -= 1;
             Debug.Log("Attaque");
             ChangeHexagoneColorToWhite(hitInfo);
@@ -109,12 +111,22 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void AfficherStats()
+    private void EquipeArme(int attackArme)
+    {
+        currentAttack = attackBrut + attackArme;
+    }
+
+    private void EquipeArmure(int defenseArmure)
+    {
+        currentDefense = defenseBrut + defenseArmure;
+    }
+
+    /*public void AfficherStats()
     {
         GameObject fenetre = this.transform.GetChild(1).gameObject;
         fenetre.GetComponent<SpriteRenderer>().enabled = true;
         GameObject stats = GameObject.Find("Stats");
         stats.GetComponent<Text>().enabled = true;
         stats.GetComponent<Text>().text = "Stats\n----------------\nPV : " + currentPv + "/" + MaxPv + "\nAttaque : " + attack + "\nD�fense : " + defense+"\nPA : "+pa;
-    }
+    }*/
 }

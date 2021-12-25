@@ -6,11 +6,21 @@ public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public Dropdown resolutionDropdown;
+    public Toggle ScreenToggle;
     Resolution[] resolutions;
 
     public void Start()
     {
-
+        
+        if(Screen.fullScreen)
+        {
+            ScreenToggle.isOn = true;
+        }
+        else 
+        {
+            ScreenToggle.isOn = false;
+        }
+        
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
@@ -43,6 +53,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+
     }
     public void SetResolution(int resolutionIndex)
     {
