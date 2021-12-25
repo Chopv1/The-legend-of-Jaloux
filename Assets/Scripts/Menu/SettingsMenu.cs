@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
@@ -35,12 +36,12 @@ public class SettingsMenu : MonoBehaviour
 
             if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
             {
-                currentResolutionIndex = i;
+                currentResolutionIndex = i-1;
             }
         
         }
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.value = 0;
         resolutionDropdown.RefreshShownValue();
     }
 
