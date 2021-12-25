@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 
 public class ObjetsInventaire : MonoBehaviour
@@ -212,7 +213,7 @@ public class ObjetsInventaire : MonoBehaviour
 
         if(typeItem == "Soin")
         {
-            HeroGuerrier.currentPv -= HeroGuerrier.listItems[IndiceObjetVisé].getValeurAttributs();
+            HeroGuerrier.currentPv += HeroGuerrier.listItems[IndiceObjetVisé].getValeurAttributs();
             if(HeroGuerrier.currentPv > HeroGuerrier.MaxPv)
             {
                 HeroGuerrier.currentPv = HeroGuerrier.MaxPv;
@@ -375,6 +376,18 @@ public class ObjetsInventaire : MonoBehaviour
         int AttaqueGuerrier = HeroGuerrier.attack + listItemsEquipés[4].getValeurAttributs();
         int DefenseGuerrier = HeroGuerrier.defense + listItemsEquipés[1].getValeurAttributs() + listItemsEquipés[2].getValeurAttributs() + listItemsEquipés[3].getValeurAttributs() + listItemsEquipés[0].getValeurAttributs();
         CanvaStatsHero.GetComponent<Text>().text = "Stats\n----------------\nPV : " + HeroGuerrier.currentPv + "/" + HeroGuerrier.MaxPv + "\nAttaque : " + AttaqueGuerrier + "\nDefense : " + DefenseGuerrier + "\nPA : " + HeroGuerrier.pa;
-    }   
-
+    }
+    public int GetAttaqueHero()
+    {
+        try
+        {
+            print(20 + listItemsEquipés[4].getValeurAttributs());
+            return (20 + listItemsEquipés[4].getValeurAttributs());
+        }
+        catch
+        {
+            print(20);
+            return (20);
+        }
+    }
 }

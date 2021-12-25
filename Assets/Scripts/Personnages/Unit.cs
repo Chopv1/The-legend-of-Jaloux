@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
+using System;
 
 public class Unit : MonoBehaviour
 {
-
+    public ObjetsInventaire ObjetsDansInventaire;
     //Variable du script player
     private Camera cam;
     public int currentPv;
@@ -47,7 +48,7 @@ public class Unit : MonoBehaviour
     public List<Node> currentPath = null;
 
     public int CurrentPv { get => currentPv; set => currentPv = value; }
-    public int Attack { get => attack; set => attack = value; }
+    public int Attack;
     public int Defense { get => defense; set => defense = value; }
     public float Reach { get => reach; set => reach = value; }
     public bool IsSelected { get => isSelected; set => isSelected = value; }
@@ -59,10 +60,10 @@ public class Unit : MonoBehaviour
         currentPv = MaxPv;
         cam = Camera.main;
         isSelected = false;
-        attack = 70;
+        attack = 20;
         reach = 1f;
         pa = 10;
-        defense = 50;
+        defense = 15;
 
         //Unit's script
 
@@ -345,13 +346,14 @@ public class Unit : MonoBehaviour
     }
     public void Sort(int sort)
     {
-        switch(sort)
+        switch (sort)
         {
             case 1:
                 coutPa = 2;
-                if(map.pa>=coutPa)
+                if (map.pa >= coutPa)
                 {
-                    attack = 20;
+                    Attack = Convert.ToInt32(ObjetsDansInventaire.GetAttaqueHero() * 1.2);
+                    print(Attack);
                     reach = 1f;
                     this.sort = 1;
                     ChangeHexagoneColorToBlue();
@@ -364,9 +366,10 @@ public class Unit : MonoBehaviour
                 break;
             case 2:
                 coutPa = 7;
-                if(map.pa>=coutPa)
+                if (map.pa >= coutPa)
                 {
-                    attack = 40;
+                    Attack = Convert.ToInt32(ObjetsDansInventaire.GetAttaqueHero() * 1);
+                    print(Attack);
                     reach = 1f;
                     this.sort = 2;
                     ChangeHexagoneColorToBlack();
@@ -379,9 +382,10 @@ public class Unit : MonoBehaviour
                 break;
             case 3:
                 coutPa = 5;
-                if(map.pa>=coutPa)
+                if (map.pa >= coutPa)
                 {
-                    attack = 50;
+                    Attack = Convert.ToInt32(ObjetsDansInventaire.GetAttaqueHero() * 3);
+                    print(Attack);
                     reach = 2f;
                     this.sort = 3;
                     ChangeHexagoneColorToBlue();
@@ -395,3 +399,4 @@ public class Unit : MonoBehaviour
         }
     }
 }
+

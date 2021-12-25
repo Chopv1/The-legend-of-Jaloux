@@ -4098,7 +4098,12 @@ MonoBehaviour:
   HeroGuerrier: {fileID: 928327435}
   "ObjetVis\xE9": {fileID: 0}
   "IndiceObjetVis\xE9": 0
-  "listItemsEquip\xE9s": []
+  "listItemsEquip\xE9s":
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   "ItemsModifi\xE9": {fileID: 0}
   Equiper: {fileID: 4745749}
   Desequiper: {fileID: 68407819}
@@ -12319,19 +12324,7 @@ MonoBehaviour:
   m_Value: -80
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: SetVolume
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &737590272
 GameObject:
   m_ObjectHideFlags: 0
@@ -17147,7 +17140,6 @@ GameObject:
   - component: {fileID: 1048229213}
   - component: {fileID: 1048229212}
   - component: {fileID: 1048229211}
-  - component: {fileID: 1048229215}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -17239,20 +17231,6 @@ RectTransform:
   m_AnchoredPosition: {x: 800, y: 450}
   m_SizeDelta: {x: 1600, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1048229215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048229210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42893558762ac3b46b7c43d3063ba3f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settingsWindow: {fileID: 1795590589}
-  estOuvert: 0
 --- !u!1 &1057698188
 GameObject:
   m_ObjectHideFlags: 0
@@ -17338,7 +17316,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 647600088}
         m_TargetAssemblyTypeName: OuvirParametres, Assembly-CSharp
-        m_MethodName: QuitterParametres
+        m_MethodName: EscParametres
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23451,7 +23429,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1795590590}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetResolution
         m_Mode: 0
@@ -35134,6 +35112,10 @@ PrefabInstance:
       propertyPath: mouseManagerObject
       value: 
       objectReference: {fileID: 631701034}
+    - target: {fileID: 8269061851478436543, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
+      propertyPath: ObjetsDansInventaire
+      value: 
+      objectReference: {fileID: 218349540}
     - target: {fileID: 8269061851563623610, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
       propertyPath: m_RootOrder
       value: 1
