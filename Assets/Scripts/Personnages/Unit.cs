@@ -7,6 +7,7 @@ using System;
 
 public class Unit : MonoBehaviour
 {
+    public GameObject gameOverScreen;
     public ObjetsInventaire ObjetsDansInventaire;
     //Variable du script player
     private Camera cam;
@@ -121,7 +122,7 @@ public class Unit : MonoBehaviour
             }
             pathList.Clear();
 
-            
+            IsDead();
            
         }
 
@@ -397,6 +398,30 @@ public class Unit : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void isAttacked(int damage)
+    {
+        if(currentPv>0)
+        {
+            this.currentPv -= (damage - defense);
+            Debug.Log("Unit Attacked");
+            IsDead();
+            isSelected = false;
+        }
+    }
+    
+    public void IsDead()
+    {
+        if(currentPv<=0)
+        {
+            currentPv = 0;
+            GameOver();
+        }
+    }
+    public void GameOver()
+    {
+        gameOverScreen.GetComponent<GameOverEnd>().LaLoose();
     }
 }
 

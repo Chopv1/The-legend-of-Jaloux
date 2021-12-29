@@ -12,10 +12,12 @@ public class Enemy : MonoBehaviour
     private int currentPv;
     private int attack = 20;
     private int defense = 10;
-    private int reach = 1;
+    private float reach = 1f;
     private bool isSelected;
     private bool attacked = false;
     private int pa = 5;
+    private bool canAttack;
+    public LayerMask heroLayer;
     public GameObject fenetre;
     public GameObject stats;
 
@@ -46,7 +48,7 @@ public class Enemy : MonoBehaviour
     public int CurrentPv { get => currentPv; set => currentPv = value; }
     public int Attack { get => attack; set => attack = value; }
     public int Defense { get => defense; set => defense = value; }
-    public int Reach { get => reach; set => reach = value; }
+    public float Reach { get => reach; set => reach = value; }
     public bool IsSelected { get => isSelected; set => isSelected = value; }
 
 
@@ -54,6 +56,8 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        canAttack = false;
+
         this.currentPv = MaxPv;
         isSelected = false;
         fenetre = GameObject.Find("CarréStats");
@@ -78,6 +82,7 @@ public class Enemy : MonoBehaviour
 
             if (currentPath.Count == 1){
                 Debug.Log("Fin des haricots");
+                CanAttack();
                 map.paEnemy = map.paEnemy - map.j + 1;
                 currentPath = null;
                 launchMove = false;
@@ -106,7 +111,30 @@ public class Enemy : MonoBehaviour
         //mettre la v�rification de la distance dans une fonction de au clic sur la case et non le bouton
         //permettre donc d'interdire cette fonction de clic sur une case lorsque launchMove est true
     }
-    
+    public void CanAttack()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(this.transform.position, reach, heroLayer);
+
+        if(hit==null)
+        {
+            canAttack = false;
+        }
+        else if(hit.gameObject.CompareTag("Unit"))
+        {
+            canAttack = true;
+            LunchAttack(hit);
+        }
+        else
+        {
+            canAttack = false;
+        }
+    }
+    public void LunchAttack(Collider2D hit)
+    {
+        GameObject unit = hit.gameObject;
+
+        unit.GetComponent<Unit>().isAttacked(Attack);
+    }
     public void SetIsSelected(bool selected)
     {
         isSelected = selected;

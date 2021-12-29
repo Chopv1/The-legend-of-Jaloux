@@ -98,6 +98,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selection: {fileID: 1788104452917420741, guid: 84046244d4346b4499427db4e5bcd25b, type: 3}
   MaxPv: 100
+  heroLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  fenetre: {fileID: 0}
+  stats: {fileID: 0}
+  tileX: 0
+  tileY: 0
+  map: {fileID: 0}
+  ennemy: {fileID: 0}
+  movePoint: {fileID: 0}
+  target: {fileID: 0}
+  path: {fileID: 0}
+  launchMove: 0
+  points: 5
+  boutonAvancer: {fileID: 0}
+  boutonFinTour: {fileID: 0}
+  compteurPA: {fileID: 0}
+  mapPreFab: {fileID: 0}
+  mouseManagerObject: {fileID: 0}
 --- !u!70 &7521140974883582776
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
