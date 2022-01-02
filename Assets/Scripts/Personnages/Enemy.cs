@@ -65,7 +65,6 @@ public class Enemy : MonoBehaviour
         
 
         boutonAvancer = GameObject.Find("Button Avance");
-        Debug.Log(boutonAvancer);
     }
 
     // Update is called once per frame
@@ -83,7 +82,7 @@ public class Enemy : MonoBehaviour
             if (currentPath.Count == 1){
                 Debug.Log("Fin des haricots");
                 CanAttack();
-                map.paEnemy = map.paEnemy - map.j + 1;
+                pa = pa - map.j + 1;
                 currentPath = null;
                 launchMove = false;
                 
@@ -100,12 +99,12 @@ public class Enemy : MonoBehaviour
 
 
     public void Move(){
-        if ( map.action==true) //v�rification nombre de pa
+        if (currentPath != null && currentPath.Count != 0) //v�rification nombre de pa
         {
   
             launchMove = true;
   
-       }
+        }
       
 
         //mettre la v�rification de la distance dans une fonction de au clic sur la case et non le bouton
