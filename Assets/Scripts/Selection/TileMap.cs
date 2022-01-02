@@ -242,7 +242,7 @@ public class TileMap : MonoBehaviour
 
             if (enemy.launchMove == false)
             {
-
+                Debug.Log(enemy + " path !");
                 //Création du chemin pour l'enemy
                 Dictionary<Node, float> dist2 = new Dictionary<Node, float>();
                 Dictionary<Node, Node> prev2 = new Dictionary<Node, Node>();

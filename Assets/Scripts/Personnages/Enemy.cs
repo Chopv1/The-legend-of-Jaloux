@@ -70,8 +70,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if(currentPath != null && Vector3.Distance(ennemy.transform.position, movePoint.position) == 0 && launchMove == true && pa > 0){
-            
+        if(currentPath != null && currentPath.Count > 1 && Vector3.Distance(ennemy.transform.position, movePoint.position) == 0 && launchMove == true && pa > 0){
             currentPath.RemoveAt(0);
             transform.position = map.TileCoordToWorldCoord(currentPath[0].x, currentPath[0].y);
             tileX = currentPath[0].x;
@@ -90,7 +89,7 @@ public class Enemy : MonoBehaviour
 
             }
         } 
-        else if(pa == 0) {
+        else if (pa < 1) {
             launchMove = false;
             pa = 5;
         }
@@ -99,9 +98,9 @@ public class Enemy : MonoBehaviour
 
 
     public void Move(){
-        if (currentPath != null && currentPath.Count != 0) //v�rification nombre de pa
+        if (currentPath != null && currentPath.Count > 1) //v�rification nombre de pa
         {
-  
+            Debug.Log(pa);
             launchMove = true;
   
         }
