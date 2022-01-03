@@ -339,6 +339,7 @@ public class TileMap : MonoBehaviour
             unit.boutonAvancer.GetComponent<Button>().interactable = false;
             unit.boutonFouille.GetComponent<Button>().interactable = true;
             reset.GetComponent<MouseManager>().CanMove(false);
+            reset.GetComponent<MouseManager>().ClearSelection();
         }
     }
 
