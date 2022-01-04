@@ -4,9 +4,10 @@ using UnityEngine;
 public class HeroCreationSalle : MonoBehaviour
 {
     public int ouverture;
+    public GameObject porte;
     private SalleTemplate templates;
     private int rand; // pour aléatoire
-    private List<GameObject> salles;
+    public List<GameObject> salles;
     private GameObject[] carte;
     private GeneratorCarte info;
     private SalleInfo salleInfo;
@@ -43,8 +44,9 @@ public class HeroCreationSalle : MonoBehaviour
 
             if (construction == false)
             {
-                Tirage();
+                Tirage(porte);
 
+                /*
                 if (ouverture == 1)
                 {
                     // une porte en haut 
@@ -77,7 +79,8 @@ public class HeroCreationSalle : MonoBehaviour
                 }
                 construction = true;
 
-
+                */
+                construction = true;
             }
 
         }
@@ -89,38 +92,133 @@ public class HeroCreationSalle : MonoBehaviour
         }
     }
 
-    public void Tirage()
-    {/*
-		Debug.Log("carte debut" + " "+ templates.cartes.Length + " "+ " " + templates.salles.Count);
-		info = templates.salles[1].GetComponent<GeneratorCarte>();
-		info.setDescription("ouias oauis");
-		templates.salles[1].GetComponent<GeneratorCarte>().setDescription("lourd");
-
-
-		GameObject.FindGameObjectWithTag("Carte1").GetComponent<ShopPanel>().salle.title = "ouis ";
-
-		*/
-        /* tirage de salle*/
-        // changer de camera vue des cartes
-        // GameObject.FindGameObjectWithTag("Camera").GetComponent<GestionCamera>().changerCameraCarte();
+    public void Tirage(GameObject ouverture)
+    {
         GameObject.FindGameObjectWithTag("Camera").GetComponent<GestionCamera>().changerCarte();
-        int nombreC = 0;
-        Debug.Log("carte debut" + templates.cartes.Length + " " + templates.salleHaut.Length + " " + templates.salles.Count);
-        for (int indice = 0; indice < templates.cartes.Length; indice++)
+        // carte qui aura forcement une salle bonne
+        int indiceCarteBonne = Random.Range(0, templates.cartes.Length - 1);
+
+
+        for (int indice = 0; indice < templates.cartes.Length ; indice++)
         {
+            Debug.Log(">>>> " + indice + " indice Bonne"+ indiceCarteBonne);
+            if (indice == indiceCarteBonne)
+            {
+                rechercheSalle(ouverture, indice);
 
-            rand = Random.Range(0, templates.salles.Count - 1);
+                
+            }
+            else
+            {
+                int typeSalle = Random.Range(0, templates.tabSalles.Length - 1);
+                GameObject[] salleRoataion = templates.getSalleRotation(typeSalle);
+                int rotationSalle = Random.Range(0, salleRoataion.Length - 1);
+                GameObject salleCarte = templates.getSalle(typeSalle, rotationSalle);
+                /* recherche de la position de la carte puis envoyer les information de la salle choisi pour changer les info de carte ne visuelle */
+                GameObject.FindGameObjectWithTag("Carte" + (indice + 1)).GetComponent<ShopPanel>().ChangerCarte(salleCarte.GetComponent<GeneratorCarte>(), salleCarte, ouverture, salleRoataion, rotationSalle, this.gameObject);
 
-            /* recherche de la position de la carte puis envoyer les information de la salle choisi pour changer les info de carte ne visuelle */
+              
+            }
+            
 
-            GameObject.FindGameObjectWithTag("Carte" + (indice + 1)).GetComponent<ShopPanel>().ChangerCarte(templates.salles[rand].GetComponent<GeneratorCarte>());
-            /*carte[indice].GetComponent<ShopPanel>().ChangerCarte(info); */
-
-            nombreC += 1;
         }
 
+
+         
+
+
+           
+        
+
     }
-    
+
+    public void rechercheSalle(GameObject ouverture, int indice)
+    {
+       
+        int nombreOuverture = ouverture.GetComponent<InfoCentreSalle>().nombreOuverture;
+        Debug.Log("Dans rechercheSalle 138 ");
+
+
+        if (nombreOuverture == 1)
+        {
+            int[] portesCentre = ouverture.GetComponent<InfoCentreSalle>().portes;
+            int[] tipeSalles = new int[3];
+            int indiceUN = ouverture.GetComponent<InfoCentreSalle>().indice();
+            GameObject[][] tabSalles = templates.tabSalles;
+            int typesalle = 0;
+            List<GameObject[]> sallesPotentiels = new List<GameObject[]>();
+            // Debug.Log("Dans Hero CReation Tirage taille tabSalles nombre de types " + tabSalles.Length);
+           
+            for (int type = 0; type < tabSalles.Length; type++) // deplacement par type : une porte , en L , en I 
+            {
+               
+                bool trouver = false;
+                int indiceSalle = 0;
+                int nombreSalle = templates.tabSalles[type].Length;
+
+                //Debug.Log("Dans Hero CReation Tirage nombre salles type " + type + " : " + nombreSalle);
+                while (!trouver && indiceSalle < nombreSalle)
+                {
+                    int[] signature = tabSalles[type][indiceSalle].GetComponent<GeneratorCarte>().signature;
+                   // Debug.Log("salle "+  typesalle + " indice siganture : " + indiceUN  +" = "+ signature[0] + signature[1] + signature[2] + signature[3]);
+                    if (signature[indiceUN] == 1)
+                    {
+                      
+                        trouver = true;
+                        sallesPotentiels.Add(tabSalles[type]);
+                        tipeSalles[typesalle] = type;
+                        typesalle++;
+                    }
+                    indiceSalle++;
+
+                }
+
+            }
+            
+            int typeC = 0;
+
+            Debug.Log("Dans rechercheSalle ds  for  sallePOtentiel " + sallesPotentiels.Count);
+            foreach (GameObject[] Typesalle in sallesPotentiels)
+            {
+               
+                int rotation = 0;
+                foreach (GameObject salle in Typesalle)
+                {
+                    int[] signature = tabSalles[typeC][rotation].GetComponent<GeneratorCarte>().signature;
+                   // Debug.Log("Type salle " + typeC + " roataione : " + rotation + " = " + signature[0] + signature[1] + signature[2] + signature[3]);
+                    rotation++;
+                }
+                typeC++;
+            }
+           
+            // choix de la salle aleatoire
+
+            int typeSalle = Random.Range(0, sallesPotentiels.Count - 1);
+            int rotationSalle = Random.Range(0, sallesPotentiels[typeSalle].Length - 1);
+            // Debug.Log("Hero" + sallesPotentiels[0][0].GetComponent<GeneratorCarte>().getType() + templates.getSalle(0, 0).GetComponent<GeneratorCarte>().type);
+            
+            Debug.Log("Dans rechercheSalle choix de la salle aleatoire  " + typeSalle + " rotationSalle " + rotationSalle + " tipeSalles " + tipeSalles[typeSalle]);
+            GameObject[] salleRotation = templates.getSalleRotation(tipeSalles[typeSalle]);
+
+           
+            // creation de la carte 
+            
+            GameObject.FindGameObjectWithTag("Carte" + (indice + 1)).GetComponent<ShopPanel>().ChangerCarte(sallesPotentiels[typeSalle][rotationSalle].GetComponent<GeneratorCarte>(), sallesPotentiels[typeSalle][rotationSalle], ouverture, salleRotation, rotationSalle, this.gameObject) ;
+           
+            salles = ouverture.GetComponent<InfoCentreSalle>().TesTSalles(sallesPotentiels);// List<GameObject> la liste des salles bonnes rotation
+            templates.setListeSallesBonnes(salles);
+        }
+    }
+
+    public void setPorte(GameObject porte)
+    {
+        this.porte = porte;
+    }
+
+    public int getOuverture()
+    {
+        return ouverture;
+    }
 
 }
 

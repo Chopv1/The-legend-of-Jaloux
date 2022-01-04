@@ -12,6 +12,9 @@ TagManager:
   - Carte2
   - CameraCartes
   - Camera
+  - MapCarte
+  - Carte3
+  - Main
   layers:
   - Default
   - TransparentFX

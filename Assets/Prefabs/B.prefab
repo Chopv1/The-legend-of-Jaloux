@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 61436770137435762}
   - component: {fileID: 50420303489014886}
   - component: {fileID: 114136933290509020}
+  - component: {fileID: 3358773187060935654}
+  - component: {fileID: 3699982727812850891}
   m_Layer: 0
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
@@ -95,6 +97,53 @@ MonoBehaviour:
   ouverture: 1
   construction: 0
   waitTime: 4
+--- !u!114 &3358773187060935654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004506553876976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd5755456fad914d953c17fd6eb9e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombreOuverture: 0
+  porteH: 0
+  porteD: 0
+  porteB: 0
+  porteG: 0
+  portes: 
+  porte: {fileID: 4789398232755067429}
+  salle: {fileID: 0}
+  centres: []
+--- !u!61 &3699982727812850891
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004506553876976}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1168746534402250
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,10 +597,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d2d082040c4634f9705a0e4069ef87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portes:
+  - {fileID: 4789398232755067429}
+  type: 0
+  rotation: 0
+  signature: 00000000000000000000000000000000
   title: B
   description: bah jsp
   pointAction: 0
-  gameObject: {fileID: 0}
 --- !u!1 &1993842130122838
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +863,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ouverture: 1
+  porte: {fileID: 1004506553876976}
+  salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
   waitTime: 4

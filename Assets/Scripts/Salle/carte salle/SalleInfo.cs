@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Assets/Scripts Object/salleSalleInfo", menuName = "ScriptableObject / Salle")]
+[CreateAssetMenu(fileName = "Assets/Scripts Object/cartes/SalleInfo", menuName = "ScriptableObject / Salle")]
 public class SalleInfo : ScriptableObject
 {
+    
+    
     public string title;
     public string description;
     public int pointAction;
@@ -15,6 +17,9 @@ public class SalleInfo : ScriptableObject
         title = salle.title;
         description = salle.description;
         pointAction = salle.pointAction;
+       
+       
+
     }
 
 

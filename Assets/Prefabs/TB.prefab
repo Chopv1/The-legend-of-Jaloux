@@ -258,6 +258,8 @@ GameObject:
   - component: {fileID: 61910223407101700}
   - component: {fileID: 50743186921995866}
   - component: {fileID: 114857485172185208}
+  - component: {fileID: 6985842839130364954}
+  - component: {fileID: 2825409296601215072}
   m_Layer: 0
   m_Name: Spawn Point
   m_TagString: SpawnPoint
@@ -272,7 +274,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495743175035696}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -341,6 +343,53 @@ MonoBehaviour:
   ouverture: 3
   construction: 0
   waitTime: 4
+--- !u!114 &6985842839130364954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495743175035696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd5755456fad914d953c17fd6eb9e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombreOuverture: 0
+  porteH: 0
+  porteD: 0
+  porteB: 0
+  porteG: 0
+  portes: 
+  porte: {fileID: 7243085968256890594}
+  salle: {fileID: 0}
+  centres: []
+--- !u!61 &2825409296601215072
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495743175035696}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1532460050559808
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +470,8 @@ GameObject:
   - component: {fileID: 61241003714781336}
   - component: {fileID: 50304993449724038}
   - component: {fileID: 114397527311484624}
+  - component: {fileID: 5077337217536540259}
+  - component: {fileID: 2599161001633955581}
   m_Layer: 0
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
@@ -504,6 +555,53 @@ MonoBehaviour:
   ouverture: 1
   construction: 0
   waitTime: 4
+--- !u!114 &5077337217536540259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657875908759724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd5755456fad914d953c17fd6eb9e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombreOuverture: 0
+  porteH: 0
+  porteD: 0
+  porteB: 0
+  porteG: 0
+  portes: 
+  porte: {fileID: 3987830858366733042}
+  salle: {fileID: 0}
+  centres: []
+--- !u!61 &2599161001633955581
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657875908759724}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1821337426962794
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,10 +907,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d2d082040c4634f9705a0e4069ef87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portes:
+  - {fileID: 3987830858366733042}
+  - {fileID: 7243085968256890594}
+  type: 0
+  rotation: 0
+  signature: 00000000000000000000000000000000
   title: TB
   description: 
   pointAction: 0
-  gameObject: {fileID: 0}
 --- !u!1 &3987830858366733042
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +948,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 7367880889161916418}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6170154806563706503
 SpriteRenderer:
@@ -958,6 +1061,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ouverture: 1
+  porte: {fileID: 1657875908759724}
+  salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
   waitTime: 4
@@ -988,8 +1093,8 @@ Transform:
   m_LocalPosition: {x: 1, y: 3.93, z: -2.56943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5566956447511914501}
   - {fileID: 417721494697348756}
+  - {fileID: 5566956447511914501}
   m_Father: {fileID: 4767410067509144}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1025,7 +1130,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 7367880889161916418}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4241682313436933192
 SpriteRenderer:
@@ -1138,6 +1243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ouverture: 3
+  porte: {fileID: 1495743175035696}
+  salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
   waitTime: 4
