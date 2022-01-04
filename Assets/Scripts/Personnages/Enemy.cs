@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 
 
 
-    private int currentPv;
+    public int currentPv;
     private int attack = 20;
     private int defense = 10;
     private float reach = 1f;
