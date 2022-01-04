@@ -39,7 +39,7 @@ public class HeroCreationSalle : MonoBehaviour
     // Lorsque le collider entre en contact avec quelque chose
     void OnTriggerEnter2D(Collider2D otherObject)
     {
-        if (otherObject.CompareTag("Hero"))
+        if (otherObject.CompareTag("Unit"))
         { // déclanchement au contacte d'un hero 
 
             if (construction == false)
@@ -94,7 +94,7 @@ public class HeroCreationSalle : MonoBehaviour
 
     public void Tirage(GameObject ouverture)
     {
-        GameObject.FindGameObjectWithTag("Camera").GetComponent<GestionCamera>().changerCarte();
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GestionCamera>().changerCarte();
         // carte qui aura forcement une salle bonne
         int indiceCarteBonne = Random.Range(0, templates.cartes.Length - 1);
 
