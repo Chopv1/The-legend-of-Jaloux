@@ -10,6 +10,17 @@ TagManager:
   - Selection
   - TileGrass
   - Unit
+  - SpawnPoint
+  - Salle
+  - Porte
+  - Hero
+  - Carte1
+  - Carte2
+  - CameraCartes
+  - Camera
+  - MapCarte
+  - Carte3
+  - Main
   layers:
   - Default
   - TransparentFX
@@ -19,6 +30,9 @@ TagManager:
   - UI
   - Enemy
   - Player
+  - Minimap
+  - 
+  - 
   - 
   - 
   - 
