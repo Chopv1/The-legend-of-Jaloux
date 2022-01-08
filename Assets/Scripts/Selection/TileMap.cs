@@ -27,8 +27,8 @@ public class TileMap : MonoBehaviour
     public int[,] tiles;
     Node[,] graph;
 
-    int mapSizeX = 10;
-    int mapSizeY = 10;
+    int mapSizeX = 11;
+    int mapSizeY = 11;
 
     void Start() {
         //unit.GetComponent<Unit>().tileX = (int)unit.transform.position.x;
