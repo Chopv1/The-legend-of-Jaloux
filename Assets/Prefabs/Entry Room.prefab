@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 61273959071891808}
   - component: {fileID: 50475196529406120}
   - component: {fileID: 3273276671494698469}
-  - component: {fileID: 7754379896533052644}
   m_Layer: 0
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
@@ -116,33 +115,8 @@ MonoBehaviour:
   porteG: 0
   portes: 
   porte: {fileID: 3376237757151171525}
+  salle: {fileID: 0}
   centres: []
---- !u!61 &7754379896533052644
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016950340045986}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1028094079595516
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +130,6 @@ GameObject:
   - component: {fileID: 61342237357115354}
   - component: {fileID: 50627981948616380}
   - component: {fileID: 8474629391859811228}
-  - component: {fileID: 2329237847769352610}
   m_Layer: 0
   m_Name: Spawn Point (2)
   m_TagString: SpawnPoint
@@ -259,33 +232,8 @@ MonoBehaviour:
   porteG: 0
   portes: 
   porte: {fileID: 7330591561908626000}
+  salle: {fileID: 0}
   centres: []
---- !u!61 &2329237847769352610
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028094079595516}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1117737662058602
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +410,6 @@ GameObject:
   - component: {fileID: 61153349465182346}
   - component: {fileID: 50110469007180854}
   - component: {fileID: 6152893908330805077}
-  - component: {fileID: 8955632133307540035}
   m_Layer: 0
   m_Name: Spawn Point
   m_TagString: SpawnPoint
@@ -550,33 +497,8 @@ MonoBehaviour:
   porteG: 0
   portes: 
   porte: {fileID: 1500319992955764433}
+  salle: {fileID: 0}
   centres: []
---- !u!61 &8955632133307540035
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327667041507466}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1384366362914734
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,6 +558,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d2d082040c4634f9705a0e4069ef87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portes: []
+  type: 0
+  rotation: 0
+  signature: 00000000000000000000000000000000
   title: entry Room
   description: 
   pointAction: 0
@@ -648,6 +574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4150542390612824}
+  - component: {fileID: 7698669931750272857}
   m_Layer: 0
   m_Name: Spawn Points
   m_TagString: Untagged
@@ -673,6 +600,24 @@ Transform:
   m_Father: {fileID: 4284646200961232}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7698669931750272857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476785428554506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60f510d0cf4f1047ac730009a8d633e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPosable: 0
+  centres:
+  - {fileID: 1815727306996752}
+  - {fileID: 1327667041507466}
+  - {fileID: 1028094079595516}
+  - {fileID: 1016950340045986}
 --- !u!1 &1515077533277418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1079,6 @@ GameObject:
   - component: {fileID: 61527779136517890}
   - component: {fileID: 50128803501875684}
   - component: {fileID: 5660441662802486746}
-  - component: {fileID: 3829552491928467672}
   m_Layer: 0
   m_Name: Spawn Point (3)
   m_TagString: SpawnPoint
@@ -1237,33 +1181,8 @@ MonoBehaviour:
   porteG: 0
   portes: 
   porte: {fileID: 4683829108573587827}
+  salle: {fileID: 0}
   centres: []
---- !u!61 &3829552491928467672
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815727306996752}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1955702126142840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 4
   porte: {fileID: 1327667041507466}
+  salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
   waitTime: 4
@@ -1675,6 +1595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 2
   porte: {fileID: 1016950340045986}
+  salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
   waitTime: 4
@@ -1824,6 +1745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 3
   porte: {fileID: 1815727306996752}
+  salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
   waitTime: 4
@@ -1973,6 +1895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 1
   porte: {fileID: 1028094079595516}
+  salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
   waitTime: 4
