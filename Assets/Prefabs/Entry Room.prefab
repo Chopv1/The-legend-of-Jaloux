@@ -1500,6 +1500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 4
   porte: {fileID: 1327667041507466}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
@@ -1566,7 +1567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3376237757151171525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: -5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5213226581556024697}
@@ -1684,6 +1685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 2
   porte: {fileID: 1016950340045986}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
@@ -1834,6 +1836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 3
   porte: {fileID: 1815727306996752}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
@@ -1984,6 +1987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 1
   porte: {fileID: 1028094079595516}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}

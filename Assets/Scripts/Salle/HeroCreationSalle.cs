@@ -1,17 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class HeroCreationSalle : MonoBehaviour
 {
     public int ouverture;
     public GameObject porte;
+    public GameObject hero;
     private SalleTemplate templates;
     private int rand; // pour aléatoire
     public List<GameObject> salles;
     private GameObject[] carte;
     private GeneratorCarte info;
     private SalleInfo salleInfo;
-
+    private GameObject button;
 
     public bool construction = false;
     Collider2D other;
@@ -21,9 +24,10 @@ public class HeroCreationSalle : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-
     {
-
+        hero = GameObject.Find("Unit");
+        button = GameObject.Find("ChangeRoom");
+        button.GetComponent<Button>().interactable = false;
         templates = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
 
 
@@ -39,13 +43,16 @@ public class HeroCreationSalle : MonoBehaviour
     // Lorsque le collider entre en contact avec quelque chose
     void OnTriggerEnter2D(Collider2D otherObject)
     {
+
         if (otherObject.CompareTag("Unit"))
         { // déclanchement au contacte d'un hero 
 
             if (construction == false)
             {
-                Tirage(porte);
+                button.GetComponent<Button>().interactable = true;
 
+
+                //Tirage(porte);
                 /*
                 if (ouverture == 1)
                 {
@@ -91,6 +98,11 @@ public class HeroCreationSalle : MonoBehaviour
             Debug.Log("nop porte");
         }
     }
+   
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        button.GetComponent<Button>().interactable = false;
+    }
 
     public void Tirage(GameObject ouverture)
     {
@@ -106,7 +118,6 @@ public class HeroCreationSalle : MonoBehaviour
             {
                 rechercheSalle(ouverture, indice);
 
-                
             }
             else
             {
@@ -122,13 +133,6 @@ public class HeroCreationSalle : MonoBehaviour
             
 
         }
-
-
-         
-
-
-           
-        
 
     }
 
@@ -209,7 +213,9 @@ public class HeroCreationSalle : MonoBehaviour
             templates.setListeSallesBonnes(salles);
         }
     }
-
+    public void buttonManager()
+    {
+    }
     public void setPorte(GameObject porte)
     {
         this.porte = porte;
