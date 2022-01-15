@@ -61,6 +61,7 @@ public class Enemy : MonoBehaviour
         this.currentPv = MaxPv;
         isSelected = false;
         fenetre = GameObject.Find("CarréStats");
+        fenetre.GetComponent<CanvasRenderer>().cull = true;
         stats = GameObject.Find("Stats");
         
     }
@@ -181,7 +182,9 @@ public class Enemy : MonoBehaviour
 
     public void AfficherStats()
     {
+
         fenetre.SetActive(true);
+        fenetre.GetComponent<CanvasRenderer>().cull = false;
         stats.GetComponent<Text>().text = "Enemy\n----------------\nPV : " + currentPv + "/" + MaxPv+"\nAttaque : "+attack+"\nDefense : "+defense;
     }
 

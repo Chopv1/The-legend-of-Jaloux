@@ -19,11 +19,7 @@ public class TileMap : MonoBehaviour
     public int paEnemy;
     public int i = 0;
     public int j = 0;
-
-
-
-
-
+    public GameObject freezer;
     public int[,] tiles;
     Node[,] graph;
 
@@ -37,7 +33,7 @@ public class TileMap : MonoBehaviour
         GenerateMapData();
         GeneratePathFfindingGraph();
         GenerateMapVisual();
-
+        reset.GetComponent<MouseManager>().ClearSelection();
         unit.GetComponent<Unit>().map = this;
         foreach(Enemy enemy in enemies){
             enemy.GetComponent<Enemy>().map = this;
@@ -333,13 +329,17 @@ public class TileMap : MonoBehaviour
     }
 
     IEnumerator enemyMovement(){
-        foreach(Enemy enemy in enemies) {
+       
+        freezer.SetActive(true);
+        foreach (Enemy enemy in enemies) {
             Debug.Log("Start");
             GeneratePathEnemyTo(enemy, unit.GetComponent<Unit>().tileX, unit.GetComponent<Unit>().tileY);
             enemy.Move();
             yield return new WaitForSeconds(2);
             Debug.Log("Stop");
         }
+        freezer = GameObject.Find("GameFreezer");
+        freezer.SetActive(false);
     }
 
     public void finirTour()
