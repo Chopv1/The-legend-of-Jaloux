@@ -33,15 +33,16 @@ public class TileMap : MonoBehaviour
     void Start() {
         //unit.GetComponent<Unit>().tileX = (int)unit.transform.position.x;
         //unit.GetComponent<Unit>().tileY = (int)unit.transform.position.y;
-        unit.GetComponent<Unit>().map = this;
-        foreach(Enemy enemy in enemies){
-            enemy.GetComponent<Enemy>().map = this;
-        }
+        
         GenerateMapData();
         GeneratePathFfindingGraph();
         GenerateMapVisual();
 
-
+        unit.GetComponent<Unit>().map = this;
+        foreach(Enemy enemy in enemies){
+            enemy.GetComponent<Enemy>().map = this;
+            tiles[enemy.GetComponent<Enemy>().tileX, enemy.GetComponent<Enemy>().tileY] = 1;
+        }
     }
     
     
@@ -245,7 +246,6 @@ public class TileMap : MonoBehaviour
 
         if (enemy.launchMove == false)
         {
-            tiles[enemy.GetComponent<Enemy>().tileX, enemy.GetComponent<Enemy>().tileY] = 0;
             //Creation du chemin pour l'enemy
             Dictionary<Node, float> dist2 = new Dictionary<Node, float>();
             Dictionary<Node, Node> prev2 = new Dictionary<Node, Node>();
@@ -332,13 +332,23 @@ public class TileMap : MonoBehaviour
         }
     }
 
+    IEnumerator enemyMovement(){
+        foreach(Enemy enemy in enemies) {
+            Debug.Log("Start");
+            GeneratePathEnemyTo(enemy, unit.GetComponent<Unit>().tileX, unit.GetComponent<Unit>().tileY);
+            enemy.Move();
+            yield return new WaitForSeconds(2);
+            Debug.Log("Stop");
+        }
+    }
+
     public void finirTour()
     {
+        
         if (unit.launchMove == false)
         {
-            foreach(Enemy enemy in enemies) {
-                GeneratePathEnemyTo(enemy, unit.GetComponent<Unit>().tileX, unit.GetComponent<Unit>().tileY);
-            }
+            StartCoroutine(enemyMovement());
+            
             pa = 10;
             unit.GetComponent<Unit>().currentPath = null;
             unit.boutonAvancer.GetComponent<Button>().interactable = false;

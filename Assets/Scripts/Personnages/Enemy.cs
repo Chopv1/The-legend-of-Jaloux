@@ -63,8 +63,6 @@ public class Enemy : MonoBehaviour
         fenetre = GameObject.Find("CarréStats");
         stats = GameObject.Find("Stats");
         
-
-        boutonAvancer = GameObject.Find("Button Avance");
     }
 
     // Update is called once per frame
@@ -105,7 +103,6 @@ public class Enemy : MonoBehaviour
             map.GetComponent<TileMap>().tiles[tileX, tileY] = 0;
             //map.tiles[tileX, tileY] = 0;
             launchMove = true;
-  
         }
       
 
