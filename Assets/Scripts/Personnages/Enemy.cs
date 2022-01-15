@@ -61,16 +61,16 @@ public class Enemy : MonoBehaviour
         this.currentPv = MaxPv;
         isSelected = false;
         fenetre = GameObject.Find("CarréStats");
+        fenetre.GetComponent<CanvasRenderer>().cull = true;
         stats = GameObject.Find("Stats");
         
-
-        boutonAvancer = GameObject.Find("Button Avance");
     }
 
     // Update is called once per frame
     public void Update()
     {
         if(currentPath != null && currentPath.Count > 1 && Vector3.Distance(ennemy.transform.position, movePoint.position) == 0 && launchMove == true && pa > 0){
+            
             currentPath.RemoveAt(0);
             transform.position = map.TileCoordToWorldCoord(currentPath[0].x, currentPath[0].y);
             tileX = currentPath[0].x;
@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
                 pa = pa - map.j + 1;
                 currentPath = null;
                 launchMove = false;
-                
+                map.GetComponent<TileMap>().tiles[tileX, tileY] = 1;
                 //target.GetComponent<Renderer>().material.color = new Color(0.5849056f, 0.5403813f, 0.4773051f, 1);
 
             }
@@ -92,6 +92,7 @@ public class Enemy : MonoBehaviour
         else if (pa < 1) {
             launchMove = false;
             pa = 5;
+            map.GetComponent<TileMap>().tiles[tileX, tileY] = 1;
         }
 
     }
@@ -100,9 +101,9 @@ public class Enemy : MonoBehaviour
     public void Move(){
         if (currentPath != null && currentPath.Count > 1) //v�rification nombre de pa
         {
-            Debug.Log(pa);
+            map.GetComponent<TileMap>().tiles[tileX, tileY] = 0;
+            //map.tiles[tileX, tileY] = 0;
             launchMove = true;
-  
         }
       
 
@@ -181,7 +182,9 @@ public class Enemy : MonoBehaviour
 
     public void AfficherStats()
     {
+
         fenetre.SetActive(true);
+        fenetre.GetComponent<CanvasRenderer>().cull = false;
         stats.GetComponent<Text>().text = "Enemy\n----------------\nPV : " + currentPv + "/" + MaxPv+"\nAttaque : "+attack+"\nDefense : "+defense;
     }
 

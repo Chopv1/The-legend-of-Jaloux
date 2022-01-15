@@ -142,13 +142,13 @@ public class MouseManager : MonoBehaviour
         selectedObject2 = null;
         selectedObject1 = null;
         sortSelected = false;
-        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(new Vector2(0, 0), 50); // Pour être sur on trace le plus grand cercle et on leur enlève l'hexagone
+        /*Collider2D[] hitInfo = Physics2D.OverlapCircleAll(new Vector2(0, 0), 50); // Pour être sur on trace le plus grand cercle et on leur enlève l'hexagone
         foreach (Collider2D hit in hitInfo)
         {
             GameObject hexagone = hit.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = false;
             hexagone.GetComponent<SpriteRenderer>().color = Color.white;
-        }
+        }*/
 
     }
     public GameObject getSelection()
