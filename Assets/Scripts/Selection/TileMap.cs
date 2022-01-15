@@ -125,9 +125,6 @@ public class TileMap : MonoBehaviour
               
             unit.GetComponent<Unit>().target = this.target;
             unit.GetComponent<Unit>().currentPath = null;
-            foreach(Enemy enemy in enemies) {
-                enemy.GetComponent<Enemy>().currentPath = null;
-            }
             
 
             if (unit.GetComponent<Unit>().target.GetComponent<Transform>().position == unit.GetComponent<Unit>().GetComponent<Transform>().position)
@@ -233,8 +230,20 @@ public class TileMap : MonoBehaviour
             currentPath.Reverse();
 
             unit.GetComponent<Unit>().currentPath = currentPath;
-            
+
+
+            GeneratePathEnemyTo(currentPath.Last().x, currentPath.Last().y);
         }
+
+    }
+
+
+
+    public void GeneratePathEnemyTo(int x, int y)
+    {
+        foreach(Enemy enemy in enemies) {
+            enemy.GetComponent<Enemy>().currentPath = null;
+        }     
 
         foreach(Enemy enemy in enemies) {
 
@@ -243,7 +252,7 @@ public class TileMap : MonoBehaviour
             if (enemy.launchMove == false)
             {
                 Debug.Log(enemy + " path !");
-                //Création du chemin pour l'enemy
+                //Creation du chemin pour l'enemy
                 Dictionary<Node, float> dist2 = new Dictionary<Node, float>();
                 Dictionary<Node, Node> prev2 = new Dictionary<Node, Node>();
 
@@ -332,8 +341,20 @@ public class TileMap : MonoBehaviour
 
     public void finirTour()
     {
+        bool pathEnemyExist = true;
+        foreach(Enemy enemy in enemies) {
+            if(enemy.GetComponent<Enemy>().currentPath == null){
+                pathEnemyExist = false;
+            }
+        }
+
+        if(!pathEnemyExist){
+            GeneratePathEnemyTo(unit.GetComponent<Unit>().tileX, unit.GetComponent<Unit>().tileY);
+        }
+
         if (unit.launchMove == false)
         {
+
             pa = 10;
             unit.GetComponent<Unit>().currentPath = null;
             unit.boutonAvancer.GetComponent<Button>().interactable = false;
