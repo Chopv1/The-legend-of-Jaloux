@@ -2558,6 +2558,7 @@ MonoBehaviour:
   Sort3Amelioration1: {fileID: 1612441358}
   Sort3Amelioration2: {fileID: 1355866909}
   Sort3Amelioration3: {fileID: 1605653143}
+  Openinventaire: {fileID: 945911705}
 --- !u!1001 &141829346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2752,7 +2753,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2913877293222324249, guid: b2f5e3c44675e994390194c16bd12386, type: 3}
   m_PrefabInstance: {fileID: 141829346}
   m_PrefabAsset: {fileID: 0}
-  Openinventaire: {fileID: 945911705}
 --- !u!114 &142862249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4764,6 +4764,7 @@ MonoBehaviour:
   Desequiper: {fileID: 68407819}
   Jeter: {fileID: 113292301}
   Utiliser: {fileID: 1555962465}
+  Songequiper: {fileID: 981866376}
 --- !u!1 &242105057
 GameObject:
   m_ObjectHideFlags: 0
@@ -4897,7 +4898,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242105057}
   m_CullTransparentMesh: 1
-  Songequiper: {fileID: 981866376}
 --- !u!1 &249299479
 GameObject:
   m_ObjectHideFlags: 0
@@ -8831,7 +8831,7 @@ Transform:
   - {fileID: 945911704}
   - {fileID: 981866375}
   m_Father: {fileID: 519420032}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &469261999
 GameObject:
@@ -32185,7 +32185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1903994582
 Transform:
   m_ObjectHideFlags: 0
