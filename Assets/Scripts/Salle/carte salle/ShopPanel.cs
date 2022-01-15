@@ -20,7 +20,7 @@ public class ShopPanel : MonoBehaviour
     public GameObject porte;
     bool posable = false;
 
-
+    public GameObject generationMap;
     private void Start()
     {
         titleTxt.text = salle.title;
@@ -80,9 +80,11 @@ public class ShopPanel : MonoBehaviour
             GameObject carte = Instantiate(salleObject, centre.transform.position, salleObject.transform.rotation);
             centre.GetComponent<InfoCentreSalle>().salle = carte;
             centre.GetComponent<InfoCentreSalle>().MiseAjourCentre();
-           centre.GetComponent<VericationConstruction>();
+            centre.GetComponent<VericationConstruction>();
             carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GestionCamera>().changerMap();
+            generationMap.GetComponent<TileMap>().GenerationSalle(centre.transform.position);
+
 
         }
       

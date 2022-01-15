@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158800445321490}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 7.48, y: 0.5058, z: 0}
+  m_LocalPosition: {x: 6.73, y: 0.5058, z: 0}
   m_LocalScale: {x: 13.287662, y: 1.0088947, z: 1}
   m_Children: []
   m_Father: {fileID: 4217912334261694}
@@ -864,6 +864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 4
   porte: {fileID: 1183405846192126}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}

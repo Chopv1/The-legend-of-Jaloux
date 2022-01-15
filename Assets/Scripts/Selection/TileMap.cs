@@ -69,8 +69,47 @@ public class TileMap : MonoBehaviour
         return type.movementCost;
     }
 
+    void GeneratePathFfindingGraph()
+    {
+        graph = new Node[mapSizeX, mapSizeY];
 
-    void GeneratePathFfindingGraph(){
+        for (int x = 0; x < mapSizeX; x++)
+        {
+            for (int y = 0; y < mapSizeY; y++)
+            {
+                graph[x, y] = new Node();
+                graph[x, y].x = x;
+                graph[x, y].y = y;
+            }
+        }
+
+        for (int x = 0; x < mapSizeX; x++)
+        {
+            for (int y = 0; y < mapSizeY; y++)
+            {
+                if (x > 0)
+                {
+                    graph[x, y].neighbours.Add(graph[x - 1, y]);
+                }
+                if (x < mapSizeX - 1)
+                {
+                    graph[x, y].neighbours.Add(graph[x + 1, y]);
+                }
+                if (y > 0)
+                {
+                    graph[x, y].neighbours.Add(graph[x, y - 1]);
+                }
+                if (y < mapSizeY - 1)
+                {
+                    graph[x, y].neighbours.Add(graph[x, y + 1]);
+                }
+            }
+        }
+    }
+
+
+    void GenerateMapVisual(){
+        for(int x = 0; x < mapSizeX; x++){ void GeneratePathFfindingGraph(){
         graph = new Node[mapSizeX, mapSizeY];
 
         for(int x = 0; x < mapSizeX; x++){
@@ -98,9 +137,6 @@ public class TileMap : MonoBehaviour
             }
         }
     }
-
-    void GenerateMapVisual(){
-        for(int x = 0; x < mapSizeX; x++){
             for(int y = 0; y < mapSizeY; y++){
                 TileType tt = tileTypes[tiles[x, y]];
                 GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity);
@@ -342,6 +378,149 @@ public class TileMap : MonoBehaviour
             reset.GetComponent<MouseManager>().ClearSelection();
         }
     }
+    /// 
+    /// 
+    ///  GENERATION D'UNE SALLE
+    ///
+    /// 
+    public void GenerationSalle(Vector3 centreSalle)
+    {
+        GenerateMapDataSalle(centreSalle);
+        GeneratePathFfindingGraphSalle(centreSalle);
+        GenerateMapVisualSalle(centreSalle);
+    }
 
+    void GenerateMapDataSalle(Vector3 centreSalle)
+    {
+        tiles = new int[mapSizeX, mapSizeY];
+
+        for (int x = 0; x < mapSizeX; x++)
+        {
+            for (int y = 0; y < mapSizeY; y++)
+            {
+                tiles[x, y] = 0;
+            }
+        }
+
+        tiles[4, 4] = 1;
+        tiles[4, 5] = 1;
+        tiles[4, 6] = 1;
+        tiles[5, 6] = 1;
+        tiles[6, 6] = 1;
+        tiles[6, 5] = 1;
+        tiles[6, 4] = 1;
+    }
+
+    void GeneratePathFfindingGraphSalle(Vector3 centreSalle)
+    {
+        graph = new Node[mapSizeX, mapSizeY];
+
+        for (int x = 0; x < mapSizeX; x++)
+        {
+            for (int y = 0; y < mapSizeY; y++)
+            {
+                graph[x, y] = new Node();
+                graph[x, y].x = x;
+                graph[x, y].y = y;
+            }
+        }
+
+        for (int x = 0; x < mapSizeX; x++)
+        {
+            for (int y = 0; y < mapSizeY; y++)
+            {
+                if (x > 0)
+                {
+                    graph[x, y].neighbours.Add(graph[x - 1, y]);
+                }
+                if (x < mapSizeX - 1)
+                {
+                    graph[x, y].neighbours.Add(graph[x + 1, y]);
+                }
+                if (y > 0)
+                {
+                    graph[x, y].neighbours.Add(graph[x, y - 1]);
+                }
+                if (y < mapSizeY - 1)
+                {
+                    graph[x, y].neighbours.Add(graph[x, y + 1]);
+                }
+            }
+        }
+    }
+
+    void GenerateMapVisualSalle(Vector3 centreSalle)
+    {
+        centreSalle=VerifyCenter(centreSalle);
+        for (int x = 0; x < mapSizeX; x++)
+        {
+            void GeneratePathFfindingGraphSalle()
+            {
+                graph = new Node[mapSizeX, mapSizeY];
+
+                for (int x = 0; x < mapSizeX; x++)
+                {
+                    for (int y = 0; y < mapSizeY; y++)
+                    {
+                        graph[x, y] = new Node();
+                        graph[x, y].x = x;
+                        graph[x, y].y = y;
+                    }
+                }
+
+                for (int x = 0; x < mapSizeX; x++)
+                {
+                    for (int y = 0; y < mapSizeY; y++)
+                    {
+                        if (x > 0)
+                        {
+                            graph[x, y].neighbours.Add(graph[x - 1, y]);
+                        }
+                        if (x < mapSizeX - 1)
+                        {
+                            graph[x, y].neighbours.Add(graph[x + 1, y]);
+                        }
+                        if (y > 0)
+                        {
+                            graph[x, y].neighbours.Add(graph[x, y - 1]);
+                        }
+                        if (y < mapSizeY - 1)
+                        {
+                            graph[x, y].neighbours.Add(graph[x, y + 1]);
+                        }
+                    }
+                }
+            }
+            for (int y = 0; y < mapSizeY; y++)
+            {
+                TileType tt = tileTypes[tiles[x, y]];
+                GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x+centreSalle.x,y+centreSalle.y, 0), Quaternion.identity);
+
+                ClickableTile ct = go.GetComponent<ClickableTile>();
+                ct.tileX = x + (int)centreSalle.x;
+                ct.tileY = y + (int)centreSalle.y;
+                ct.map = this;
+            }
+        }
+
+    }
+    public Vector3 VerifyCenter(Vector3 centreSalle)
+    {
+        //L DOR
+        //centreSalle += new Vector3(centreSalle.x+2, 0, 0);
+        //centreSalle = new Vector3(centreSalle.x, 0, 0);
+        //R DOR
+        //centreSalle += new Vector3(centreSalle.x - 21, 0, 0);
+        //centreSalle = new Vector3(centreSalle.x, 0, 0);
+        //B DOR
+        //centreSalle += new Vector3(0, -5.5f, 0);
+        //centreSalle = new Vector3(0, centreSalle.y, 0);
+        //T DOR
+        //centreSalle += new Vector3(0, -4.5f, 0);
+        //centreSalle = new Vector3(0, centreSalle.y, 0);
+
+
+        return centreSalle;
+    }
 
 }

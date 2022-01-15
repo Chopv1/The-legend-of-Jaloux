@@ -102,8 +102,9 @@ MonoBehaviour:
   - {fileID: 0}
   salle: {fileID: 0}
   changer: 0
-  button: {fileID: 0}
+  centre: {fileID: 0}
   porte: {fileID: 0}
+  generationMap: {fileID: 4056387242903622627, guid: 2ab3328369d99ea4e9ff71c229e41d09, type: 3}
 --- !u!1 &3012005121374399801
 GameObject:
   m_ObjectHideFlags: 0

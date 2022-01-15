@@ -14,7 +14,6 @@ public class HeroCreationSalle : MonoBehaviour
     private GameObject[] carte;
     private GeneratorCarte info;
     private SalleInfo salleInfo;
-    private GameObject button;
 
     public bool construction = false;
     Collider2D other;
@@ -26,20 +25,16 @@ public class HeroCreationSalle : MonoBehaviour
     void Start()
     {
         hero = GameObject.Find("Unit");
-        button = GameObject.Find("ChangeRoom");
-        button.GetComponent<Button>().interactable = false;
+      
         templates = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
-
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
-
     }
+
     // Lorsque le collider entre en contact avec quelque chose
     void OnTriggerEnter2D(Collider2D otherObject)
     {
@@ -49,10 +44,9 @@ public class HeroCreationSalle : MonoBehaviour
 
             if (construction == false)
             {
-                button.GetComponent<Button>().interactable = true;
 
 
-                //Tirage(porte);
+                Tirage(porte);
                 /*
                 if (ouverture == 1)
                 {
@@ -98,10 +92,11 @@ public class HeroCreationSalle : MonoBehaviour
             Debug.Log("nop porte");
         }
     }
-   
+    
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        button.GetComponent<Button>().interactable = false;
+      
     }
 
     public void Tirage(GameObject ouverture)
@@ -213,9 +208,8 @@ public class HeroCreationSalle : MonoBehaviour
             templates.setListeSallesBonnes(salles);
         }
     }
-    public void buttonManager()
-    {
-    }
+
+    
     public void setPorte(GameObject porte)
     {
         this.porte = porte;
