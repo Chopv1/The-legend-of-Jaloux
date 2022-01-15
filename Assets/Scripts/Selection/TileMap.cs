@@ -240,12 +240,12 @@ public class TileMap : MonoBehaviour
     public void GeneratePathEnemyTo(Enemy enemy, int x, int y)
     {
 
-        enemy.GetComponent<Enemy>().currentPath = null;    
+        enemy.GetComponent<Enemy>().currentPath = null;
 
 
         if (enemy.launchMove == false)
         {
-            Debug.Log(enemy + " path !");
+            tiles[enemy.GetComponent<Enemy>().tileX, enemy.GetComponent<Enemy>().tileY] = 0;
             //Creation du chemin pour l'enemy
             Dictionary<Node, float> dist2 = new Dictionary<Node, float>();
             Dictionary<Node, Node> prev2 = new Dictionary<Node, Node>();
