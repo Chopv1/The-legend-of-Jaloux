@@ -17,6 +17,9 @@ public class MouseManager : MonoBehaviour
     private GameObject bExit;
     private GameObject bInfo;
     private GameObject bAttaque;
+    public Animator herosAnimator;
+    public Animator ennemi1Animator;
+    public Animator ennemi2Animator;
     private bool sortSelected = false;
 
     void Start()
@@ -52,6 +55,7 @@ public class MouseManager : MonoBehaviour
     {
         if(selectedObject1 != null)
         {
+            
             if (hitObject == selectedObject1) //Si l'objet touché est le même que le sélectionner on arrête la fonction
             {
                 return;
@@ -64,6 +68,7 @@ public class MouseManager : MonoBehaviour
             else if (hitObject.CompareTag("Enemy") && selectedObject2==null && (selectedObject1.CompareTag("Unit")&&!selectedObject1.GetComponent<Unit>().IsInReach(hitObject))) //Des vérifications pour clear si on touche personne
             {
                 ClearSelection();
+
             }
         }
 
@@ -149,7 +154,6 @@ public class MouseManager : MonoBehaviour
             hexagone.GetComponent<SpriteRenderer>().enabled = false;
             hexagone.GetComponent<SpriteRenderer>().color = Color.white;
         }*/
-
     }
     public GameObject getSelection()
     {
@@ -195,7 +199,24 @@ public class MouseManager : MonoBehaviour
         {
             selectedObject2.GetComponent<Enemy>().IsAttacked(selectedObject1.GetComponent<Unit>().Attack);
             bAttaque.GetComponent<Button>().interactable = false;
+            
+
+            // MovementEnnemy
+            if (selectedObject2.name == "Enemy")
+            {
+                herosAnimator.SetBool("isRightAttacking", true);
+                ennemi1Animator.SetBool("isAttacked", true);
+            }
+            else if (selectedObject2.name == "Enemy2")
+            {
+                herosAnimator.SetBool("isRightAttacking", true);
+                ennemi2Animator.SetBool("isAttacked", true);
+            }
+
+                
             ClearSelection();
+            
+
         }
         else if(sort==2&&selectedObject1.CompareTag("Unit")&&selectedObject1.GetComponent<Unit>().EnemyAround())
         {

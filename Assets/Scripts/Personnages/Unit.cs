@@ -47,6 +47,9 @@ public class Unit : MonoBehaviour
     public List<int> listObjets;
     public List<Items> listItems;
     public List<Node> currentPath = null;
+    public Animator herosAnimator;
+    public Animator ennemi1Animator;
+    public Animator ennemi2Animator;
 
     public int CurrentPv { get => currentPv; set => currentPv = value; }
     public int Attack;
@@ -89,6 +92,9 @@ public class Unit : MonoBehaviour
         boutonFouille.GetComponent<Button>().enabled = true;
 
         boutonAttaque = GameObject.Find("Attaquer");
+
+        herosAnimator.SetBool("isRightAttacking", false);
+
     }
 
     void Update(){
@@ -134,8 +140,10 @@ public class Unit : MonoBehaviour
             transform.position = map.TileCoordToWorldCoord(currentPath[0].x, currentPath[0].y);
             tileX = currentPath[0].x;
             tileY = currentPath[0].y;
-            
-
+            herosAnimator.SetBool("isMoving", true);
+            herosAnimator.SetBool("isRightAttacking", false);
+            ennemi1Animator.SetBool("isAttacked", false);
+            ennemi2Animator.SetBool("isAttacked", false);
             if (currentPath.Count == 1)
             {
                 map.pa = map.pa - map.i + 1;
@@ -145,6 +153,7 @@ public class Unit : MonoBehaviour
                 movePoint.GetComponent<Renderer>().enabled = false;
                 boutonFinTour.GetComponent<Button>().interactable = true;
                 boutonAvancer.GetComponent<Button>().interactable = false;
+                herosAnimator.SetBool("isMoving", false);
 
                 tableauTileGrass = GameObject.FindGameObjectsWithTag("TileGrass");
                 foreach(GameObject tile909 in tableauTileGrass)
@@ -180,6 +189,7 @@ public class Unit : MonoBehaviour
     public void SetIsSelected(bool selected) ///Fonction pour sélectionner le perso ou pas
     {
         isSelected = selected;
+        
 
     }
  
@@ -189,7 +199,9 @@ public class Unit : MonoBehaviour
         if (IsInReach(enemy)&&map.pa>=coutPa)
         {
             map.pa= map.pa-coutPa;
+
             return true;
+
         }
         return false;
     }
@@ -200,6 +212,7 @@ public class Unit : MonoBehaviour
         {
            if(hit!=null)
             {
+
                 return true;
             }
         }
@@ -213,15 +226,17 @@ public class Unit : MonoBehaviour
 
             foreach(Collider2D hit in hitInfo)
             {
-            
+
                 hit.GetComponent<Enemy>().IsAttacked(this.Attack);
                 Debug.Log(hit+" Touché");
             }
 
             map.pa = map.pa - coutPa;
+            
         }
 
         ChangeHexagoneColorToWhite();
+        
     }
     //On vérifie que l'objet en paramètre est dans la portée
     public bool IsInReach(GameObject obj)
