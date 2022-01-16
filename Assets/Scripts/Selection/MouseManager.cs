@@ -219,7 +219,9 @@ public class MouseManager : MonoBehaviour
 
         }
         else if(sort==2&&selectedObject1.CompareTag("Unit")&&selectedObject1.GetComponent<Unit>().EnemyAround())
+
         {
+            herosAnimator.SetBool("isCircleAttacking", true);
             selectedObject1.GetComponent<Unit>().HitAllEnemy();
             bAttaque.GetComponent<Button>().interactable = false;
             ClearSelection();

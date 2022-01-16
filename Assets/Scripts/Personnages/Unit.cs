@@ -141,6 +141,7 @@ public class Unit : MonoBehaviour
             tileX = currentPath[0].x;
             tileY = currentPath[0].y;
             herosAnimator.SetBool("isRightAttacking", false);
+            herosAnimator.SetBool("isCircleAttacking", false);
             ennemi1Animator.SetBool("isAttacked", false);
             ennemi2Animator.SetBool("isAttacked", false);
             herosAnimator.SetBool("isDigging", false);
@@ -228,7 +229,8 @@ public class Unit : MonoBehaviour
 
             foreach(Collider2D hit in hitInfo)
             {
-
+                ennemi2Animator.SetBool("isAttacked", true);
+                ennemi1Animator.SetBool("isAttacked", true);
                 hit.GetComponent<Enemy>().IsAttacked(this.Attack);
                 Debug.Log(hit+" Touché");
             }
