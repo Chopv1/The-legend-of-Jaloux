@@ -864,6 +864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 3
   porte: {fileID: 1763992056139558}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}

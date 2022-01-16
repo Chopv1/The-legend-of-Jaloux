@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
     private int defense = 10;
     private float reach = 1f;
     private bool isSelected;
-    private bool attacked = false;
     private int pa = 5;
     private bool canAttack;
     public LayerMask heroLayer;

@@ -1062,6 +1062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 3
   porte: {fileID: 1312489830421514}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
@@ -1244,6 +1245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 2
   porte: {fileID: 1000081243855392}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}

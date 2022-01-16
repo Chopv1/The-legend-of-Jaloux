@@ -383,14 +383,14 @@ public class TileMap : MonoBehaviour
     ///  GENERATION D'UNE SALLE
     ///
     /// 
-    public void GenerationSalle(Vector3 centreSalle)
+    public void GenerationSalle(GameObject centreSalle)
     {
-        GenerateMapDataSalle(centreSalle);
-        GeneratePathFfindingGraphSalle(centreSalle);
+        GenerateMapDataSalle();
+        GeneratePathFfindingGraphSalle();
         GenerateMapVisualSalle(centreSalle);
     }
 
-    void GenerateMapDataSalle(Vector3 centreSalle)
+    void GenerateMapDataSalle()
     {
         tiles = new int[mapSizeX, mapSizeY];
 
@@ -411,7 +411,7 @@ public class TileMap : MonoBehaviour
         tiles[6, 4] = 1;
     }
 
-    void GeneratePathFfindingGraphSalle(Vector3 centreSalle)
+    void GeneratePathFfindingGraphSalle()
     {
         graph = new Node[mapSizeX, mapSizeY];
 
@@ -449,9 +449,9 @@ public class TileMap : MonoBehaviour
         }
     }
 
-    void GenerateMapVisualSalle(Vector3 centreSalle)
+    public void GenerateMapVisualSalle(GameObject centreSalle)
     {
-        centreSalle=VerifyCenter(centreSalle);
+        Vector3 posCentreSalle = VerifyCenter(centreSalle);
         for (int x = 0; x < mapSizeX; x++)
         {
             void GeneratePathFfindingGraphSalle()
@@ -494,33 +494,52 @@ public class TileMap : MonoBehaviour
             for (int y = 0; y < mapSizeY; y++)
             {
                 TileType tt = tileTypes[tiles[x, y]];
-                GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x+centreSalle.x,y+centreSalle.y, 0), Quaternion.identity);
+                GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x+ posCentreSalle.x,y+ posCentreSalle.y, 0), Quaternion.identity);
 
                 ClickableTile ct = go.GetComponent<ClickableTile>();
-                ct.tileX = x + (int)centreSalle.x;
-                ct.tileY = y + (int)centreSalle.y;
+                ct.tileX = x + (int)posCentreSalle.x;
+                ct.tileY = y + (int)posCentreSalle.y;
                 ct.map = this;
             }
         }
 
     }
-    public Vector3 VerifyCenter(Vector3 centreSalle)
+    public Vector3 VerifyCenter(GameObject centreSalle)
     {
-        //L DOR
-        //centreSalle += new Vector3(centreSalle.x+2, 0, 0);
-        //centreSalle = new Vector3(centreSalle.x, 0, 0);
-        //R DOR
-        //centreSalle += new Vector3(centreSalle.x - 21, 0, 0);
-        //centreSalle = new Vector3(centreSalle.x, 0, 0);
-        //B DOR
-        //centreSalle += new Vector3(0, -5.5f, 0);
-        //centreSalle = new Vector3(0, centreSalle.y, 0);
-        //T DOR
-        //centreSalle += new Vector3(0, -4.5f, 0);
-        //centreSalle = new Vector3(0, centreSalle.y, 0);
+        Vector3 posCentreSalle = centreSalle.transform.position;
+
+        GameObject door = centreSalle.GetComponent<InfoCentreSalle>().Porte ;
+        int nbDoor = door.GetComponent<HeroCreationSalle>().ouverture;
+
+        switch(nbDoor)
+        {
+            case 1:
+                posCentreSalle += new Vector3(0, -5.5f, 0);
+                posCentreSalle = new Vector3(0, posCentreSalle.y, 0);
+                Debug.Log("Bottom Door");
+                
+                break;
+            case 2:
+                posCentreSalle += new Vector3(-5.5f, 0, 0);
+                posCentreSalle = new Vector3(posCentreSalle.x, 0, 0);
+                Debug.Log("Left Door");
+                break;
+            case 3:
+                posCentreSalle += new Vector3(0, -5.5f, 0);
+                posCentreSalle = new Vector3(0, posCentreSalle.y, 0);
+                Debug.Log("Top Door");
+                break;
+            case 4:
+                posCentreSalle += new Vector3(-4.5f, 0, 0);
+                posCentreSalle = new Vector3(posCentreSalle.x, 0, 0);
+                Debug.Log("Right Door");
+                
+                break;
+        }
 
 
-        return centreSalle;
+
+        return posCentreSalle;
     }
 
 }

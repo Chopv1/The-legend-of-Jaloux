@@ -18,9 +18,12 @@ public class InfoCentreSalle : MonoBehaviour
     static int touche;
 
     public List<GameObject> centres;
+
+    public GameObject Porte { get => porte; set => porte = value; }
+
     void Start()
     {
-        
+
         portes = new int[] { this.porteH, this.porteD, this.porteB, this.porteG };
       
         int indice = porte.GetComponent<HeroCreationSalle>().ouverture - 1;

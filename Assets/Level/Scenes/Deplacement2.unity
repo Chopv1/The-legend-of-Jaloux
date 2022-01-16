@@ -26899,56 +26899,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4284646200961232, guid: 10c65f0c164d2e04e9c3daf97304609a, type: 3}
   m_PrefabInstance: {fileID: 1633355523}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1633355525 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4683829108573587827, guid: 10c65f0c164d2e04e9c3daf97304609a, type: 3}
-  m_PrefabInstance: {fileID: 1633355523}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1633355526 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1815727306996752, guid: 10c65f0c164d2e04e9c3daf97304609a, type: 3}
-  m_PrefabInstance: {fileID: 1633355523}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1633355527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1633355526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68f5af342513da6459d66cf44b591f8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombreOuverture: 0
-  porteH: 0
-  porteD: 0
-  porteB: 0
-  porteG: 0
-  portes: 
-  salles: []
---- !u!114 &1633355528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1633355526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dd5755456fad914d953c17fd6eb9e52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombreOuverture: 0
-  porteH: 0
-  porteD: 0
-  porteB: 0
-  porteG: 0
-  portes: 
-  porte: {fileID: 1633355525}
-  salle: {fileID: 0}
-  centres: []
 --- !u!1 &1637106860
 GameObject:
   m_ObjectHideFlags: 0
