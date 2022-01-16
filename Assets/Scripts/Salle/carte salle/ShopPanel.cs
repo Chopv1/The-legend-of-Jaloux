@@ -68,6 +68,8 @@ public class ShopPanel : MonoBehaviour
     public void ChoisirSalle()
     {
         posable = templates.sallePosable(salleObject);
+        templates.destructionSalleTest();
+
         if (!posable)
         {
             Debug.Log(" >>>>>>> !!!!!!!!!!! Impossible de poser Astuce faire une rotation ");

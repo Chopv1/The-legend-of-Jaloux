@@ -105,8 +105,22 @@ public class HeroCreationSalle : MonoBehaviour
             if (indice == indiceCarteBonne)
             {
                 rechercheSalle(ouverture, indice);
+                List<GameObject> sallesBonnes = new List<GameObject>();
+                foreach (GameObject salle in salles)
+                {
+                    Debug.Log(salle.GetComponent<GeneratorCarte>().title + " est posable ?" + salle.transform.GetChild(1).gameObject.GetComponent<MainCentre>().getMainPosable());
+                    if (salle.transform.GetChild(1).gameObject.GetComponent<MainCentre>().getMainPosable() == true)
+                    {
+                        sallesBonnes.Add(salle);
+                    }
+                }
 
-                
+
+                // type[rotation].transform.GetChild(1).gameObject.GetComponent<MainCentre>().changerTagSpwan();
+                // Destroy(carte);
+                templates.setListeSallesBonnes(sallesBonnes);
+
+
             }
             else
             {
@@ -119,16 +133,18 @@ public class HeroCreationSalle : MonoBehaviour
 
               
             }
+
+
             
 
         }
+       
 
 
-         
 
 
-           
-        
+
+
 
     }
 
@@ -207,7 +223,7 @@ public class HeroCreationSalle : MonoBehaviour
             GameObject.FindGameObjectWithTag("Carte" + (indice + 1)).GetComponent<ShopPanel>().ChangerCarte(sallesPotentiels[typeSalle][rotationSalle].GetComponent<GeneratorCarte>(), sallesPotentiels[typeSalle][rotationSalle], ouverture, salleRotation, rotationSalle, this.gameObject);
 
             salles = ouverture.GetComponent<InfoCentreSalle>().TesTSalles(sallesPotentiels);// List<GameObject> la liste des salles bonnes rotation
-            templates.setListeSallesBonnes(salles);
+           
        }
         else if(ouverture.GetComponent<InfoCentreSalle>().nombreOuverture == 2)
         {

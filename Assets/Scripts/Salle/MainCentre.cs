@@ -29,6 +29,7 @@ public class MainCentre : MonoBehaviour
             if (!centres[ouverture].GetComponent<InfoCentreSalle>().getPosable())
             {
                 mainPosable = false;
+                Debug.Log(" ouverture " + ouverture + " est " + centres[ouverture].GetComponent<InfoCentreSalle>().getPosable()) ;
             }
             ouverture++;
         }
@@ -52,6 +53,22 @@ public class MainCentre : MonoBehaviour
         {
             centre.GetComponent<InfoCentreSalle>().MiseAjourCentre();
             
+        }
+    }
+    public void changerTagTest()
+    {
+        foreach (GameObject centre in centres)
+        {
+            centre.tag="Test";
+
+        }
+    }
+    public void changerTagSpwan()
+    {
+        foreach (GameObject centre in centres)
+        {
+            centre.tag = "SpawnPoint";
+
         }
     }
 }

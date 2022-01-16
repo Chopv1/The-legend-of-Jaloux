@@ -18,11 +18,12 @@ public class InfoCentreSalle : MonoBehaviour
     static int touche;
 
     public List<GameObject> centres;
-    bool posable = true;
- 
+    public bool posable;
+    private SalleTemplate templates;
+
     void Start()
     {
-        
+        templates = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
         portes = new int[] { this.porteH, this.porteD, this.porteB, this.porteG };
         nombreOuverture = 1;
       
@@ -43,13 +44,14 @@ public class InfoCentreSalle : MonoBehaviour
         {
             centres.Add(transform.gameObject);
         }
+        posable = true;
 
         // Update is called once per frame
     }
 
     void OnTriggerEnter2D(Collider2D otherObject)
     {
-        if (otherObject.CompareTag("SpawnPoint"))
+        if (otherObject.CompareTag("SpawnPoint") && this.CompareTag("SpawnPoint"))
         {
             bool mainPosable = transform.parent.gameObject.GetComponent<MainCentre>().getMainPosable();
             bool mainPosableAutre = otherObject.transform.parent.gameObject.GetComponent<MainCentre>().getMainPosable();
@@ -82,36 +84,37 @@ public class InfoCentreSalle : MonoBehaviour
                     }
                     else
                     {
-                        if( !(nombreOuverture == 2)) {
+                        if (!(nombreOuverture == 2))
+                        {
                             setPosable(false);
-                            Debug.Log( porte.transform.parent.parent.gameObject.GetComponent<GeneratorCarte>().title +" la sallle ne peut pas etre posé");
+                            Debug.Log(porte.transform.parent.parent.gameObject.GetComponent<GeneratorCarte>().title + " la sallle ne peut pas etre posé");
 
                         }
-                        
+
                         Debug.Log(" les 2 centre : PAs de salles => IMPOSSSIBLE DE CONSTRUIRE " + nouveauNbreOuverture);
                     }
                 }
-                   
+
 
 
             }
             else if (salle != null && otherObject.GetComponent<InfoCentreSalle>().salle == null && mainPosable && mainPosableAutre)
             {
                 Debug.Log("MOi j'ai une sallle mais pas le Other : " + salle.GetComponent<GeneratorCarte>().title);
-                
-                if (0<nombreOuverture && nombreOuverture < 2 && !centres.Contains(otherObject.gameObject))
+
+                if (0 < nombreOuverture && nombreOuverture < 2 && !centres.Contains(otherObject.gameObject))
                 {
                     int[] sommesPortes = new int[portes.Length];
                     for (int indice = 0; indice < portes.Length; indice++)
                     {
 
-                        sommesPortes[indice] = (portes[indice] + otherObject.GetComponent<InfoCentreSalle>().GetPorte(indice))%2 ;
+                        sommesPortes[indice] = (portes[indice] + otherObject.GetComponent<InfoCentreSalle>().GetPorte(indice)) % 2;
                     }
 
                     Debug.Log(" nouveau Somme Portes : " + sommesPortes[0] + sommesPortes[1] + sommesPortes[2] + sommesPortes[3]);
                     int nouveauNbreOuverture = verificationNombreOuverture(sommesPortes);
-                    
-                    if (nouveauNbreOuverture  == 0 || verificationAvecSalle(sommesPortes,salle.GetComponent<GeneratorCarte>().signature) == true)
+
+                    if (nouveauNbreOuverture == 0 || verificationAvecSalle(sommesPortes, salle.GetComponent<GeneratorCarte>().signature) == true)
                     {
                         for (int indice = 0; indice < portes.Length; indice++)
                         {
@@ -140,105 +143,44 @@ public class InfoCentreSalle : MonoBehaviour
                     Debug.Log("Construction IMPOSSIBLE");
                 }
             }
-            /*repetition 
-            else if (salle == null && otherObject.GetComponent<InfoCentreSalle>().salle != null)
+
+        }
+
+        else if (otherObject.CompareTag("SpawnPoint") && this.CompareTag("Test"))
+        { // pour le teste de posable ou pas 
+            
+            bool mainPosable = transform.parent.gameObject.GetComponent<MainCentre>().getMainPosable();
+
+            Debug.Log(" JE teste ! "  + mainPosable);
+            if (mainPosable && otherObject.GetComponent<InfoCentreSalle>().nombreOuverture == 0 || otherObject.GetComponent<InfoCentreSalle>().nombreOuverture == 2)
             {
-                Debug.Log("MOi j'ai Pas de sallle maiss le Other Si ! " );
+                posable = false;
+
+               
+                templates.supprimmersalle(transform.parent.parent.gameObject.GetComponent<GeneratorCarte>().title);
+                Debug.Log(" Pas possible de mmetre cette salle " );
+                Destroy(transform.parent.parent.gameObject);
+
+                transform.parent.gameObject.GetComponent<MainCentre>().miseAjourPosable();
             }
-            */
-            /*
-             * 
-             */
-
-                /*
-                MiseAjourNombreouverture();
-                Debug.Log("ma salle est vide ?" + salle != null);
-                touche += 1;
-                // Debug.Log(" resultat centre touché " + touche);
-                if (nombreOuverture < 2 && !centres.Contains(otherObject.gameObject))
+            else if(mainPosable)
+            {
+                int[] sommesPortes = new int[portes.Length];
+                for (int indice = 0; indice < portes.Length; indice++)
                 {
-                    int[] sommesPortes = new int[portes.Length];
-                    centres.Add(otherObject.gameObject);
-                    otherObject.GetComponent<InfoCentreSalle>().AjoutCentre(transform.gameObject);
-                    if (salle != null) {
-                        setSalleCentre(salle);
-                        otherObject.GetComponent<InfoCentreSalle>().centres = centres;
-                        otherObject.GetComponent<InfoCentreSalle>().setSalle
-                    }
 
-
-
-                    if (salle != null)
-                    {
-                        Debug.Log("Salle ajouter");
-                        otherObject.GetComponent<InfoCentreSalle>().salle = this.salle;
-                    } 
-
-                    for (int indice=0;indice < portes.Length; indice++)
-                    {
-
-                        sommesPortes[indice] = (portes[indice] + otherObject.GetComponent<InfoCentreSalle>().GetPorte(indice)) % 2;
-                    }
-
-                    int nouveauNbrOUverture =verificationNombreOuverture(sommesPortes);
-
-                    if (nouveauNbrOUverture <= 2)
-                    {
-                       // Debug.Log(" ancien Portes : " + portes[0] + portes[1] + portes[2] + portes[3]);
-                       // Debug.Log(" l'autre portes : " + otherObject.GetComponent<InfoCentreSalle>().GetPorte(0) + otherObject.GetComponent<InfoCentreSalle>().GetPorte(1) + +otherObject.GetComponent<InfoCentreSalle>().GetPorte(2) + otherObject.GetComponent<InfoCentreSalle>().GetPorte(3));
-                      //  Debug.Log(" nouveau Portes : " + sommesPortes[0]+ sommesPortes[1] +sommesPortes[2]+ sommesPortes[3]);
-                        for (int indice = 0; indice < portes.Length; indice++)
-                        {
-
-                            portes[indice] = sommesPortes[indice];
-                            otherObject.GetComponent<InfoCentreSalle>().SetPorte(sommesPortes[indice], indice);
-
-
-                        }
-
-                        nombreOuverture = nouveauNbrOUverture;
-
-                            MiseAjourCentre();    
-                            otherObject.GetComponent<InfoCentreSalle>().MiseAjourCentre();
-
-
-
-                        //Destroy(otherObject);
-                        //Debug.Log(" nouveau centre  destruction ! " );
-
-                       // Debug.Log("  nouveau Nombre OUverture : " + nombreOuverture);
-                    }
-                    else
-                    {
-                        //Destroy(transform.parent.parent.parent.gameObject );
-                        Debug.Log(" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!        destruction  nouveau Nombre OUvertu !!!!!!!!!!!!!!!!!! " + nombreOuverture);
-                        // enlever de la liste des centres ! 
-                        centres.Remove(otherObject.gameObject);
-                        otherObject.GetComponent<InfoCentreSalle>().centres.Remove(transform.gameObject);
-                      // MiseAjourCentre();
-
-                    }
+                    sommesPortes[indice] = (portes[indice] + otherObject.GetComponent<InfoCentreSalle>().GetPorte(indice)) % 2;
+                }
+                int nouveauNbreOuverture = verificationNombreOuverture(sommesPortes);
+                if (!(nouveauNbreOuverture == 0 || verificationAvecSalle(sommesPortes, otherObject.GetComponent<InfoCentreSalle>().salle.GetComponent<GeneratorCarte>().signature) == true))
+                {
+                    posable = false;
+                    templates.supprimmersalle(transform.parent.parent.gameObject.GetComponent<GeneratorCarte>().title);
+                    Destroy(transform.parent.parent.gameObject, 500f);
+                    transform.parent.gameObject.GetComponent<MainCentre>().miseAjourPosable();
 
                 }
-                else if (nombreOuverture ==2 && !centres.Contains(otherObject.gameObject))
-                {/*
-                    int nombreOuvertureVerification = verificationNombreOuverture(portes);
-                    if (nombreOuverture == 0)
-                    {
-                        Debug.Log(" !!!!!!§§§§§§§C'est on construit");
-                        MiseAjourCentre();
-                    }
-                    else
-                    {
-                        Debug.Log("  !!!!!!!!!!!!!!!!!!! impossible de construire ");
-                        otherObject.GetComponent<InfoCentreSalle>().DestructionSalle();
-                    }
-                  */
-
-
-
-
-
+            }
         }
     }
 
@@ -374,9 +316,24 @@ public class InfoCentreSalle : MonoBehaviour
                 //Debug.Log("Dans Info Centre Salle Tirage  TesTSalles  nbre ouverture :" + testNbreOuverture);
                 if ( testNbreOuverture < 2)
                 {
+                    Debug.Log("Dans Info Centre Salle Tirage  TesTSalles  nbre ouverture :" + testNbreOuverture);
+                    type[rotation].transform.GetChild(1).gameObject.GetComponent<MainCentre>().changerTagTest();
                     GameObject carte = Instantiate(type[rotation], transform.position, type[rotation].transform.rotation);
-                    Destroy(carte);
+                    
+               
+                   
                         sallesBonnes.Add(type[rotation]);
+
+                        templates.listsalleTest.Add(carte);
+                    
+                   
+                    
+                
+                  
+
+                   type[rotation].transform.GetChild(1).gameObject.GetComponent<MainCentre>().changerTagSpwan();
+                   
+                        
                     
                 }
                
@@ -384,6 +341,11 @@ public class InfoCentreSalle : MonoBehaviour
 
             }
             clas++;
+        }
+        
+        foreach( GameObject salle in sallesBonnes)
+        {
+            Debug.Log(salle.GetComponent<GeneratorCarte>().title + " "+ salle.transform.GetChild(1).gameObject.GetComponent<MainCentre>().getMainPosable());
         }
         //Debug.Log("Dans Info Centre Salle Tirage  TesTSalles  172 :" + sallesBonnes.Count);
         return sallesBonnes;
