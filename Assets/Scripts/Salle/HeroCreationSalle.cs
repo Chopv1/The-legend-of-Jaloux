@@ -9,7 +9,7 @@ public class HeroCreationSalle : MonoBehaviour
     public GameObject porte;
     public GameObject hero;
     private SalleTemplate templates;
-    private int rand; // pour aléatoire
+    private int rand; // pour alï¿½atoire
     public List<GameObject> salles;
     private GameObject[] carte;
     private GeneratorCarte info;
@@ -40,7 +40,7 @@ public class HeroCreationSalle : MonoBehaviour
     {
 
         if (otherObject.CompareTag("Unit"))
-        { // déclanchement au contacte d'un hero 
+        { // dï¿½clanchement au contacte d'un hero 
 
             if (construction == false)
             {
@@ -58,7 +58,7 @@ public class HeroCreationSalle : MonoBehaviour
                 }
                 else if (ouverture == 2)
                 {
-                    // pour une porte à droite
+                    // pour une porte ï¿½ droite
                     rand = Random.Range(0, templates.salleDroite.Length);
                     Instantiate(templates.salleDroite[rand], transform.position + new Vector3(-6, 0), templates.salleDroite[rand].transform.rotation);
                     transform.Translate(Vector2.left * 60f * Time.deltaTime);
@@ -66,14 +66,14 @@ public class HeroCreationSalle : MonoBehaviour
                 }
                 else if (ouverture == 3)
                 {
-                    //  3 pour une porte à bas
+                    //  3 pour une porte ï¿½ bas
                     rand = Random.Range(0, templates.salleBas.Length);
                     Instantiate(templates.salleBas[rand], transform.position + new Vector3(0, 6), templates.salleBas[rand].transform.rotation);
                     transform.Translate(Vector2.up * 60f * Time.deltaTime);
                 }
                 else if (ouverture == 4)
                 {
-                    //  4 pour une porte à gauche
+                    //  4 pour une porte ï¿½ gauche
                     rand = Random.Range(0, templates.salleGauche.Length);
                     Instantiate(templates.salleGauche[rand], transform.position + new Vector3(6, 0), templates.salleGauche[rand].transform.rotation);
                     transform.Translate(Vector2.right * 60f * Time.deltaTime);
@@ -112,6 +112,21 @@ public class HeroCreationSalle : MonoBehaviour
             if (indice == indiceCarteBonne)
             {
                 rechercheSalle(ouverture, indice);
+                List<GameObject> sallesBonnes = new List<GameObject>();
+                foreach (GameObject salle in salles)
+                {
+                    Debug.Log(salle.GetComponent<GeneratorCarte>().title + " est posable ?" + salle.transform.GetChild(1).gameObject.GetComponent<MainCentre>().getMainPosable());
+                    if (salle.transform.GetChild(1).gameObject.GetComponent<MainCentre>().getMainPosable() == true)
+                    {
+                        sallesBonnes.Add(salle);
+                    }
+                }
+
+
+                // type[rotation].transform.GetChild(1).gameObject.GetComponent<MainCentre>().changerTagSpwan();
+                // Destroy(carte);
+                templates.setListeSallesBonnes(sallesBonnes);
+
 
             }
             else
@@ -125,9 +140,19 @@ public class HeroCreationSalle : MonoBehaviour
 
               
             }
+
+
             
 
         }
+       
+
+
+         
+
+
+           
+        
 
     }
 
@@ -137,20 +162,21 @@ public class HeroCreationSalle : MonoBehaviour
         int nombreOuverture = ouverture.GetComponent<InfoCentreSalle>().nombreOuverture;
         Debug.Log("Dans rechercheSalle 138 ");
 
-
-        if (nombreOuverture == 1)
+        GameObject[][] tabSalles = templates.tabSalles;
+        List<GameObject[]> sallesPotentiels = new List<GameObject[]>();
+        if ( ouverture.GetComponent<InfoCentreSalle>().nombreOuverture == 1)
         {
             int[] portesCentre = ouverture.GetComponent<InfoCentreSalle>().portes;
             int[] tipeSalles = new int[3];
             int indiceUN = ouverture.GetComponent<InfoCentreSalle>().indice();
-            GameObject[][] tabSalles = templates.tabSalles;
+            
             int typesalle = 0;
-            List<GameObject[]> sallesPotentiels = new List<GameObject[]>();
-            // Debug.Log("Dans Hero CReation Tirage taille tabSalles nombre de types " + tabSalles.Length);
            
+            // Debug.Log("Dans Hero CReation Tirage taille tabSalles nombre de types " + tabSalles.Length);
+
             for (int type = 0; type < tabSalles.Length; type++) // deplacement par type : une porte , en L , en I 
             {
-               
+
                 bool trouver = false;
                 int indiceSalle = 0;
                 int nombreSalle = templates.tabSalles[type].Length;
@@ -159,10 +185,10 @@ public class HeroCreationSalle : MonoBehaviour
                 while (!trouver && indiceSalle < nombreSalle)
                 {
                     int[] signature = tabSalles[type][indiceSalle].GetComponent<GeneratorCarte>().signature;
-                   // Debug.Log("salle "+  typesalle + " indice siganture : " + indiceUN  +" = "+ signature[0] + signature[1] + signature[2] + signature[3]);
+                    // Debug.Log("salle "+  typesalle + " indice siganture : " + indiceUN  +" = "+ signature[0] + signature[1] + signature[2] + signature[3]);
                     if (signature[indiceUN] == 1)
                     {
-                      
+
                         trouver = true;
                         sallesPotentiels.Add(tabSalles[type]);
                         tipeSalles[typesalle] = type;
@@ -173,40 +199,101 @@ public class HeroCreationSalle : MonoBehaviour
                 }
 
             }
-            
+
             int typeC = 0;
 
             Debug.Log("Dans rechercheSalle ds  for  sallePOtentiel " + sallesPotentiels.Count);
             foreach (GameObject[] Typesalle in sallesPotentiels)
             {
-               
+
                 int rotation = 0;
                 foreach (GameObject salle in Typesalle)
                 {
                     int[] signature = tabSalles[typeC][rotation].GetComponent<GeneratorCarte>().signature;
-                   // Debug.Log("Type salle " + typeC + " roataione : " + rotation + " = " + signature[0] + signature[1] + signature[2] + signature[3]);
+                    // Debug.Log("Type salle " + typeC + " roataione : " + rotation + " = " + signature[0] + signature[1] + signature[2] + signature[3]);
                     rotation++;
                 }
                 typeC++;
             }
-           
+
             // choix de la salle aleatoire
 
             int typeSalle = Random.Range(0, sallesPotentiels.Count - 1);
             int rotationSalle = Random.Range(0, sallesPotentiels[typeSalle].Length - 1);
             // Debug.Log("Hero" + sallesPotentiels[0][0].GetComponent<GeneratorCarte>().getType() + templates.getSalle(0, 0).GetComponent<GeneratorCarte>().type);
-            
+
             Debug.Log("Dans rechercheSalle choix de la salle aleatoire  " + typeSalle + " rotationSalle " + rotationSalle + " tipeSalles " + tipeSalles[typeSalle]);
             GameObject[] salleRotation = templates.getSalleRotation(tipeSalles[typeSalle]);
 
-           
+
             // creation de la carte 
-            
-            GameObject.FindGameObjectWithTag("Carte" + (indice + 1)).GetComponent<ShopPanel>().ChangerCarte(sallesPotentiels[typeSalle][rotationSalle].GetComponent<GeneratorCarte>(), sallesPotentiels[typeSalle][rotationSalle], ouverture, salleRotation, rotationSalle, this.gameObject) ;
-           
+
+            GameObject.FindGameObjectWithTag("Carte" + (indice + 1)).GetComponent<ShopPanel>().ChangerCarte(sallesPotentiels[typeSalle][rotationSalle].GetComponent<GeneratorCarte>(), sallesPotentiels[typeSalle][rotationSalle], ouverture, salleRotation, rotationSalle, this.gameObject);
+
             salles = ouverture.GetComponent<InfoCentreSalle>().TesTSalles(sallesPotentiels);// List<GameObject> la liste des salles bonnes rotation
+           
+       }
+        else if(ouverture.GetComponent<InfoCentreSalle>().nombreOuverture == 2)
+        {
+            bool trouver = false;
+            int type = 0;
+            List<List<int[]>> tabSignature = templates.tabSignature;
+            int rotation = 0;
+            int[] signatureCentre = ouverture.GetComponent<InfoCentreSalle>().getSignature();
+            //Debug.Log(" signatureCentre : " + signatureCentre[0] + signatureCentre[1] + signatureCentre[2] + signatureCentre[3] );
+            int typeBon = 0;
+            int rotationBonne= 0;
+         
+            while ( !trouver && type < tabSignature.Count)
+            {
+               
+                while ( !trouver && rotation < tabSignature[type].Count)
+                {
+                    int[] signatureSalle = tabSignature[type][rotation];
+                    int[] sommesPortes = new int[signatureCentre.Length];
+
+                    for (int indiceSignature = 0; indiceSignature < signatureCentre.Length; indiceSignature++)
+                    {
+
+                        sommesPortes[indiceSignature] = (signatureCentre[indiceSignature] + signatureSalle[indiceSignature]) % 2;
+                    }
+                
+                    if ( ouverture.GetComponent<InfoCentreSalle>().verificationNombreOuverture(sommesPortes) == 0)
+                    {
+                        trouver = true;
+                        typeBon = type;
+                        rotationBonne = rotation;
+                    }
+                   
+                    if (!trouver)
+                    {
+                        rotation++;
+                    }
+                   
+                }
+             if (!trouver)
+                {
+                    type++;
+                    rotation = 0;
+                }
+              
+            }
+           
+            GameObject[] salleRotation = templates.getSalleRotation(type);
+
+    
+            // creation de la carte 
+
+            GameObject.FindGameObjectWithTag("Carte" + (indice + 1)).GetComponent<ShopPanel>().ChangerCarte(tabSalles[type][rotation].GetComponent<GeneratorCarte>(), tabSalles[type][rotation], ouverture, salleRotation, rotation, this.gameObject);
+
+
+            salles.Add(tabSalles[type][rotation] );
             templates.setListeSallesBonnes(salles);
+
+
         }
+            
+        
     }
 
     
@@ -217,6 +304,7 @@ public class HeroCreationSalle : MonoBehaviour
 
     public int getOuverture()
     {
+        Debug.Log("bug hero CReation get ouverture " + ouverture);
         return ouverture;
     }
 

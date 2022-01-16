@@ -68,6 +68,8 @@ public class ShopPanel : MonoBehaviour
     public void ChoisirSalle()
     {
         posable = templates.sallePosable(salleObject);
+        templates.destructionSalleTest();
+
         if (!posable)
         {
             Debug.Log(" >>>>>>> !!!!!!!!!!! Impossible de poser Astuce faire une rotation ");
@@ -78,8 +80,20 @@ public class ShopPanel : MonoBehaviour
           //  button.SetActive(true);
             Debug.Log(" 33333333333333   C'est bon ! ");
             GameObject carte = Instantiate(salleObject, centre.transform.position, salleObject.transform.rotation);
-            centre.GetComponent<InfoCentreSalle>().salle = carte;
+            centre.GetComponent<InfoCentreSalle>().setSalleCentre( carte);
             centre.GetComponent<InfoCentreSalle>().MiseAjourCentre();
+            if (templates.getListeSallesBonnes().Count == 1)
+            {
+                carte.transform.GetChild(1).GetComponent<MainCentre>().MiseAjourCentreSignature();
+            }
+          
+          // centre..GetComponent<InfoCentreSalle>().MiseAjourCentre();
+
+           //centre.GetComponent<VericationConstruction>();
+
+            GameObject ouverture = carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
+
+            GameObject.FindGameObjectWithTag("Camera").GetComponent<GestionCamera>().changerMap();
             centre.GetComponent<VericationConstruction>();
             carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GestionCamera>().changerMap();

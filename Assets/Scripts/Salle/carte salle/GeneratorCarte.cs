@@ -16,55 +16,13 @@ public class GeneratorCarte : MonoBehaviour
     // public GameObject gameObject;
 
     // Start is called before the first frame update
-    private void Awake()
-    {
-        SalleTemplate template = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
 
-
-
-        foreach (GameObject porte in portes)
-        {
-            int indice = porte.GetComponent<HeroCreationSalle>().ouverture;
-            switch (indice)
-            { // [ H,D,B,G]
-                case 1:
-                    indice = 2;// demande ouverture pour haut donc ouverture par le bas  
-                    break;
-                case 2:
-                    indice = 3; // demande ouverture par la gauche donc ouverture par la droite
-                    break;
-                case 3:
-                    indice = 0; // demande ouverture pour bas donc ouverture par le haut
-                    break;
-                case 4:
-                    indice = 1; // demade ouverture par la droite donc ouverture par la gauche
-                    break;
-                default:
-                    break;
-
-            }
-            signature[indice] = 1;
-
-        }
-        foreach (int porte in signature)
-        {
-            if (porte == 1)
-            {
-                type++;
-            }
-        }
-        if ((signature[0] == 1 && signature[2] == 1) || (signature[1] == 1 && signature[3] == 1))
-        { // [1,0,1,0] [0,1,0,1]
-            type++;
-
-        }
-    }
     void Start()
     {
         
         SalleTemplate template = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
 
-
+        type = 0;
 
         foreach (GameObject porte in portes)
         {
@@ -185,7 +143,7 @@ public class GeneratorCarte : MonoBehaviour
         return signature;
     }
 
-    public void destructionPorte(int ouverture)
+    public GameObject destructionPorte(int ouverture)
     {
         switch (ouverture)
         { // 
@@ -214,10 +172,17 @@ public class GeneratorCarte : MonoBehaviour
             {
                 trouve = true;
                 PorteDestructon = portes[indice];
+
             }
             indice++;
         }
-        Destroy(PorteDestructon);
+        PorteDestructon.GetComponent<BoxCollider2D>().enabled = false;
+       // PorteDestructon.GetComponent<HeroCreationSalle>().porte.GetComponent<BoxCollider2D>().enabled = false;
+
+        return PorteDestructon.GetComponent<HeroCreationSalle>().porte;
+        //Destroy(PorteDestructon);
     }
+
+ 
 
 }

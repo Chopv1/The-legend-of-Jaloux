@@ -341,7 +341,6 @@ GameObject:
   - component: {fileID: 50273649362926876}
   - component: {fileID: 114986256263661632}
   - component: {fileID: 1369984237049047754}
-  - component: {fileID: 5574725460997403101}
   m_Layer: 0
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
@@ -446,32 +445,6 @@ MonoBehaviour:
   porte: {fileID: 6078727387291581839}
   salle: {fileID: 0}
   centres: []
---- !u!61 &5574725460997403101
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348614620759040}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1525034897592524
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +454,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4512321710156788}
-  - component: {fileID: 61537387638641232}
   - component: {fileID: 50799483987210596}
   - component: {fileID: 114234234751969120}
   - component: {fileID: 1888205196227931503}
@@ -507,32 +479,6 @@ Transform:
   m_Father: {fileID: 7312030460927598719}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61537387638641232
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525034897592524}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &50799483987210596
 Rigidbody2D:
   serializedVersion: 4
@@ -600,7 +546,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -893,6 +839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7312030460927598719}
+  - component: {fileID: 1122163023477424776}
   m_Layer: 0
   m_Name: Spawn Points
   m_TagString: Untagged
@@ -916,6 +863,22 @@ Transform:
   m_Father: {fileID: 4327155049126624}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1122163023477424776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407171098128762089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60f510d0cf4f1047ac730009a8d633e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPosable: 0
+  centres:
+  - {fileID: 1348614620759040}
+  - {fileID: 1525034897592524}
 --- !u!1 &2593984802427044185
 GameObject:
   m_ObjectHideFlags: 0

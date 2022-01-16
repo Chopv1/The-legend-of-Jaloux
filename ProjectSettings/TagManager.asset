@@ -21,6 +21,7 @@ TagManager:
   - MapCarte
   - Carte3
   - Main
+  - Test
   layers:
   - Default
   - TransparentFX
