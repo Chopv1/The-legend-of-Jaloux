@@ -20,7 +20,7 @@ public class TileMap : MonoBehaviour
     public int i = 0;
     public int j = 0;
     public string nom;
-    private GameObject pos;
+    public GameObject pos;
 
 
 
@@ -41,7 +41,7 @@ public class TileMap : MonoBehaviour
         }
         GenerateMapData();
         GeneratePathFfindingGraph();
-        GenerateMapVisual(pos);
+        GenerateMapVisual();
 
 
     }
@@ -76,6 +76,12 @@ public class TileMap : MonoBehaviour
 
     void GeneratePathFfindingGraph()
     {
+        Vector3 posCentreSalle = new Vector3(0,0,0);
+        if (pos!=null)
+        {
+            posCentreSalle = VerifyCenter(pos);
+        }
+
         graph = new Node[mapSizeX, mapSizeY];
 
         for (int x = 0; x < mapSizeX; x++)
@@ -113,7 +119,7 @@ public class TileMap : MonoBehaviour
     }
 
 
-    void GenerateMapVisual(GameObject pos){
+    void GenerateMapVisual(){
 
         Vector3 posCentreSalle = new Vector3(0,0,0);
         if (pos!=null)
@@ -123,31 +129,31 @@ public class TileMap : MonoBehaviour
         for (int x = 0; x < mapSizeX; x++){ void GeneratePathFfindingGraph(){
         graph = new Node[mapSizeX, mapSizeY];
 
-        for(int x = 0; x < mapSizeX; x++){
-            for(int y = 0; y < mapSizeY; y++){
-                graph[x, y] = new Node();
-                graph[x, y].x = x;
-                graph[x, y].y = y;
+            for(int x = 0; x < mapSizeX; x++){
+                for(int y = 0; y < mapSizeY; y++){
+                    graph[x, y] = new Node();
+                    graph[x, y].x = x;
+                    graph[x, y].y = y;
+                }
             }
-        }
 
-        for(int x = 0; x < mapSizeX; x++){
-            for(int y = 0; y < mapSizeY; y++){
-                if(x > 0){
-                    graph[x, y].neighbours.Add(graph[x - 1, y]);
-                }
-                if(x < mapSizeX - 1){
-                    graph[x, y].neighbours.Add(graph[x + 1, y]);
-                }
-                if(y > 0){
-                    graph[x, y].neighbours.Add(graph[x, y - 1]);
-                }
-                if(y < mapSizeY - 1){
-                    graph[x, y].neighbours.Add(graph[x, y + 1]);
+            for(int x = 0; x < mapSizeX; x++){
+                for(int y = 0; y < mapSizeY; y++){
+                    if(x > 0){
+                        graph[x, y].neighbours.Add(graph[x - 1, y]);
+                    }
+                    if(x < mapSizeX - 1){
+                        graph[x, y].neighbours.Add(graph[x + 1, y]);
+                    }
+                    if(y > 0){
+                        graph[x, y].neighbours.Add(graph[x, y - 1]);
+                    }
+                    if(y < mapSizeY - 1){
+                        graph[x, y].neighbours.Add(graph[x, y + 1]);
+                    }
                 }
             }
         }
-    }
             for(int y = 0; y < mapSizeY; y++){
                 TileType tt = tileTypes[tiles[x, y]];
                 GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x+ posCentreSalle.x, y+posCentreSalle.y, 0), Quaternion.identity);
@@ -158,16 +164,22 @@ public class TileMap : MonoBehaviour
                 ct.map = this;
             }
             this.transform.position += new Vector3(posCentreSalle.x, posCentreSalle.y, 0);
-
         }
     }
 
     public Vector3 TileCoordToWorldCoord(int x, int y){
-        return(new Vector3(x, y, 0));
+        Vector3 posCentreSalle = new Vector3(0,0,0);
+        if (pos!=null)
+        {
+            posCentreSalle = VerifyCenter(pos);
+        }
+        
+        return(new Vector3(x + posCentreSalle.x, y + posCentreSalle.y, 0));
     }
 
     public void GeneratePathTo(int x, int y)
     {
+        
         if (unit.GetComponent<Unit>().launchMove == false)
         {
          
@@ -398,9 +410,10 @@ public class TileMap : MonoBehaviour
     /// 
     public void GenerationSalle(GameObject centreSalle)
     {
+        this.pos = centreSalle;
         GenerateMapData();
         GeneratePathFfindingGraph();
-        GenerateMapVisual(centreSalle);
+        GenerateMapVisual();
         target.ChangeMap(this);
     }
 
@@ -446,6 +459,8 @@ public class TileMap : MonoBehaviour
     public void TPhero(GameObject nouvPos, int ouverture)
     {
         List<GameObject> porte= new List<GameObject>();
+        int offsetX = 0;
+        int offsetY = 0;
 
         Debug.Log("Je bouge" + unit.transform.position + nouvPos);
         GameObject lesPortes = nouvPos.transform.GetChild(2).gameObject;
@@ -459,14 +474,18 @@ public class TileMap : MonoBehaviour
         { // 
             case 1:
                 ouverture = 3;// demande ouverture pour haut donc ouverture par le bas  
+                offsetY = -10;
                 break;
             case 2:
                 ouverture = 4; // demande ouverture par la gauche donc ouverture par la droite
+                offsetX = 10;
                 break;
             case 3:
                 ouverture = 1; // demande ouverture pour bas donc ouverture par le haut
+                offsetY = 10;
                 break;
             case 4:
+                offsetX = -10;
                 ouverture = 2; // demade ouverture par la droite donc ouverture par la gauche
 
                 break;
@@ -480,6 +499,8 @@ public class TileMap : MonoBehaviour
             if(p.GetComponent<HeroCreationSalle>().ouverture==ouverture)
             {
                 unit.transform.position = p.transform.position;
+                unit.GetComponent<Unit>().tileX = unit.GetComponent<Unit>().tileX + offsetX;
+                unit.GetComponent<Unit>().tileY = unit.GetComponent<Unit>().tileY + offsetY;
                 Update();
                 Debug.Log("J'ai bougé" + unit.transform.position);
                 
