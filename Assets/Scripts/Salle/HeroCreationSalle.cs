@@ -145,14 +145,6 @@ public class HeroCreationSalle : MonoBehaviour
             
 
         }
-       
-
-
-         
-
-
-           
-        
 
     }
 

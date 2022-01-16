@@ -2725,6 +2725,10 @@ PrefabInstance:
       propertyPath: salle
       value: 
       objectReference: {fileID: 11400000, guid: e8dc2b8aab48b2d4aa567d1f16e0717b, type: 2}
+    - target: {fileID: 4952130269904838230, guid: b2f5e3c44675e994390194c16bd12386, type: 3}
+      propertyPath: generationMap
+      value: 
+      objectReference: {fileID: 972756483}
     - target: {fileID: 8857293856850457071, guid: b2f5e3c44675e994390194c16bd12386, type: 3}
       propertyPath: m_isRightToLeft
       value: 0
@@ -6134,6 +6138,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &364253407 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8269061851478436541, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
+  m_PrefabInstance: {fileID: 8269061852303855028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &365718045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16393,7 +16402,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8269061851478436543, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
   m_PrefabInstance: {fileID: 8269061852303855028}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 364253407}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 678456980f5b87248b52978044441afe, type: 3}
@@ -17789,6 +17798,11 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
+--- !u!1 &972756483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4056387242903622627, guid: 2ab3328369d99ea4e9ff71c229e41d09, type: 3}
+  m_PrefabInstance: {fileID: 4056387243396785241}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &990185640
 GameObject:
   m_ObjectHideFlags: 0
@@ -28535,7 +28549,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4056387242903622628, guid: 2ab3328369d99ea4e9ff71c229e41d09, type: 3}
   m_PrefabInstance: {fileID: 4056387243396785241}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 972756483}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 896ee13cc6703da4986282adfcd784f1, type: 3}
@@ -30385,6 +30399,7 @@ MonoBehaviour:
   - {fileID: 122548545}
   - {fileID: 1509406059}
   ListSalleBonnes: []
+  listsalleTest: []
 --- !u!1 &1835632867
 GameObject:
   m_ObjectHideFlags: 0
@@ -30971,6 +30986,10 @@ PrefabInstance:
       propertyPath: salle
       value: 
       objectReference: {fileID: 11400000, guid: 31fe720296f83354fbb95d25ae862567, type: 2}
+    - target: {fileID: 4952130269904838230, guid: b2f5e3c44675e994390194c16bd12386, type: 3}
+      propertyPath: generationMap
+      value: 
+      objectReference: {fileID: 972756483}
     - target: {fileID: 8857293856850457071, guid: b2f5e3c44675e994390194c16bd12386, type: 3}
       propertyPath: m_isRightToLeft
       value: 0
@@ -33184,6 +33203,10 @@ PrefabInstance:
       propertyPath: salle
       value: 
       objectReference: {fileID: 11400000, guid: 8c576cdb70ca48a49af4500bbab613dc, type: 2}
+    - target: {fileID: 4952130269904838230, guid: b2f5e3c44675e994390194c16bd12386, type: 3}
+      propertyPath: generationMap
+      value: 
+      objectReference: {fileID: 972756483}
     - target: {fileID: 8857293856850457071, guid: b2f5e3c44675e994390194c16bd12386, type: 3}
       propertyPath: m_isRightToLeft
       value: 0
@@ -37914,7 +37937,7 @@ PrefabInstance:
     - target: {fileID: 4056387242903622628, guid: 2ab3328369d99ea4e9ff71c229e41d09, type: 3}
       propertyPath: unit
       value: 
-      objectReference: {fileID: 928327435}
+      objectReference: {fileID: 364253407}
     - target: {fileID: 4056387242903622628, guid: 2ab3328369d99ea4e9ff71c229e41d09, type: 3}
       propertyPath: enemy
       value: 

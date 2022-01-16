@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TileMap : MonoBehaviour
 {
-    public Unit unit;
+    public GameObject unit;
     public Enemy[] enemies;
     public TileType[] tileTypes;
     public ClickableTile target;
@@ -19,8 +19,8 @@ public class TileMap : MonoBehaviour
     public int paEnemy;
     public int i = 0;
     public int j = 0;
-
-
+    public string nom;
+    private GameObject pos;
 
 
 
@@ -31,6 +31,8 @@ public class TileMap : MonoBehaviour
     int mapSizeY = 11;
 
     void Start() {
+        nom = "Map 1";
+        pos = null;
         //unit.GetComponent<Unit>().tileX = (int)unit.transform.position.x;
         //unit.GetComponent<Unit>().tileY = (int)unit.transform.position.y;
         unit.GetComponent<Unit>().map = this;
@@ -39,12 +41,15 @@ public class TileMap : MonoBehaviour
         }
         GenerateMapData();
         GeneratePathFfindingGraph();
-        GenerateMapVisual();
+        GenerateMapVisual(pos);
 
 
     }
-    
-    
+    private void Update()
+    {
+        this.unit.transform.position=unit.transform.position;
+    }
+
     void GenerateMapData(){
         tiles = new int[mapSizeX, mapSizeY];
 
@@ -108,8 +113,14 @@ public class TileMap : MonoBehaviour
     }
 
 
-    void GenerateMapVisual(){
-        for(int x = 0; x < mapSizeX; x++){ void GeneratePathFfindingGraph(){
+    void GenerateMapVisual(GameObject pos){
+
+        Vector3 posCentreSalle = new Vector3(0,0,0);
+        if (pos!=null)
+        {
+            posCentreSalle = VerifyCenter(pos);
+        }
+        for (int x = 0; x < mapSizeX; x++){ void GeneratePathFfindingGraph(){
         graph = new Node[mapSizeX, mapSizeY];
 
         for(int x = 0; x < mapSizeX; x++){
@@ -139,13 +150,15 @@ public class TileMap : MonoBehaviour
     }
             for(int y = 0; y < mapSizeY; y++){
                 TileType tt = tileTypes[tiles[x, y]];
-                GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity);
+                GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x+ posCentreSalle.x, y+posCentreSalle.y, 0), Quaternion.identity);
                 
                 ClickableTile ct = go.GetComponent<ClickableTile>();
                 ct.tileX = x;
                 ct.tileY = y;
                 ct.map = this;
             }
+            this.transform.position += new Vector3(posCentreSalle.x, posCentreSalle.y, 0);
+
         }
     }
 
@@ -155,7 +168,7 @@ public class TileMap : MonoBehaviour
 
     public void GeneratePathTo(int x, int y)
     {
-        if (unit.launchMove == false)
+        if (unit.GetComponent<Unit>().launchMove == false)
         {
          
               
@@ -168,7 +181,7 @@ public class TileMap : MonoBehaviour
 
             if (unit.GetComponent<Unit>().target.GetComponent<Transform>().position == unit.GetComponent<Unit>().GetComponent<Transform>().position)
             {
-                unit.boutonAvancer.GetComponent<Button>().interactable = false;
+                unit.GetComponent<Unit>().boutonAvancer.GetComponent<Button>().interactable = false;
 
             }
 
@@ -255,13 +268,13 @@ public class TileMap : MonoBehaviour
                 print("vous n avez pas assez de pa");
                 pathPlayer.GetComponent<Renderer>().material.color = Color.red;
                 action = false;
-                unit.boutonAvancer.GetComponent<Button>().interactable = false;
+                unit.GetComponent<Unit>().boutonAvancer.GetComponent<Button>().interactable = false;
             }
             else
             {
                 pathPlayer.GetComponent<Renderer>().material.color = Color.white;
                 action = true;
-                unit.boutonAvancer.GetComponent<Button>().interactable = true;
+                unit.GetComponent<Unit>().boutonAvancer.GetComponent<Button>().interactable = true;
 
             }
 
@@ -368,12 +381,12 @@ public class TileMap : MonoBehaviour
 
     public void finirTour()
     {
-        if (unit.launchMove == false)
+        if (unit.GetComponent<Unit>().launchMove == false)
         {
             pa = 10;
             unit.GetComponent<Unit>().currentPath = null;
-            unit.boutonAvancer.GetComponent<Button>().interactable = false;
-            unit.boutonFouille.GetComponent<Button>().interactable = true;
+            unit.GetComponent<Unit>().boutonAvancer.GetComponent<Button>().interactable = false;
+            unit.GetComponent<Unit>().boutonFouille.GetComponent<Button>().interactable = true;
             reset.GetComponent<MouseManager>().CanMove(false);
             reset.GetComponent<MouseManager>().ClearSelection();
         }
@@ -385,125 +398,13 @@ public class TileMap : MonoBehaviour
     /// 
     public void GenerationSalle(GameObject centreSalle)
     {
-        GenerateMapDataSalle();
-        GeneratePathFfindingGraphSalle();
-        GenerateMapVisualSalle(centreSalle);
+        GenerateMapData();
+        GeneratePathFfindingGraph();
+        GenerateMapVisual(centreSalle);
+        target.ChangeMap(this);
     }
 
-    void GenerateMapDataSalle()
-    {
-        tiles = new int[mapSizeX, mapSizeY];
 
-        for (int x = 0; x < mapSizeX; x++)
-        {
-            for (int y = 0; y < mapSizeY; y++)
-            {
-                tiles[x, y] = 0;
-            }
-        }
-
-        tiles[4, 4] = 1;
-        tiles[4, 5] = 1;
-        tiles[4, 6] = 1;
-        tiles[5, 6] = 1;
-        tiles[6, 6] = 1;
-        tiles[6, 5] = 1;
-        tiles[6, 4] = 1;
-    }
-
-    void GeneratePathFfindingGraphSalle()
-    {
-        graph = new Node[mapSizeX, mapSizeY];
-
-        for (int x = 0; x < mapSizeX; x++)
-        {
-            for (int y = 0; y < mapSizeY; y++)
-            {
-                graph[x, y] = new Node();
-                graph[x, y].x = x;
-                graph[x, y].y = y;
-            }
-        }
-
-        for (int x = 0; x < mapSizeX; x++)
-        {
-            for (int y = 0; y < mapSizeY; y++)
-            {
-                if (x > 0)
-                {
-                    graph[x, y].neighbours.Add(graph[x - 1, y]);
-                }
-                if (x < mapSizeX - 1)
-                {
-                    graph[x, y].neighbours.Add(graph[x + 1, y]);
-                }
-                if (y > 0)
-                {
-                    graph[x, y].neighbours.Add(graph[x, y - 1]);
-                }
-                if (y < mapSizeY - 1)
-                {
-                    graph[x, y].neighbours.Add(graph[x, y + 1]);
-                }
-            }
-        }
-    }
-
-    public void GenerateMapVisualSalle(GameObject centreSalle)
-    {
-        Vector3 posCentreSalle = VerifyCenter(centreSalle);
-        for (int x = 0; x < mapSizeX; x++)
-        {
-            void GeneratePathFfindingGraphSalle()
-            {
-                graph = new Node[mapSizeX, mapSizeY];
-
-                for (int x = 0; x < mapSizeX; x++)
-                {
-                    for (int y = 0; y < mapSizeY; y++)
-                    {
-                        graph[x, y] = new Node();
-                        graph[x, y].x = x;
-                        graph[x, y].y = y;
-                    }
-                }
-
-                for (int x = 0; x < mapSizeX; x++)
-                {
-                    for (int y = 0; y < mapSizeY; y++)
-                    {
-                        if (x > 0)
-                        {
-                            graph[x, y].neighbours.Add(graph[x - 1, y]);
-                        }
-                        if (x < mapSizeX - 1)
-                        {
-                            graph[x, y].neighbours.Add(graph[x + 1, y]);
-                        }
-                        if (y > 0)
-                        {
-                            graph[x, y].neighbours.Add(graph[x, y - 1]);
-                        }
-                        if (y < mapSizeY - 1)
-                        {
-                            graph[x, y].neighbours.Add(graph[x, y + 1]);
-                        }
-                    }
-                }
-            }
-            for (int y = 0; y < mapSizeY; y++)
-            {
-                TileType tt = tileTypes[tiles[x, y]];
-                GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x+ posCentreSalle.x,y+ posCentreSalle.y, 0), Quaternion.identity);
-
-                ClickableTile ct = go.GetComponent<ClickableTile>();
-                ct.tileX = x + (int)posCentreSalle.x;
-                ct.tileY = y + (int)posCentreSalle.y;
-                ct.map = this;
-            }
-        }
-
-    }
     public Vector3 VerifyCenter(GameObject centreSalle)
     {
         Vector3 posCentreSalle = centreSalle.transform.position;
@@ -540,6 +441,52 @@ public class TileMap : MonoBehaviour
 
 
         return posCentreSalle;
+    }
+
+    public void TPhero(GameObject nouvPos, int ouverture)
+    {
+        List<GameObject> porte= new List<GameObject>();
+
+        Debug.Log("Je bouge" + unit.transform.position + nouvPos);
+        GameObject lesPortes = nouvPos.transform.GetChild(2).gameObject;
+       
+        for(int i=0;  i<=lesPortes.transform.childCount-1 ;i++)
+        {
+            porte.Add(lesPortes.transform.GetChild(i).gameObject);
+        }
+
+        switch (ouverture)
+        { // 
+            case 1:
+                ouverture = 3;// demande ouverture pour haut donc ouverture par le bas  
+                break;
+            case 2:
+                ouverture = 4; // demande ouverture par la gauche donc ouverture par la droite
+                break;
+            case 3:
+                ouverture = 1; // demande ouverture pour bas donc ouverture par le haut
+                break;
+            case 4:
+                ouverture = 2; // demade ouverture par la droite donc ouverture par la gauche
+
+                break;
+            default:
+                break;
+
+        }
+
+        foreach(GameObject p in porte)
+        {
+            if(p.GetComponent<HeroCreationSalle>().ouverture==ouverture)
+            {
+                unit.transform.position = p.transform.position;
+                Update();
+                Debug.Log("J'ai bougé" + unit.transform.position);
+                
+            }
+        }
+
+        
     }
 
 }

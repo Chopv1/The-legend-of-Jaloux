@@ -14,7 +14,7 @@ public class ClickableTile : MonoBehaviour
         map.target = this;
 
         
-
+      
 
         if(map.tiles[tileX, tileY] != 1){
 
@@ -29,6 +29,7 @@ public class ClickableTile : MonoBehaviour
 
     void Update()
     {
+        
         tableauPositionEnemy = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject enemy910 in tableauPositionEnemy)
         {
@@ -38,4 +39,11 @@ public class ClickableTile : MonoBehaviour
             }
         }  
     }
+
+    public void ChangeMap(TileMap map)
+    {
+        Debug.Log(map.tiles[tileX,tileY]);
+        this.map = map;
+    }
+
 }

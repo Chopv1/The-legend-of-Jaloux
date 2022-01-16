@@ -300,7 +300,7 @@ public class InfoCentreSalle : MonoBehaviour
     }
     public List<GameObject> TesTSalles(List<GameObject[]> sallePotentiel)
     {
-       // Debug.Log(" >>>>>>>>>>>>>>>>>>>Dans Info Centre Salle Tirage  TesTSalles  172 ");
+        //Debug.Log(" >>>>>>>>>>>>>>>>>>>Dans Info Centre Salle Tirage  TesTSalles  172 ");
         //Debug.Log(" >>>>>>>>>>>>>>>>>>>Dans Info Centre Salle taille taille sallePotentiek " + sallePotentiel.Count);
         List<GameObject> sallesBonnes = new List<GameObject>();
         int clas = 0;
