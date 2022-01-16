@@ -26,6 +26,8 @@ public class TileMap : MonoBehaviour
     int mapSizeX = 11;
     int mapSizeY = 11;
 
+    public AudioSource EnemieSong;
+
     void Start() {
         //unit.GetComponent<Unit>().tileX = (int)unit.transform.position.x;
         //unit.GetComponent<Unit>().tileY = (int)unit.transform.position.y;
@@ -333,6 +335,7 @@ public class TileMap : MonoBehaviour
         freezer.SetActive(true);
         foreach (Enemy enemy in enemies) {
             Debug.Log("Start");
+            EnemieSong.Play();
             GeneratePathEnemyTo(enemy, unit.GetComponent<Unit>().tileX, unit.GetComponent<Unit>().tileY);
             enemy.Move();
             yield return new WaitForSeconds(2);

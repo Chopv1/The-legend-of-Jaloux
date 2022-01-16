@@ -6,7 +6,8 @@ public class GestionCamera : MonoBehaviour
 
 {
     public GameObject panel;
-  
+    public AudioSource SonBouton;
+
     /*
     
     public GameObject cameraMain;
@@ -48,7 +49,10 @@ public class GestionCamera : MonoBehaviour
         panel.SetActive(false);
     }
 
-
+    public void PlaySonBouton()
+    {
+        SonBouton.Play();
+    }
     /*
     public void changerCameraCarte()
     {
