@@ -140,10 +140,12 @@ public class Unit : MonoBehaviour
             transform.position = map.TileCoordToWorldCoord(currentPath[0].x, currentPath[0].y);
             tileX = currentPath[0].x;
             tileY = currentPath[0].y;
-            herosAnimator.SetBool("isMoving", true);
             herosAnimator.SetBool("isRightAttacking", false);
             ennemi1Animator.SetBool("isAttacked", false);
             ennemi2Animator.SetBool("isAttacked", false);
+            herosAnimator.SetBool("isDigging", false);
+            herosAnimator.SetBool("isMoving", true);
+
             if (currentPath.Count == 1)
             {
                 map.pa = map.pa - map.i + 1;
@@ -311,6 +313,7 @@ public class Unit : MonoBehaviour
         if (map.pa > 0)
 
         {
+            herosAnimator.SetBool("isDigging", true);
 
             boutonFouille.GetComponent<Button>().interactable = false;
             Random rand = new Random();

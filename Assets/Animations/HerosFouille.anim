@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ennemi2Attacked
+  m_Name: HerosFouille
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 9e6a146ccf44f3b47922ec65429a7715, type: 3}
-    - time: 0.6666667
-      value: {fileID: 21300000, guid: 8c0ee13f862a5f24e84b2f9136609afa, type: 3}
+      value: {fileID: 21300000, guid: 9ed39c9100fdaaa4fb96018a9ddf51ea, type: 3}
     - time: 1
-      value: {fileID: 21300000, guid: 9e6a146ccf44f3b47922ec65429a7715, type: 3}
+      value: {fileID: 21300000, guid: a0917cb46b5b0bd458d5a7349c052e9d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,9 +42,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 9e6a146ccf44f3b47922ec65429a7715, type: 3}
-    - {fileID: 21300000, guid: 8c0ee13f862a5f24e84b2f9136609afa, type: 3}
-    - {fileID: 21300000, guid: 9e6a146ccf44f3b47922ec65429a7715, type: 3}
+    - {fileID: 21300000, guid: 9ed39c9100fdaaa4fb96018a9ddf51ea, type: 3}
+    - {fileID: 21300000, guid: a0917cb46b5b0bd458d5a7349c052e9d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
