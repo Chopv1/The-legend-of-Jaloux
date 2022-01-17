@@ -204,11 +204,19 @@ public class MouseManager : MonoBehaviour
             // MovementEnnemy
             if (selectedObject2.name == "Enemy")
             {
+                herosAnimator.SetBool("isCircleAttacking", false);
+                ennemi2Animator.SetBool("isAttacked", false);
+                herosAnimator.SetBool("isDigging", false);
+                herosAnimator.SetBool("isMoving", false);
                 herosAnimator.SetBool("isRightAttacking", true);
                 ennemi1Animator.SetBool("isAttacked", true);
             }
             else if (selectedObject2.name == "Enemy2")
             {
+                herosAnimator.SetBool("isCircleAttacking", false);
+                ennemi1Animator.SetBool("isAttacked", false);
+                herosAnimator.SetBool("isDigging", false);
+                herosAnimator.SetBool("isMoving", false);
                 herosAnimator.SetBool("isRightAttacking", true);
                 ennemi2Animator.SetBool("isAttacked", true);
             }
@@ -221,6 +229,10 @@ public class MouseManager : MonoBehaviour
         else if(sort==2&&selectedObject1.CompareTag("Unit")&&selectedObject1.GetComponent<Unit>().EnemyAround())
 
         {
+            ennemi2Animator.SetBool("isAttacked", false);
+            herosAnimator.SetBool("isDigging", false);
+            herosAnimator.SetBool("isMoving", false);
+            herosAnimator.SetBool("isRightAttacking", false);
             herosAnimator.SetBool("isCircleAttacking", true);
             selectedObject1.GetComponent<Unit>().HitAllEnemy();
             bAttaque.GetComponent<Button>().interactable = false;

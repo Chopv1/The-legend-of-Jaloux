@@ -315,7 +315,13 @@ public class Unit : MonoBehaviour
         if (map.pa > 0)
 
         {
+            herosAnimator.SetBool("isRightAttacking", false);
+            herosAnimator.SetBool("isCircleAttacking", false);
+            ennemi1Animator.SetBool("isAttacked", false);
+            ennemi2Animator.SetBool("isAttacked", false);
+            herosAnimator.SetBool("isDigging", false);
             herosAnimator.SetBool("isDigging", true);
+
 
             boutonFouille.GetComponent<Button>().interactable = false;
             Random rand = new Random();

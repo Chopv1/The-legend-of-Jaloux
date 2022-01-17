@@ -25,7 +25,7 @@ public class TileMap : MonoBehaviour
 
     int mapSizeX = 11;
     int mapSizeY = 11;
-
+    
     void Start() {
         //unit.GetComponent<Unit>().tileX = (int)unit.transform.position.x;
         //unit.GetComponent<Unit>().tileY = (int)unit.transform.position.y;
@@ -348,7 +348,12 @@ public class TileMap : MonoBehaviour
         if (unit.launchMove == false)
         {
             StartCoroutine(enemyMovement());
-            
+            unit.ennemi1Animator.SetBool("isAttacked", false);
+            unit.ennemi2Animator.SetBool("isAttacked", false);
+            unit.herosAnimator.SetBool("isDigging", false);
+            unit.herosAnimator.SetBool("isMoving", false);
+            unit.herosAnimator.SetBool("isRightAttacking", false);
+            unit.herosAnimator.SetBool("isCircleAttacking", false);
             pa = 10;
             unit.GetComponent<Unit>().currentPath = null;
             unit.boutonAvancer.GetComponent<Button>().interactable = false;

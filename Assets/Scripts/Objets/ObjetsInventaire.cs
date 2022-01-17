@@ -19,7 +19,7 @@ public class ObjetsInventaire : MonoBehaviour
     public GameObject Desequiper;
     public GameObject Jeter;
     public GameObject Utiliser;
-
+    public Animator herosAnimator;
     // Update is called once per frame
 
     public AudioSource Songequiper;
@@ -156,6 +156,7 @@ public class ObjetsInventaire : MonoBehaviour
             GameObject CasqueTexte = GameObject.Find("Casque").transform.GetChild(0).gameObject;
             CasqueTexte.GetComponent<UnityEngine.UI.Text>().text = listItemsEquipés[0].getNomItem();
         }
+
         else if(HeroGuerrier.listItems[IndiceObjetVisé].getTypeItem() == "Armure")
         {
             if (!(listItemsEquipés[1].getNomItem() == null))
@@ -167,6 +168,7 @@ public class ObjetsInventaire : MonoBehaviour
             Plastron.interactable = true;
             GameObject PlastronTexte = GameObject.Find("Plastron").transform.GetChild(0).gameObject;
             PlastronTexte.GetComponent<UnityEngine.UI.Text>().text = listItemsEquipés[1].getNomItem();
+            HeroGuerrier.herosAnimator.SetBool("isMailled", true);
         }
         else if (HeroGuerrier.listItems[IndiceObjetVisé].getTypeItem() == "Jambières")
         {
@@ -243,6 +245,8 @@ public class ObjetsInventaire : MonoBehaviour
         {
             HeroGuerrier.listItems.Add(listItemsEquipés[1]);
             listItemsEquipés[1] = new Items(null, null, 0);
+            HeroGuerrier.herosAnimator.SetBool("isMailled", false);
+
         }
         else if (ObjetVisé.name == "Jambières")
         {
