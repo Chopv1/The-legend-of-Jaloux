@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     //Variiables necessaires au mouvement
     public int tileX;
     public int tileY;
+    public int nbAttack;
     public TileMap map;
     public GameObject ennemy;
     public Transform movePoint;
@@ -56,7 +57,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         canAttack = false;
-
+        nbAttack = 0;
         this.currentPv = MaxPv;
         isSelected = false;
         fenetre = GameObject.Find("CarréStats");
@@ -78,9 +79,8 @@ public class Enemy : MonoBehaviour
             
 
             if (currentPath.Count == 1){
-                Debug.Log("Fin des haricots");
-                CanAttack();
                 pa = pa - map.j + 1;
+                CanAttack();
                 currentPath = null;
                 launchMove = false;
                 map.GetComponent<TileMap>().tiles[tileX, tileY] = 1;
@@ -93,7 +93,11 @@ public class Enemy : MonoBehaviour
             pa = 5;
             map.GetComponent<TileMap>().tiles[tileX, tileY] = 1;
         }
-
+        else if(currentPath != null && currentPath.Count== 1 && nbAttack<1)
+        {
+            CanAttack();
+            nbAttack = 1;
+        }
     }
 
 
@@ -146,7 +150,7 @@ public class Enemy : MonoBehaviour
         if (currentPv <= 0)
         {
             this.currentPv = 0;
-            this.gameObject.SetActive(false);
+            Destroy(this);
             ChangeHexagoneColorToWhite(this.gameObject);
         }
     }

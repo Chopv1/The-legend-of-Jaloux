@@ -52,7 +52,7 @@ public class TileMap : MonoBehaviour
         GenerateMapVisual();
         reset.GetComponent<MouseManager>().ClearSelection();
         unit.GetComponent<Unit>().map = this;
-        foreach(Enemy enemy in enemies){
+        foreach(GameObject enemy in enemies){
             enemy.GetComponent<Enemy>().map = this;
             tiles[enemy.GetComponent<Enemy>().tileX, enemy.GetComponent<Enemy>().tileY] = 1;
         }
@@ -88,12 +88,6 @@ public class TileMap : MonoBehaviour
 
     void GeneratePathFfindingGraph()
     {
-        Vector3 posCentreSalle = new Vector3(0,0,0);
-        if (pos!=null)
-        {
-            posCentreSalle = VerifyCenter(pos);
-        }
-
         graph = new Node[mapSizeX, mapSizeY];
 
         for (int x = 0; x < mapSizeX; x++)
@@ -187,7 +181,7 @@ public class TileMap : MonoBehaviour
     public void GenerationEnnemi(int x, int y, int nAl, Vector3 pos)
     {
         int e = Random.Range(0, 10);
-        if(e==1 && compteur <= nAl && tiles[x,y]!=1)
+        if(e==1 && compteur <= nAl && tiles[x,y]!=1 && x!=5 && y!=5)
         {
             GameObject es= (GameObject)Instantiate(prefEnemi, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
             Instantiate(prefEnemiPath, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
@@ -208,17 +202,18 @@ public class TileMap : MonoBehaviour
 
     public void GeneratePathTo(int x, int y)
     {
-        
+
         if (unit.GetComponent<Unit>().launchMove == false)
         {
-         
-              
+
+
             unit.GetComponent<Unit>().target = this.target;
             unit.GetComponent<Unit>().currentPath = null;
-            foreach(GameObject enemy in enemies) {
+            foreach (GameObject enemy in enemies)
+            {
                 enemy.GetComponent<Enemy>().currentPath = null;
             }
-            
+
 
             if (unit.GetComponent<Unit>().target.GetComponent<Transform>().position == unit.GetComponent<Unit>().GetComponent<Transform>().position)
             {
@@ -290,11 +285,11 @@ public class TileMap : MonoBehaviour
                 return;
             }
 
-             i = 0;
-             List<Node> currentPath = new List<Node>();
+            i = 0;
+            List<Node> currentPath = new List<Node>();
 
             Node curr = target;
-          
+
             while (curr != null)
             {
                 i++;
@@ -302,9 +297,9 @@ public class TileMap : MonoBehaviour
                 curr = prev[curr];
 
             }
-            
 
-            if (i > pa+1)
+
+            if (i > pa + 1)
             {
                 print("vous n avez pas assez de pa");
                 pathPlayer.GetComponent<Renderer>().material.color = Color.red;
@@ -326,24 +321,25 @@ public class TileMap : MonoBehaviour
 
         }
 
-        foreach(GameObject enemy in enemies) {
-
-
-
+        foreach (GameObject enemy in enemies)
+        {
             if (enemy.GetComponent<Enemy>().launchMove == false)
             {
                 Debug.Log(enemy + " path !");
                 //Création du chemin pour l'enemy
                 Dictionary<Node, float> dist2 = new Dictionary<Node, float>();
                 Dictionary<Node, Node> prev2 = new Dictionary<Node, Node>();
+            }
+        }
+    }
 
-    public void GeneratePathEnemyTo(Enemy enemy, int x, int y)
+    public void GeneratePathEnemyTo(GameObject enemy, int x, int y)
     {
 
         enemy.GetComponent<Enemy>().currentPath = null;
 
 
-        if (enemy.launchMove == false)
+        if (enemy.GetComponent<Enemy>().launchMove == false)
         {
             //Creation du chemin pour l'enemy
             Dictionary<Node, float> dist2 = new Dictionary<Node, float>();
@@ -431,19 +427,24 @@ public class TileMap : MonoBehaviour
         }
     }
 
-    IEnumerator enemyMovement(){
+    IEnumerator enemyMovement()
+    {
        
         freezer.SetActive(true);
-        foreach (Enemy enemy in enemies) {
+        foreach (GameObject enemy in enemies) {
             Debug.Log("Start");
             EnemieSong.Play();
             GeneratePathEnemyTo(enemy, unit.GetComponent<Unit>().tileX, unit.GetComponent<Unit>().tileY);
-            enemy.Move();
+            enemy.GetComponent<Enemy>().Move();
             yield return new WaitForSeconds(2);
             Debug.Log("Stop");
         }
         freezer = GameObject.Find("GameFreezer");
         freezer.SetActive(false);
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().nbAttack = 0;
+        }
     }
 
     public void finirTour()
@@ -478,18 +479,38 @@ public class TileMap : MonoBehaviour
     public void APlusEnnemi(GameObject centreSalle)
     {
         GameObject[] ennemis = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] path = GameObject.FindGameObjectsWithTag("PathEnemy");
+        GameObject[] moov = GameObject.FindGameObjectsWithTag("MouvEnemy");
 
         foreach(GameObject e in ennemis)
         {
             centreSalle.GetComponent<InfoCentreSalle>().ennemi.Add(e);
-            e.SetActive(false); 
+            Destroy(e); 
+        }
+        foreach(GameObject p in path)
+        {
+            centreSalle.GetComponent<InfoCentreSalle>().infoPath.Add(p);
+            Destroy(p);
+        }
+        foreach(GameObject m in moov)
+        {
+            centreSalle.GetComponent<InfoCentreSalle>().infoMoov.Add(m);
+            Destroy(m);
         }
     }
     public void ReEnnemi(GameObject centreSalle)
     {
         foreach(GameObject e in centreSalle.GetComponent<InfoCentreSalle>().ennemi)
         {
-            e.SetActive(true);
+            Instantiate(e);
+        }
+        foreach (GameObject p in centreSalle.GetComponent<InfoCentreSalle>().infoPath)
+        {
+            Instantiate(p);
+        }
+        foreach (GameObject m in centreSalle.GetComponent<InfoCentreSalle>().infoMoov)
+        {
+            Instantiate(m);
         }
     }
     public Vector3 VerifyCenter(GameObject centreSalle)
