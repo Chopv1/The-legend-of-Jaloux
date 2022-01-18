@@ -77,14 +77,19 @@ public class TileMap : MonoBehaviour
                 tiles[x, y] = 0;
             }
         }
-
-        tiles[4, 4] = 1;
-        tiles[4, 5] = 1;
-        tiles[4, 6] = 1;
-        tiles[5, 6] = 1;
-        tiles[6, 6] = 1;
-        tiles[6, 5] = 1;
-        tiles[6, 4] = 1;
+        int tileNoTraversable = Random.Range(10, 20);
+        int c = 0;
+        for (int x = 0; x < mapSizeX; x++)
+        {
+            for (int y = 0; y < mapSizeY; y++)
+            {
+                int random = Random.Range(1, 10);
+                if(tileNoTraversable!=c && random==1 && (x!=10 && y!=5)&&(x != 5 && y != 10) && (x != 0 && y != 5) && (x != 5 && y != 0) && (x!=0 && y!=0))
+                {
+                    tiles[x, y] = 1;
+                }
+            }
+        }
     }
 
     
@@ -187,8 +192,8 @@ public class TileMap : MonoBehaviour
     }
     public void GenerationEnnemi(int x, int y, int nAl, Vector3 pos)
     {
-        int e = Random.Range(0, 10);
-        if(e==1 && compteur <= nAl && tiles[x,y]!=1 && x!=5 && y!=5)
+        int e = Random.Range(0, 15);
+        if (e == 1 && compteur <= nAl && tiles[x,y]!=1 && (x != 10 && y != 5) && (x != 5 && y != 10) && (x != 0 && y != 5) && (x != 5 && y != 0) && (x != 0 && y != 0))
         {
             GameObject moov= (GameObject)Instantiate(prefEnemiMouv, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
             GameObject es= (GameObject)Instantiate(prefEnemi, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
