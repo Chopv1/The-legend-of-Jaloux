@@ -6,8 +6,13 @@ using UnityEngine.UI;
 
 public class TileMap : MonoBehaviour
 {
+    public GameObject prefEnemi;
+    public GameObject prefEnemiMouv;
+    public GameObject prefEnemiPath;
+
+
     public GameObject unit;
-    public Enemy[] enemies;
+    public List<GameObject> enemies;
     public TileType[] tileTypes;
     public ClickableTile target;
     public Material appearance;
@@ -20,36 +25,50 @@ public class TileMap : MonoBehaviour
     public int i = 0;
     public int j = 0;
     public string nom;
-    private GameObject pos;
+    public GameObject pos;
+    int compteur = 0;
 
+    public LayerMask eL;
 
-
+    public GameObject freezer;
     public int[,] tiles;
     Node[,] graph;
 
     int mapSizeX = 11;
     int mapSizeY = 11;
 
+    public AudioSource EnemieSong;
+
     void Start() {
+
+        enemies = new List<GameObject>();
         nom = "Map 1";
         pos = null;
         //unit.GetComponent<Unit>().tileX = (int)unit.transform.position.x;
         //unit.GetComponent<Unit>().tileY = (int)unit.transform.position.y;
-        unit.GetComponent<Unit>().map = this;
-        foreach(Enemy enemy in enemies){
-            enemy.GetComponent<Enemy>().map = this;
-        }
+        
         GenerateMapData();
         GeneratePathFfindingGraph();
-        GenerateMapVisual(pos);
-
-
+        GenerateMapVisual();
+        reset.GetComponent<MouseManager>().ClearSelection();
+        unit.GetComponent<Unit>().map = this;
+        foreach(GameObject enemy in enemies){
+            enemy.GetComponent<Enemy>().map = this;
+            tiles[enemy.GetComponent<Enemy>().tileX, enemy.GetComponent<Enemy>().tileY] = 1;
+        }
     }
     private void Update()
     {
         this.unit.transform.position=unit.transform.position;
     }
 
+    public void EnemyMort(GameObject e)
+    {
+        if(enemies.Contains(e))
+        {
+            enemies.Remove(e);
+        }
+    }
     void GenerateMapData(){
         tiles = new int[mapSizeX, mapSizeY];
 
@@ -113,71 +132,100 @@ public class TileMap : MonoBehaviour
     }
 
 
-    void GenerateMapVisual(GameObject pos){
+    void GenerateMapVisual(){
 
         Vector3 posCentreSalle = new Vector3(0,0,0);
         if (pos!=null)
         {
             posCentreSalle = VerifyCenter(pos);
         }
+        int nAl = Random.Range(1, 5);
         for (int x = 0; x < mapSizeX; x++){ void GeneratePathFfindingGraph(){
         graph = new Node[mapSizeX, mapSizeY];
 
-        for(int x = 0; x < mapSizeX; x++){
-            for(int y = 0; y < mapSizeY; y++){
-                graph[x, y] = new Node();
-                graph[x, y].x = x;
-                graph[x, y].y = y;
+            for(int x = 0; x < mapSizeX; x++){
+                for(int y = 0; y < mapSizeY; y++){
+                    graph[x, y] = new Node();
+                    graph[x, y].x = x;
+                    graph[x, y].y = y;
+                }
             }
-        }
 
-        for(int x = 0; x < mapSizeX; x++){
-            for(int y = 0; y < mapSizeY; y++){
-                if(x > 0){
-                    graph[x, y].neighbours.Add(graph[x - 1, y]);
-                }
-                if(x < mapSizeX - 1){
-                    graph[x, y].neighbours.Add(graph[x + 1, y]);
-                }
-                if(y > 0){
-                    graph[x, y].neighbours.Add(graph[x, y - 1]);
-                }
-                if(y < mapSizeY - 1){
-                    graph[x, y].neighbours.Add(graph[x, y + 1]);
+            for(int x = 0; x < mapSizeX; x++){
+                for(int y = 0; y < mapSizeY; y++){
+                    if(x > 0){
+                        graph[x, y].neighbours.Add(graph[x - 1, y]);
+                    }
+                    if(x < mapSizeX - 1){
+                        graph[x, y].neighbours.Add(graph[x + 1, y]);
+                    }
+                    if(y > 0){
+                        graph[x, y].neighbours.Add(graph[x, y - 1]);
+                    }
+                    if(y < mapSizeY - 1){
+                        graph[x, y].neighbours.Add(graph[x, y + 1]);
+                    }
                 }
             }
         }
-    }
             for(int y = 0; y < mapSizeY; y++){
                 TileType tt = tileTypes[tiles[x, y]];
                 GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x+ posCentreSalle.x, y+posCentreSalle.y, 0), Quaternion.identity);
-                
+                GenerationEnnemi(x, y, nAl, posCentreSalle);
                 ClickableTile ct = go.GetComponent<ClickableTile>();
                 ct.tileX = x;
                 ct.tileY = y;
                 ct.map = this;
             }
             this.transform.position += new Vector3(posCentreSalle.x, posCentreSalle.y, 0);
-
+        }
+        compteur = 0;
+        foreach(GameObject e in enemies)
+        {
+            e.GetComponent<Enemy>().map = this;
         }
     }
-
+    public void GenerationEnnemi(int x, int y, int nAl, Vector3 pos)
+    {
+        int e = Random.Range(0, 10);
+        if(e==1 && compteur <= nAl && tiles[x,y]!=1 && x!=5 && y!=5)
+        {
+            GameObject moov= (GameObject)Instantiate(prefEnemiMouv, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
+            GameObject es= (GameObject)Instantiate(prefEnemi, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
+            es.GetComponent<Enemy>().tileX = x;
+            es.GetComponent<Enemy>().tileY = y;
+            Instantiate(prefEnemiPath, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
+            moov.GetComponent<MovementEnemy>().unit = es;
+            moov.GetComponent<MovementEnemy>().movePoint = es.transform.GetChild(1).transform;
+            moov.GetComponent<MovementEnemy>().moveSpeed = 0.32f;
+            enemies.Add(es);
+            compteur += 1;
+        }
+    }
     public Vector3 TileCoordToWorldCoord(int x, int y){
-        return(new Vector3(x, y, 0));
+        Vector3 posCentreSalle = new Vector3(0,0,0);
+        if (pos!=null)
+        {
+            posCentreSalle = VerifyCenter(pos);
+        }
+        
+        return(new Vector3(x + posCentreSalle.x, y + posCentreSalle.y, 0));
     }
 
     public void GeneratePathTo(int x, int y)
     {
+
         if (unit.GetComponent<Unit>().launchMove == false)
         {
-         
-              
+
+
             unit.GetComponent<Unit>().target = this.target;
             unit.GetComponent<Unit>().currentPath = null;
-            foreach(Enemy enemy in enemies) {
+            foreach (GameObject enemy in enemies)
+            {
                 enemy.GetComponent<Enemy>().currentPath = null;
             }
-            
+
 
             if (unit.GetComponent<Unit>().target.GetComponent<Transform>().position == unit.GetComponent<Unit>().GetComponent<Transform>().position)
             {
@@ -249,11 +297,11 @@ public class TileMap : MonoBehaviour
                 return;
             }
 
-             i = 0;
-             List<Node> currentPath = new List<Node>();
+            i = 0;
+            List<Node> currentPath = new List<Node>();
 
             Node curr = target;
-          
+
             while (curr != null)
             {
                 i++;
@@ -261,9 +309,9 @@ public class TileMap : MonoBehaviour
                 curr = prev[curr];
 
             }
-            
 
-            if (i > pa+1)
+
+            if (i > pa + 1)
             {
                 print("vous n avez pas assez de pa");
                 pathPlayer.GetComponent<Renderer>().material.color = Color.red;
@@ -282,100 +330,132 @@ public class TileMap : MonoBehaviour
             currentPath.Reverse();
 
             unit.GetComponent<Unit>().currentPath = currentPath;
-            
+
         }
 
-        foreach(Enemy enemy in enemies) {
-
-            
-
-            if (enemy.launchMove == false)
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy.GetComponent<Enemy>().launchMove == false)
             {
                 Debug.Log(enemy + " path !");
                 //Création du chemin pour l'enemy
                 Dictionary<Node, float> dist2 = new Dictionary<Node, float>();
                 Dictionary<Node, Node> prev2 = new Dictionary<Node, Node>();
-
-                List<Node> unvisited2 = new List<Node>();
-
-
-                Node source2 = graph[
-                    enemy.GetComponent<Enemy>().tileX,
-                    enemy.GetComponent<Enemy>().tileY
-                    ];
-
-                Node target2 = graph[x, y];
-
-
-
-                dist2[source2] = 0;
-                prev2[source2] = null;
-
-                foreach (Node v in graph)
-                {
-                    if (v != source2)
-                    {
-                        dist2[v] = Mathf.Infinity;
-                        prev2[v] = null;
-                    }
-                    unvisited2.Add(v);
-                }
-
-                while (unvisited2.Count > 0)
-                {
-                    Node closer = null;
-
-                    foreach (Node possible in unvisited2)
-                    {
-                        if (closer == null || dist2[possible] < dist2[closer])
-                        {
-                            closer = possible;
-                        }
-                    }
-
-                    if (closer == target2)
-                    {
-                        break;
-                    }
-
-                    unvisited2.Remove(closer);
-
-                    foreach (Node v in closer.neighbours)
-                    {
-                        //float totDist = dist2[closer] + closer.DistantTo(v);
-                        float totDist = dist2[closer] + CostToEnterTile(v.x, v.y);
-                        if (totDist < dist2[v])
-                        {
-                            dist2[v] = totDist;
-                            prev2[v] = closer;
-                        }
-                    }
-                }
-                if (prev2[target2] == null)
-                {
-                    return;
-                }
-
-                j = 0;
-                List<Node> currentPath2 = new List<Node>();
-
-                Node curr2 = target2;
-            
-                while (curr2 != null)
-                {
-                    j++;
-                    currentPath2.Add(curr2);
-                    curr2 = prev2[curr2];
-
-                }
-                
-                currentPath2.Reverse();
-
-                currentPath2.RemoveAt(currentPath2.Count - 1);
-
-                enemy.GetComponent<Enemy>().currentPath = currentPath2;
-                
             }
+        }
+    }
+
+    public void GeneratePathEnemyTo(GameObject enemy, int x, int y)
+    {
+
+        enemy.GetComponent<Enemy>().currentPath = null;
+
+
+        if (enemy.GetComponent<Enemy>().launchMove == false)
+        {
+            //Creation du chemin pour l'enemy
+            Dictionary<Node, float> dist2 = new Dictionary<Node, float>();
+            Dictionary<Node, Node> prev2 = new Dictionary<Node, Node>();
+
+            List<Node> unvisited2 = new List<Node>();
+
+
+            Node source2 = graph[
+                enemy.GetComponent<Enemy>().tileX,
+                enemy.GetComponent<Enemy>().tileY
+                ];
+
+            Node target2 = graph[x, y];
+
+
+
+            dist2[source2] = 0;
+            prev2[source2] = null;
+
+            foreach (Node v in graph)
+            {
+                if (v != source2)
+                {
+                    dist2[v] = Mathf.Infinity;
+                    prev2[v] = null;
+                }
+                unvisited2.Add(v);
+            }
+
+            while (unvisited2.Count > 0)
+            {
+                Node closer = null;
+
+                foreach (Node possible in unvisited2)
+                {
+                    if (closer == null || dist2[possible] < dist2[closer])
+                    {
+                        closer = possible;
+                    }
+                }
+
+                if (closer == target2)
+                {
+                    break;
+                }
+
+                unvisited2.Remove(closer);
+
+                foreach (Node v in closer.neighbours)
+                {
+                    //float totDist = dist2[closer] + closer.DistantTo(v);
+                    float totDist = dist2[closer] + CostToEnterTile(v.x, v.y);
+                    if (totDist < dist2[v])
+                    {
+                        dist2[v] = totDist;
+                        prev2[v] = closer;
+                    }
+                }
+            }
+            if (prev2[target2] == null)
+            {
+                return;
+            }
+
+            j = 0;
+            List<Node> currentPath2 = new List<Node>();
+
+            Node curr2 = target2;
+        
+            while (curr2 != null)
+            {
+                j++;
+                currentPath2.Add(curr2);
+                curr2 = prev2[curr2];
+
+            }
+            
+            currentPath2.Reverse();
+
+            currentPath2.RemoveAt(currentPath2.Count - 1);
+
+            enemy.GetComponent<Enemy>().currentPath = currentPath2;
+            
+        }
+    }
+
+    IEnumerator enemyMovement()
+    {
+       
+        freezer.SetActive(true);
+        foreach (GameObject enemy in enemies) {
+            Debug.Log("Start");
+            EnemieSong.Play();
+            GeneratePathEnemyTo(enemy, unit.GetComponent<Unit>().tileX, unit.GetComponent<Unit>().tileY);
+            enemy.GetComponent<Enemy>().Move();
+            yield return new WaitForSeconds(2);
+            Debug.Log("Stop");
+        }
+        freezer = GameObject.Find("GameFreezer");
+        freezer.SetActive(false);
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().nbAttack = 0;
         }
     }
 
@@ -383,6 +463,8 @@ public class TileMap : MonoBehaviour
     {
         if (unit.GetComponent<Unit>().launchMove == false)
         {
+            StartCoroutine(enemyMovement());
+            
             pa = 10;
             unit.GetComponent<Unit>().currentPath = null;
             unit.GetComponent<Unit>().boutonAvancer.GetComponent<Button>().interactable = false;
@@ -398,13 +480,52 @@ public class TileMap : MonoBehaviour
     /// 
     public void GenerationSalle(GameObject centreSalle)
     {
+        APlusEnnemi(centreSalle);
+        this.pos = centreSalle;
         GenerateMapData();
         GeneratePathFfindingGraph();
-        GenerateMapVisual(centreSalle);
+        GenerateMapVisual();
         target.ChangeMap(this);
     }
+    ///Pour enlever les ennemies de la map mais on les garde en info dans la salle
+    public void APlusEnnemi(GameObject centreSalle)
+    {
+        GameObject[] ennemis = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] path = GameObject.FindGameObjectsWithTag("PathEnemy");
+        GameObject[] moov = GameObject.FindGameObjectsWithTag("MouvEnemy");
 
-
+        foreach(GameObject e in ennemis)
+        {
+            centreSalle.GetComponent<InfoCentreSalle>().ennemi.Add(e);
+            enemies.Remove(e);
+            Destroy(e); 
+        }
+        foreach(GameObject p in path)
+        {
+            centreSalle.GetComponent<InfoCentreSalle>().infoPath.Add(p);
+            Destroy(p);
+        }
+        foreach(GameObject m in moov)
+        {
+            centreSalle.GetComponent<InfoCentreSalle>().infoMoov.Add(m);
+            Destroy(m);
+        }
+    }
+    public void ReEnnemi(GameObject centreSalle)
+    {
+        foreach(GameObject e in centreSalle.GetComponent<InfoCentreSalle>().ennemi)
+        {
+            Instantiate(e);
+        }
+        foreach (GameObject p in centreSalle.GetComponent<InfoCentreSalle>().infoPath)
+        {
+            Instantiate(p);
+        }
+        foreach (GameObject m in centreSalle.GetComponent<InfoCentreSalle>().infoMoov)
+        {
+            Instantiate(m);
+        }
+    }
     public Vector3 VerifyCenter(GameObject centreSalle)
     {
         Vector3 posCentreSalle = centreSalle.transform.position;
@@ -446,6 +567,8 @@ public class TileMap : MonoBehaviour
     public void TPhero(GameObject nouvPos, int ouverture)
     {
         List<GameObject> porte= new List<GameObject>();
+        int offsetX = 0;
+        int offsetY = 0;
 
         Debug.Log("Je bouge" + unit.transform.position + nouvPos);
         GameObject lesPortes = nouvPos.transform.GetChild(2).gameObject;
@@ -459,14 +582,18 @@ public class TileMap : MonoBehaviour
         { // 
             case 1:
                 ouverture = 3;// demande ouverture pour haut donc ouverture par le bas  
+                offsetY = -10;
                 break;
             case 2:
                 ouverture = 4; // demande ouverture par la gauche donc ouverture par la droite
+                offsetX = 10;
                 break;
             case 3:
                 ouverture = 1; // demande ouverture pour bas donc ouverture par le haut
+                offsetY = 10;
                 break;
             case 4:
+                offsetX = -10;
                 ouverture = 2; // demade ouverture par la droite donc ouverture par la gauche
 
                 break;
@@ -480,6 +607,8 @@ public class TileMap : MonoBehaviour
             if(p.GetComponent<HeroCreationSalle>().ouverture==ouverture)
             {
                 unit.transform.position = p.transform.position;
+                unit.GetComponent<Unit>().tileX = unit.GetComponent<Unit>().tileX + offsetX;
+                unit.GetComponent<Unit>().tileY = unit.GetComponent<Unit>().tileY + offsetY;
                 Update();
                 Debug.Log("J'ai bougé" + unit.transform.position);
                 

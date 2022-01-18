@@ -33,6 +33,8 @@ public class Experience : MonoBehaviour
     private bool isOpenComp = false;
     private bool isOpenInventory = false;
 
+    public AudioSource Openinventaire;
+
     void Start()
     {
         HeroLevel = 1;
@@ -55,7 +57,9 @@ public class Experience : MonoBehaviour
             ExperienceHero = ExperienceHero - 100;
             LevelObject.GetComponent<UnityEngine.UI.Text>().text = HeroLevel.ToString();
             LevelUpObject.SetActive(true);
-            StartCoroutine(ExecuteAfterTime(2)); ;
+            StartCoroutine(ExecuteAfterTime(2)); 
+
+
             
         }   
     
@@ -77,6 +81,7 @@ public class Experience : MonoBehaviour
         else
         {
             Inventory.SetActive(true);
+            Openinventaire.Play();
             isOpenInventory = true;
         }
     }
@@ -91,6 +96,7 @@ public class Experience : MonoBehaviour
         {
             ArbreCompetence.SetActive(true);
             isOpenComp = true;
+
         }
     }
     public void Amelioration1Sort1()

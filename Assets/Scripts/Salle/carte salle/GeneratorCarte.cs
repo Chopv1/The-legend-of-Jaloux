@@ -177,7 +177,8 @@ public class GeneratorCarte : MonoBehaviour
             indice++;
         }
         PorteDestructon.GetComponent<BoxCollider2D>().enabled = false;
-       // PorteDestructon.GetComponent<HeroCreationSalle>().porte.GetComponent<BoxCollider2D>().enabled = false;
+
+        // PorteDestructon.GetComponent<HeroCreationSalle>().porte.GetComponent<BoxCollider2D>().enabled = false;
 
         return PorteDestructon.GetComponent<HeroCreationSalle>().porte;
         //Destroy(PorteDestructon);

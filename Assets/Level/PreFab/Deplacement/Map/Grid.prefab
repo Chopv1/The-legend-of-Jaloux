@@ -803,6 +803,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896ee13cc6703da4986282adfcd784f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefEnemi: {fileID: 2437962646427969611, guid: 356a665b38d3b4445aa4b154dc925205, type: 3}
+  prefEnemiMouv: {fileID: 4741950381782557291, guid: 8b7754d17dc3d3f48b736b2668ce8ea6, type: 3}
+  prefEnemiPath: {fileID: 7245150762599860603, guid: d26264d63f9a4364d932fe6d896a3346, type: 3}
   unit: {fileID: 8269061851478436541, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
   enemies: []
   tileTypes:
@@ -816,11 +819,16 @@ MonoBehaviour:
     reachable: 0
   target: {fileID: -795691446427562611, guid: 999988b1bc4bd4b4389e7f479e91725a, type: 3}
   appearance: {fileID: 2100000, guid: afebafddfedf17c4da11edca62147cd9, type: 2}
-  pathPlayer: {fileID: 0}
-  pathEnemy: {fileID: 0}
+  pathPlayer: {fileID: 8816663246885761143, guid: 614d6360c37e64542a0b2818c5101300, type: 3}
+  pathEnemy: {fileID: 7245150762599860603, guid: d26264d63f9a4364d932fe6d896a3346, type: 3}
   reset: {fileID: 1788104452917420740, guid: 84046244d4346b4499427db4e5bcd25b, type: 3}
   action: 0
   pa: 10
   paEnemy: 0
   i: 0
   j: 0
+  nom: 
+  pos: {fileID: 0}
+  eL:
+    serializedVersion: 2
+    m_Bits: 0

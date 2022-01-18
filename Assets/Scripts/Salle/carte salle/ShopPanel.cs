@@ -102,6 +102,7 @@ public class ShopPanel : MonoBehaviour
             generationMap.GetComponent<TileMap>().GenerationSalle(centre);
             generationMap.GetComponent<TileMap>().TPhero(carte, porte.GetComponent<HeroCreationSalle>().getOuverture());
             generationMap.GetComponent<TileMap>().nom = carte.GetComponent<GeneratorCarte>().title;
+            generationMap.GetComponent<TileMap>().finirTour();
         }
       
        // Rotate(carte);

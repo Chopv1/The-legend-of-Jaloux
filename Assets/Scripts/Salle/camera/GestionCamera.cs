@@ -6,6 +6,8 @@ public class GestionCamera : MonoBehaviour
 
 {
     public GameObject panel;
+    public AudioSource SonBouton;
+
     public GameObject MainCamera;
   
     /*
@@ -49,6 +51,10 @@ public class GestionCamera : MonoBehaviour
         panel.SetActive(false);
     }
 
+    public void PlaySonBouton()
+    {
+        SonBouton.Play();
+    }
     public void changerSalle(GameObject centre)
     {
         MainCamera.transform.position = new Vector3(centre.transform.position.x,centre.transform.position.y,-1) ;

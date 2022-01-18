@@ -22,6 +22,9 @@ public class ObjetsInventaire : MonoBehaviour
 
     // Update is called once per frame
 
+    public AudioSource Songequiper;
+
+
     private Button CaseInventaire;
     void Start()
     {
@@ -80,6 +83,8 @@ public class ObjetsInventaire : MonoBehaviour
             Jeter.SetActive(false);
             Desequiper.SetActive(true);
             Equiper.SetActive(false);
+
+
         }
         else
         {
@@ -199,7 +204,7 @@ public class ObjetsInventaire : MonoBehaviour
             GameObject ArmeTexte = GameObject.Find("Arme").transform.GetChild(0).gameObject;
             ArmeTexte.GetComponent<UnityEngine.UI.Text>().text = listItemsEquipés[4].getNomItem();
         }
-
+        Songequiper.Play();
         JeterObjet();
         Utiliser.SetActive(false);
         Jeter.SetActive(false);
