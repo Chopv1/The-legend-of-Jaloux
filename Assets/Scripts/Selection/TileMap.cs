@@ -11,7 +11,7 @@ public class TileMap : MonoBehaviour
     public GameObject prefEnemiPath;
 
 
-    public GameObject unit;
+    public Unit unit;
     public List<GameObject> enemies;
     public TileType[] tileTypes;
     public ClickableTile target;
@@ -470,8 +470,6 @@ public class TileMap : MonoBehaviour
         if (unit.GetComponent<Unit>().launchMove == false)
         {
             StartCoroutine(enemyMovement());
-            unit.ennemi1Animator.SetBool("isAttacked", false);
-            unit.ennemi2Animator.SetBool("isAttacked", false);
             unit.herosAnimator.SetBool("isDigging", false);
             unit.herosAnimator.SetBool("isMoving", false);
             unit.herosAnimator.SetBool("isRightAttacking", false);

@@ -48,8 +48,6 @@ public class Unit : MonoBehaviour
     public List<Items> listItems;
     public List<Node> currentPath = null;
     public Animator herosAnimator;
-    public Animator ennemi1Animator;
-    public Animator ennemi2Animator;
 
     public AudioSource SonMouvementHero;
 
@@ -147,8 +145,6 @@ public class Unit : MonoBehaviour
             herosAnimator.SetBool("isDownAttacking", false);
             herosAnimator.SetBool("isLeftAttacking", false);
             herosAnimator.SetBool("isCircleAttacking", false);
-            ennemi1Animator.SetBool("isAttacked", false);
-            ennemi2Animator.SetBool("isAttacked", false);
             herosAnimator.SetBool("isDigging", false);
             herosAnimator.SetBool("isMoving", true);
 
@@ -235,8 +231,6 @@ public class Unit : MonoBehaviour
 
             foreach(Collider2D hit in hitInfo)
             {
-                ennemi2Animator.SetBool("isAttacked", true);
-                ennemi1Animator.SetBool("isAttacked", true);
                 hit.GetComponent<Enemy>().IsAttacked(this.Attack);
                 Debug.Log(hit+" Touché");
             }
@@ -326,8 +320,6 @@ public class Unit : MonoBehaviour
             herosAnimator.SetBool("isDownAttacking", false);
             herosAnimator.SetBool("isUpAttacking", false);
             herosAnimator.SetBool("isCircleAttacking", false);
-            ennemi1Animator.SetBool("isAttacked", false);
-            ennemi2Animator.SetBool("isAttacked", false);
             herosAnimator.SetBool("isDigging", false);
             herosAnimator.SetBool("isDigging", true);
 

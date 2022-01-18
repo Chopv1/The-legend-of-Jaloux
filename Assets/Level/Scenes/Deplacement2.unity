@@ -1433,7 +1433,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: GestionCamera, Assembly-CSharp
-        m_MethodName: PlaySonBouton
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3307,7 +3307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8056185596137972504, guid: f298c01f57dae0a40ad9809a793bf46a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PlaySonBouton
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8056185596137972504, guid: f298c01f57dae0a40ad9809a793bf46a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -5139,7 +5139,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: GestionCamera, Assembly-CSharp
-        m_MethodName: PlaySonBouton
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6100,11 +6100,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &364253407 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8269061851478436541, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
-  m_PrefabInstance: {fileID: 8269061852303855028}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &364253408 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8269061851478436542, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
@@ -6651,7 +6646,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: GestionCamera, Assembly-CSharp
-        m_MethodName: PlaySonBouton
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9100,11 +9095,11 @@ PrefabInstance:
     - target: {fileID: 1788104452917420740, guid: 84046244d4346b4499427db4e5bcd25b, type: 3}
       propertyPath: ennemi1Animator
       value: 
-      objectReference: {fileID: 1271242551}
+      objectReference: {fileID: 0}
     - target: {fileID: 1788104452917420740, guid: 84046244d4346b4499427db4e5bcd25b, type: 3}
       propertyPath: ennemi2Animator
       value: 
-      objectReference: {fileID: 1825319950}
+      objectReference: {fileID: 0}
     - target: {fileID: 1788104452917420741, guid: 84046244d4346b4499427db4e5bcd25b, type: 3}
       propertyPath: m_Name
       value: ObjectSelection
@@ -9945,7 +9940,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: GestionCamera, Assembly-CSharp
-        m_MethodName: PlaySonBouton
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10107,8 +10102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1444036744}
-  SonBouton: {fileID: 2077599964}
-  MainCamera: {fileID: 519420028}
+  SonBouton: {fileID: 0}
+  MainCamera: {fileID: 0}
 --- !u!213 &519755977
 Sprite:
   m_ObjectHideFlags: 0
@@ -16521,7 +16516,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: GestionCamera, Assembly-CSharp
-        m_MethodName: PlaySonBouton
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16653,7 +16648,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8269061851478436543, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
   m_PrefabInstance: {fileID: 8269061852303855028}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364253407}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 678456980f5b87248b52978044441afe, type: 3}
@@ -31019,7 +31014,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: GestionCamera, Assembly-CSharp
-        m_MethodName: PlaySonBouton
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -35829,7 +35824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5938052004024664697, guid: 362c0c263e083494aa20b453d9d27084, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PlaySonBouton
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5938052004024664697, guid: 362c0c263e083494aa20b453d9d27084, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -36970,7 +36965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 676045014744325787, guid: a791fc583ece9d04795a68470c78eb68, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PlaySonBouton
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 676045014744325787, guid: a791fc583ece9d04795a68470c78eb68, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -37413,7 +37408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899928719074407437, guid: 99d4b024f883c2a49945a0ea8a9eb089, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PlaySonBouton
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1899928719074407437, guid: 99d4b024f883c2a49945a0ea8a9eb089, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -38423,7 +38418,7 @@ PrefabInstance:
     - target: {fileID: 4056387242903622628, guid: 2ab3328369d99ea4e9ff71c229e41d09, type: 3}
       propertyPath: unit
       value: 
-      objectReference: {fileID: 364253407}
+      objectReference: {fileID: 928327435}
     - target: {fileID: 4056387242903622628, guid: 2ab3328369d99ea4e9ff71c229e41d09, type: 3}
       propertyPath: enemy
       value: 
@@ -38521,6 +38516,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1048229214}
     m_Modifications:
+    - target: {fileID: 7696642342631556360, guid: 2d95bcca44c0e1542a142ff843f4bb13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696642342631556361, guid: 2d95bcca44c0e1542a142ff843f4bb13, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6361935584262205712, guid: f1ef4a03868217a4a83d7d2a0bc188ce, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -38612,14 +38615,6 @@ PrefabInstance:
     - target: {fileID: 6361935584262205714, guid: f1ef4a03868217a4a83d7d2a0bc188ce, type: 3}
       propertyPath: m_Name
       value: Button Fouille
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696642342631556360, guid: 2d95bcca44c0e1542a142ff843f4bb13, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696642342631556361, guid: 2d95bcca44c0e1542a142ff843f4bb13, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1ef4a03868217a4a83d7d2a0bc188ce, type: 3}
@@ -38738,6 +38733,10 @@ PrefabInstance:
       propertyPath: boutonFouille
       value: 
       objectReference: {fileID: 909971369}
+    - target: {fileID: 8269061851478436543, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
+      propertyPath: herosAnimator
+      value: 
+      objectReference: {fileID: 818253673}
     - target: {fileID: 8269061851478436543, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
       propertyPath: gameOverScreen
       value: 
