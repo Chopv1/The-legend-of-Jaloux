@@ -194,6 +194,7 @@ public class TileMap : MonoBehaviour
             GameObject es= (GameObject)Instantiate(prefEnemi, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
             es.GetComponent<Enemy>().tileX = x;
             es.GetComponent<Enemy>().tileY = y;
+            es.GetComponent<Enemy>().ennemy = moov;
             Instantiate(prefEnemiPath, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
             moov.GetComponent<MovementEnemy>().unit = es;
             moov.GetComponent<MovementEnemy>().movePoint = es.transform.GetChild(1).transform;
