@@ -184,6 +184,8 @@ public class TileMap : MonoBehaviour
         if(e==1 && compteur <= nAl && tiles[x,y]!=1)
         {
             GameObject es= (GameObject)Instantiate(prefEnemi, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
+            Instantiate(prefEnemiPath, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
+            Instantiate(prefEnemiMouv, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
             enemies.Add(es);
             compteur += 1;
         }

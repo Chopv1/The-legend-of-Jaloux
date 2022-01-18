@@ -84,7 +84,6 @@ public class Enemy : MonoBehaviour
                 currentPath = null;
                 launchMove = false;
                 
-                //target.GetComponent<Renderer>().material.color = new Color(0.5849056f, 0.5403813f, 0.4773051f, 1);
 
             }
         } 

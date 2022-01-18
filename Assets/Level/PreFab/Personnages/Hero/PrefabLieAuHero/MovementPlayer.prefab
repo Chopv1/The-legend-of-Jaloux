@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.32
-  movePoint: {fileID: 0}
-  unit: {fileID: 0}
+  movePoint: {fileID: 1848933391717532304, guid: 30c9732c581ed8a4a895bef58d7655e2, type: 3}
+  unit: {fileID: 8269061851478436543, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
   moveDelay: 1
   nextMove: 0
 --- !u!50 &4764737548328882910
