@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Experience : MonoBehaviour
 {
     private int HeroLevel;
-    private int ExperienceHero;
+    public int ExperienceHero;
     public int PointCompetence;
     public int NiveauSort1 = 1;
     public int NiveauSort2 = 1;
@@ -57,13 +57,10 @@ public class Experience : MonoBehaviour
             ExperienceHero = ExperienceHero - 100;
             LevelObject.GetComponent<UnityEngine.UI.Text>().text = HeroLevel.ToString();
             LevelUpObject.SetActive(true);
-            StartCoroutine(ExecuteAfterTime(2)); 
-
-
-            
-        }   
-    
+            StartCoroutine(ExecuteAfterTime(2));             
+        }       
     }
+
     IEnumerator ExecuteAfterTime(float time)
     {
         yield return new WaitForSeconds(time);

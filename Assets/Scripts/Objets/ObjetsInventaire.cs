@@ -246,7 +246,6 @@ public class ObjetsInventaire : MonoBehaviour
             HeroGuerrier.listItems.Add(listItemsEquipés[1]);
             listItemsEquipés[1] = new Items(null, null, 0);
             HeroGuerrier.herosAnimator.SetBool("isMailled", false);
-
         }
         else if (ObjetVisé.name == "Jambières")
         {
