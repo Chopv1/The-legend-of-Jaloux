@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4739599157033020}
   - component: {fileID: 212740311569543596}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4352117098322918}
   - component: {fileID: 212198343801671156}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4083897340354998}
   - component: {fileID: 212558763816142774}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,8 +259,7 @@ GameObject:
   - component: {fileID: 50743186921995866}
   - component: {fileID: 114857485172185208}
   - component: {fileID: 6985842839130364954}
-  - component: {fileID: 2825409296601215072}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Point
   m_TagString: SpawnPoint
   m_Icon: {fileID: -6431860639581277017, guid: 0000000000000000d000000000000000, type: 0}
@@ -364,32 +363,7 @@ MonoBehaviour:
   porte: {fileID: 7243085968256890594}
   salle: {fileID: 0}
   centres: []
---- !u!61 &2825409296601215072
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495743175035696}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  posable: 0
 --- !u!1 &1532460050559808
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +373,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4768433902203746}
-  m_Layer: 0
+  - component: {fileID: 4180223611953730043}
+  m_Layer: 9
   m_Name: Spawn Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,6 +397,22 @@ Transform:
   m_Father: {fileID: 4767410067509144}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4180223611953730043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532460050559808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60f510d0cf4f1047ac730009a8d633e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPosable: 0
+  centres:
+  - {fileID: 1495743175035696}
+  - {fileID: 1657875908759724}
 --- !u!1 &1573676606383294
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4930639350967888}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,12 +458,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4797204484685682}
-  - component: {fileID: 61241003714781336}
   - component: {fileID: 50304993449724038}
   - component: {fileID: 114397527311484624}
   - component: {fileID: 5077337217536540259}
   - component: {fileID: 2599161001633955581}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
   m_Icon: {fileID: -6431860639581277017, guid: 0000000000000000d000000000000000, type: 0}
@@ -493,32 +483,6 @@ Transform:
   m_Father: {fileID: 4768433902203746}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61241003714781336
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657875908759724}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &50304993449724038
 Rigidbody2D:
   serializedVersion: 4
@@ -576,6 +540,7 @@ MonoBehaviour:
   porte: {fileID: 3987830858366733042}
   salle: {fileID: 0}
   centres: []
+  posable: 0
 --- !u!61 &2599161001633955581
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -586,7 +551,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -612,7 +577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4081096721520198}
   - component: {fileID: 212981220597459350}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,7 +659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4081063518472138}
   - component: {fileID: 212804601422824020}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4538433851062284}
   - component: {fileID: 212468703603049494}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +824,7 @@ GameObject:
   - component: {fileID: 4767410067509144}
   - component: {fileID: 114679393966003484}
   - component: {fileID: -7295871373587999021}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -929,7 +894,7 @@ GameObject:
   - component: {fileID: 5552886400278339046}
   - component: {fileID: 7321692151878193186}
   - component: {fileID: 7551782646718934428}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Porte
   m_TagString: Porte
   m_Icon: {fileID: 0}
@@ -944,7 +909,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3987830858366733042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -4.5, z: 2.56943}
+  m_LocalPosition: {x: 0.5, y: -4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 7367880889161916418}
@@ -1062,6 +1027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 1
   porte: {fileID: 1657875908759724}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
@@ -1075,7 +1041,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7367880889161916418}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Portes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1111,7 +1077,7 @@ GameObject:
   - component: {fileID: 6018311112110964059}
   - component: {fileID: 2339656471494675457}
   - component: {fileID: 6246108072613924761}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Porte (1)
   m_TagString: Porte
   m_Icon: {fileID: 0}
@@ -1126,7 +1092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7243085968256890594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 5.5, z: 2.56943}
+  m_LocalPosition: {x: 0.5, y: 5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 7367880889161916418}
@@ -1244,6 +1210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 3
   porte: {fileID: 1495743175035696}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}

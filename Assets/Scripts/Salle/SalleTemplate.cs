@@ -26,6 +26,7 @@ public class SalleTemplate : MonoBehaviour
 
 
 	public List<GameObject> ListSalleBonnes;
+	public List<GameObject> listsalleTest;
 
 	private void Start()
     {
@@ -180,12 +181,23 @@ public class SalleTemplate : MonoBehaviour
 		return tabSalles[type][rotation];
     }
 
-	public void setListeSallesBonnes(List<GameObject> salleBonnes)
+	public void setListeSallesBonnes(List<GameObject> salleBonnesTest)
 	{
+		List<GameObject> salleBonnes = new List<GameObject>();
+
+		foreach (GameObject salle in salleBonnesTest)
+		{
+			Debug.Log(" >< salle template " + salle.GetComponent<GeneratorCarte>().title + " est posable ?" + salle.transform.GetChild(1).gameObject.GetComponent<MainCentre>().getMainPosable());
+			if (salle.transform.GetChild(1).gameObject.GetComponent<MainCentre>().getMainPosable() == true)
+			{
+				salleBonnes.Add(salle);
+			}
+		}
 		ListSalleBonnes = salleBonnes;
 	}
 	public List<GameObject> getListeSallesBonnes()
     {
+	
 		return ListSalleBonnes;
 
 	}
@@ -208,5 +220,33 @@ public class SalleTemplate : MonoBehaviour
 
     }
 
+	public void supprimmersalle(string nom)
+    {
+		int position = 0;
+		bool suppimer = false;
+		int taille = ListSalleBonnes.Count;
+		while( position< ListSalleBonnes.Count && !suppimer)
+        {
+			if(ListSalleBonnes[position].GetComponent<GeneratorCarte>().title == nom)
+            {
+				ListSalleBonnes.Remove(ListSalleBonnes[position]);
+				suppimer = true;
+
+            }
+			position++;
+        }
+    }
+
+	public void destructionSalleTest()
+    {
+		
+		while (listsalleTest.Count != 0)
+		{
+			
+			Destroy(listsalleTest[0]);
+			listsalleTest.RemoveAt(0);
+		}
+
+	}
 
 }

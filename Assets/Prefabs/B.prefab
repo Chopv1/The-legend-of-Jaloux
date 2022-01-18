@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 114136933290509020}
   - component: {fileID: 3358773187060935654}
   - component: {fileID: 3699982727812850891}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
   m_Icon: {fileID: -6431860639581277017, guid: 0000000000000000d000000000000000, type: 0}
@@ -118,6 +118,7 @@ MonoBehaviour:
   porte: {fileID: 4789398232755067429}
   salle: {fileID: 0}
   centres: []
+  posable: 0
 --- !u!61 &3699982727812850891
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -154,7 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4918076436423142}
   - component: {fileID: 212581094452848984}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,8 +170,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168746534402250}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -5.49, y: 4.0319, z: 0}
-  m_LocalScale: {x: 6.2174015, y: 1.0114406, z: 1}
+  m_LocalPosition: {x: -6.5, y: 4, z: 0}
+  m_LocalScale: {x: 6.143713, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4054140998661842}
   m_RootOrder: 3
@@ -236,7 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4061250319847774}
   - component: {fileID: 212992155282712870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,8 +252,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314296840880852}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 6.55, y: 0.1534, z: 0}
-  m_LocalScale: {x: 12.519144, y: 1.0115238, z: 1}
+  m_LocalPosition: {x: 5, y: 0.4969, z: 0}
+  m_LocalScale: {x: 13.316235, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4054140998661842}
   m_RootOrder: 4
@@ -317,7 +318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4054140998661842}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +353,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4428478080873430}
-  m_Layer: 0
+  - component: {fileID: 450468662074068501}
+  m_Layer: 9
   m_Name: Spawn Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,6 +376,21 @@ Transform:
   m_Father: {fileID: 4186792774406478}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &450468662074068501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465046575824024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60f510d0cf4f1047ac730009a8d633e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPosable: 0
+  centres:
+  - {fileID: 1004506553876976}
 --- !u!1 &1645861217781710
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4403932030817102}
   - component: {fileID: 212338951914403200}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,8 +416,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645861217781710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8119, y: 6.59, z: 0}
-  m_LocalScale: {x: 12.775397, y: 1.0094657, z: 1}
+  m_LocalPosition: {x: -0.6, y: 6.5, z: 0}
+  m_LocalScale: {x: 12.591802, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4054140998661842}
   m_RootOrder: 1
@@ -466,7 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4057763370436458}
   - component: {fileID: 212599085029675888}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,8 +498,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779570409438594}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -5.52, y: -2.7716, z: 0}
-  m_LocalScale: {x: 5.601331, y: 1.012462, z: 1}
+  m_LocalPosition: {x: -6.5, y: -2.7167, z: 0}
+  m_LocalScale: {x: 5.5682, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4054140998661842}
   m_RootOrder: 2
@@ -549,7 +566,7 @@ GameObject:
   - component: {fileID: 4186792774406478}
   - component: {fileID: 114008165535306816}
   - component: {fileID: 1982921020224438649}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +580,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914693036162022}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -572,7 +589,7 @@ Transform:
   - {fileID: 7994769113725241653}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114008165535306816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,7 +632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4814395730019410}
   - component: {fileID: 212868627790954196}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,8 +647,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993842130122838}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4505, y: -5.48, z: 0}
-  m_LocalScale: {x: 13.242451, y: 1.0112042, z: 1}
+  m_LocalPosition: {x: -0.7685, y: -5.5, z: 0}
+  m_LocalScale: {x: 12.771953, y: 1.0112042, z: 1}
   m_Children: []
   m_Father: {fileID: 4054140998661842}
   m_RootOrder: 0
@@ -696,7 +713,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7994769113725241653}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Portes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,7 +748,7 @@ GameObject:
   - component: {fileID: 4771532807062736646}
   - component: {fileID: 5811027139103866522}
   - component: {fileID: 7756331096155718788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Porte
   m_TagString: Porte
   m_Icon: {fileID: 0}
@@ -864,6 +881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 1
   porte: {fileID: 1004506553876976}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}

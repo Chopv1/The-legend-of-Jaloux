@@ -19,14 +19,16 @@ public class ShopPanel : MonoBehaviour
     public GameObject centre;
     public GameObject porte;
     bool posable = false;
+    public GameObject mainCamera;
 
-
+    public GameObject generationMap;
     private void Start()
     {
         titleTxt.text = salle.title;
         descriptionTxt.text = salle.description;
         pointActionTxt.text = salle.pointAction.ToString();
         templates = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         changer = false;
 
     }
@@ -68,6 +70,8 @@ public class ShopPanel : MonoBehaviour
     public void ChoisirSalle()
     {
         posable = templates.sallePosable(salleObject);
+        templates.destructionSalleTest();
+
         if (!posable)
         {
             Debug.Log(" >>>>>>> !!!!!!!!!!! Impossible de poser Astuce faire une rotation ");
@@ -78,12 +82,27 @@ public class ShopPanel : MonoBehaviour
           //  button.SetActive(true);
             Debug.Log(" 33333333333333   C'est bon ! ");
             GameObject carte = Instantiate(salleObject, centre.transform.position, salleObject.transform.rotation);
-            centre.GetComponent<InfoCentreSalle>().salle = carte;
+            centre.GetComponent<InfoCentreSalle>().setSalleCentre( carte);
             centre.GetComponent<InfoCentreSalle>().MiseAjourCentre();
-           centre.GetComponent<VericationConstruction>();
-            carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GestionCamera>().changerMap();
+            if (templates.getListeSallesBonnes().Count == 1)
+            {
+                carte.transform.GetChild(1).GetComponent<MainCentre>().MiseAjourCentreSignature();
+            }
+          
+          // centre..GetComponent<InfoCentreSalle>().MiseAjourCentre();
 
+           //centre.GetComponent<VericationConstruction>();
+
+            GameObject ouverture = carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
+
+            centre.GetComponent<VericationConstruction>();
+            carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
+            mainCamera.GetComponent<GestionCamera>().changerSalle(centre);
+            mainCamera.GetComponent<GestionCamera>().changerMap();
+            generationMap.GetComponent<TileMap>().GenerationSalle(centre);
+            generationMap.GetComponent<TileMap>().TPhero(carte, porte.GetComponent<HeroCreationSalle>().getOuverture());
+            generationMap.GetComponent<TileMap>().nom = carte.GetComponent<GeneratorCarte>().title;
+            generationMap.GetComponent<TileMap>().finirTour();
         }
       
        // Rotate(carte);

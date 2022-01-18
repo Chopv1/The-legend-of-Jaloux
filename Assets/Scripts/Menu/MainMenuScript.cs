@@ -5,6 +5,8 @@ public class MainMenuScript : MonoBehaviour
 {    
     public string leveltoload;
     public GameObject DiffWindow;
+    public AudioSource SongBouton;
+
     public void StartGame() 
     {
         SceneManager.LoadScene(leveltoload);
@@ -22,7 +24,10 @@ public class MainMenuScript : MonoBehaviour
     {
         Application.Quit();
     }
-
+    public void JouerSongBouton()
+    {
+        SongBouton.Play();
+    }
 
 }
 

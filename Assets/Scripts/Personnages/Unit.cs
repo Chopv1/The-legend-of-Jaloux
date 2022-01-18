@@ -51,6 +51,8 @@ public class Unit : MonoBehaviour
     public Animator ennemi1Animator;
     public Animator ennemi2Animator;
 
+    public AudioSource SonMouvementHero;
+
     public int CurrentPv { get => currentPv; set => currentPv = value; }
     public int Attack;
     public int Defense { get => defense; set => defense = value; }
@@ -178,14 +180,15 @@ public class Unit : MonoBehaviour
     {
         if ( map.action==true) //v�rification nombre de pa
         {
-  
+            SonMouvementHero.Play();  
             launchMove = true;
             boutonFouille.GetComponent<Button>().interactable = true;
 
+            
 
         }
 
-
+        
         //mettre la v�rification de la distance dans une fonction de au clic sur la case et non le bouton
         //permettre donc d'interdire cette fonction de clic sur une case lorsque launchMove est true
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4248151343272486}
   - component: {fileID: 212782076169122604}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4098633534712488}
   - component: {fileID: 114625621426209174}
   - component: {fileID: 6023314397638223286}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: T
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4800732853882206}
   - component: {fileID: 212894876581853326}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4547294028726012}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4472909316975390}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,12 +306,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4379338235831606}
-  - component: {fileID: 61136037793552606}
   - component: {fileID: 50555657367311650}
   - component: {fileID: 114490761801882418}
   - component: {fileID: 2182988859047892060}
-  - component: {fileID: 5644511408084606163}
-  m_Layer: 0
+  - component: {fileID: 8058647796669627122}
+  m_Layer: 9
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
   m_Icon: {fileID: -6431860639581277017, guid: 0000000000000000d000000000000000, type: 0}
@@ -332,32 +331,6 @@ Transform:
   m_Father: {fileID: 4547294028726012}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61136037793552606
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763992056139558}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &50555657367311650
 Rigidbody2D:
   serializedVersion: 4
@@ -415,7 +388,8 @@ MonoBehaviour:
   porte: {fileID: 6347094940600698045}
   salle: {fileID: 0}
   centres: []
---- !u!61 &5644511408084606163
+  posable: 0
+--- !u!61 &8058647796669627122
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -451,7 +425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4176700887600352}
   - component: {fileID: 212391059042934710}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4016105272597726}
   - component: {fileID: 212457740190850316}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +589,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4957032116049332}
   - component: {fileID: 212704846809653098}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,7 +670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8236242474067256393}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Portes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,7 +705,7 @@ GameObject:
   - component: {fileID: 3997349051052354291}
   - component: {fileID: 4299617152457610292}
   - component: {fileID: 7931611483237592669}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Porte
   m_TagString: Porte
   m_Icon: {fileID: 0}
@@ -864,6 +838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 3
   porte: {fileID: 1763992056139558}
+  hero: {fileID: 0}
   salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
