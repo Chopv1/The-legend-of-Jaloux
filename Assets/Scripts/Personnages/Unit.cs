@@ -141,6 +141,9 @@ public class Unit : MonoBehaviour
             tileX = currentPath[0].x;
             tileY = currentPath[0].y;
             herosAnimator.SetBool("isRightAttacking", false);
+            herosAnimator.SetBool("isUpAttacking", false);
+            herosAnimator.SetBool("isDownAttacking", false);
+            herosAnimator.SetBool("isLeftAttacking", false);
             herosAnimator.SetBool("isCircleAttacking", false);
             ennemi1Animator.SetBool("isAttacked", false);
             ennemi2Animator.SetBool("isAttacked", false);
@@ -316,6 +319,9 @@ public class Unit : MonoBehaviour
 
         {
             herosAnimator.SetBool("isRightAttacking", false);
+            herosAnimator.SetBool("isLeftAttacking", false);
+            herosAnimator.SetBool("isDownAttacking", false);
+            herosAnimator.SetBool("isUpAttacking", false);
             herosAnimator.SetBool("isCircleAttacking", false);
             ennemi1Animator.SetBool("isAttacked", false);
             ennemi2Animator.SetBool("isAttacked", false);

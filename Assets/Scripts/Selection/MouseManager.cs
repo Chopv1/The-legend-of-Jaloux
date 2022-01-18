@@ -214,21 +214,25 @@ public class MouseManager : MonoBehaviour
             herosAnimator.SetBool("isCircleAttacking", false);
             herosAnimator.SetBool("isDigging", false);
             herosAnimator.SetBool("isMoving", false);
+            herosAnimator.SetBool("isRightAttacking", false);
+            herosAnimator.SetBool("isLeftAttacking", false);
+            herosAnimator.SetBool("isDownAttacking", false);
+            herosAnimator.SetBool("isUpAttacking", false);
 
-            
-                        if (selectedObject1.transform.position.x > selectedObject2.transform.position.x)
+
+            if (selectedObject1.transform.position.x > selectedObject2.transform.position.x)
                         {
-                            herosAnimator.SetBool("isRightAttacking", true);
+                            herosAnimator.SetBool("isLeftAttacking", true);
 
                         } else if (selectedObject1.transform.position.x < selectedObject2.transform.position.x)
                         {
-                            herosAnimator.SetBool("isDigging", true);
+                            herosAnimator.SetBool("isRightAttacking", true);
                         } else if (selectedObject1.transform.position.y < selectedObject2.transform.position.y)
                         {
-                            herosAnimator.SetBool("isMoving", true);
+                            herosAnimator.SetBool("isUpAttacking", true);
                         } else
                         {
-                            herosAnimator.SetBool("isCircleAttacking", true);
+                            herosAnimator.SetBool("isDownAttacking", true);
                         }
 
                         
@@ -258,6 +262,9 @@ public class MouseManager : MonoBehaviour
             herosAnimator.SetBool("isDigging", false);
             herosAnimator.SetBool("isMoving", false);
             herosAnimator.SetBool("isRightAttacking", false);
+            herosAnimator.SetBool("isLeftAttacking", false);
+            herosAnimator.SetBool("isDownAttacking", false);
+            herosAnimator.SetBool("isUpAttacking", false);
             herosAnimator.SetBool("isCircleAttacking", true);
             selectedObject1.GetComponent<Unit>().HitAllEnemy();
             bAttaque.GetComponent<Button>().interactable = false;

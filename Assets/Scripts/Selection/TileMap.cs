@@ -353,6 +353,9 @@ public class TileMap : MonoBehaviour
             unit.herosAnimator.SetBool("isDigging", false);
             unit.herosAnimator.SetBool("isMoving", false);
             unit.herosAnimator.SetBool("isRightAttacking", false);
+            unit.herosAnimator.SetBool("isLeftAttacking", false);
+            unit.herosAnimator.SetBool("isDownAttacking", false);
+            unit.herosAnimator.SetBool("isUpAttacking", false);
             unit.herosAnimator.SetBool("isCircleAttacking", false);
             pa = 10;
             unit.GetComponent<Unit>().currentPath = null;
