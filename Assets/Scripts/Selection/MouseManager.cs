@@ -18,8 +18,6 @@ public class MouseManager : MonoBehaviour
     private GameObject bInfo;
     private GameObject bAttaque;
     public Animator herosAnimator;
-    public Animator ennemi1Animator;
-    public Animator ennemi2Animator;
     private bool sortSelected = false;
 
     void Start()
@@ -113,8 +111,6 @@ public class MouseManager : MonoBehaviour
         }
     }
     public void boutonStop(){
-        ennemi2Animator.SetBool("isAttacked", false);
-        ennemi1Animator.SetBool("isAttacked", false);
         herosAnimator.SetBool("isCircleAttacking", false);
         herosAnimator.SetBool("isDigging", false);
         herosAnimator.SetBool("isMoving", false);
@@ -208,9 +204,6 @@ public class MouseManager : MonoBehaviour
         {
             selectedObject2.GetComponent<Enemy>().IsAttacked(selectedObject1.GetComponent<Unit>().Attack);
             bAttaque.GetComponent<Button>().interactable = false;
-
-            ennemi2Animator.SetBool("isAttacked", false);
-            ennemi1Animator.SetBool("isAttacked", false);
             herosAnimator.SetBool("isCircleAttacking", false);
             herosAnimator.SetBool("isDigging", false);
             herosAnimator.SetBool("isMoving", false);
@@ -258,7 +251,6 @@ public class MouseManager : MonoBehaviour
         else if(sort==2&&selectedObject1.CompareTag("Unit")&&selectedObject1.GetComponent<Unit>().EnemyAround())
 
         {
-            ennemi2Animator.SetBool("isAttacked", false);
             herosAnimator.SetBool("isDigging", false);
             herosAnimator.SetBool("isMoving", false);
             herosAnimator.SetBool("isRightAttacking", false);

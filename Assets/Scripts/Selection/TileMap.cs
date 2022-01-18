@@ -348,8 +348,6 @@ public class TileMap : MonoBehaviour
         if (unit.launchMove == false)
         {
             StartCoroutine(enemyMovement());
-            unit.ennemi1Animator.SetBool("isAttacked", false);
-            unit.ennemi2Animator.SetBool("isAttacked", false);
             unit.herosAnimator.SetBool("isDigging", false);
             unit.herosAnimator.SetBool("isMoving", false);
             unit.herosAnimator.SetBool("isRightAttacking", false);
