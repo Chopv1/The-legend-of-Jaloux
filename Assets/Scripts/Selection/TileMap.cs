@@ -6,8 +6,13 @@ using UnityEngine.UI;
 
 public class TileMap : MonoBehaviour
 {
+    public GameObject prefEnemi;
+    public GameObject prefEnemiMouv;
+    public GameObject prefEnemiPath;
+
+
     public GameObject unit;
-    public Enemy[] enemies;
+    public List<GameObject> enemies;
     public TileType[] tileTypes;
     public ClickableTile target;
     public Material appearance;
@@ -21,8 +26,9 @@ public class TileMap : MonoBehaviour
     public int j = 0;
     public string nom;
     public GameObject pos;
+    int compteur = 0;
 
-
+    public LayerMask eL;
 
     public int[,] tiles;
     Node[,] graph;
@@ -31,14 +37,14 @@ public class TileMap : MonoBehaviour
     int mapSizeY = 11;
 
     void Start() {
+
+        enemies = new List<GameObject>();
         nom = "Map 1";
         pos = null;
         //unit.GetComponent<Unit>().tileX = (int)unit.transform.position.x;
         //unit.GetComponent<Unit>().tileY = (int)unit.transform.position.y;
         unit.GetComponent<Unit>().map = this;
-        foreach(Enemy enemy in enemies){
-            enemy.GetComponent<Enemy>().map = this;
-        }
+        
         GenerateMapData();
         GeneratePathFfindingGraph();
         GenerateMapVisual();
@@ -126,6 +132,7 @@ public class TileMap : MonoBehaviour
         {
             posCentreSalle = VerifyCenter(pos);
         }
+        int nAl = Random.Range(1, 5);
         for (int x = 0; x < mapSizeX; x++){ void GeneratePathFfindingGraph(){
         graph = new Node[mapSizeX, mapSizeY];
 
@@ -157,7 +164,7 @@ public class TileMap : MonoBehaviour
             for(int y = 0; y < mapSizeY; y++){
                 TileType tt = tileTypes[tiles[x, y]];
                 GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x+ posCentreSalle.x, y+posCentreSalle.y, 0), Quaternion.identity);
-                
+                GenerationEnnemi(x, y, nAl, posCentreSalle);
                 ClickableTile ct = go.GetComponent<ClickableTile>();
                 ct.tileX = x;
                 ct.tileY = y;
@@ -165,8 +172,22 @@ public class TileMap : MonoBehaviour
             }
             this.transform.position += new Vector3(posCentreSalle.x, posCentreSalle.y, 0);
         }
+        compteur = 0;
+        foreach(GameObject e in enemies)
+        {
+            e.GetComponent<Enemy>().map = this;
+        }
     }
-
+    public void GenerationEnnemi(int x, int y, int nAl, Vector3 pos)
+    {
+        int e = Random.Range(0, 10);
+        if(e==1 && compteur <= nAl && tiles[x,y]!=1)
+        {
+            GameObject es= (GameObject)Instantiate(prefEnemi, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
+            enemies.Add(es);
+            compteur += 1;
+        }
+    }
     public Vector3 TileCoordToWorldCoord(int x, int y){
         Vector3 posCentreSalle = new Vector3(0,0,0);
         if (pos!=null)
@@ -186,7 +207,7 @@ public class TileMap : MonoBehaviour
               
             unit.GetComponent<Unit>().target = this.target;
             unit.GetComponent<Unit>().currentPath = null;
-            foreach(Enemy enemy in enemies) {
+            foreach(GameObject enemy in enemies) {
                 enemy.GetComponent<Enemy>().currentPath = null;
             }
             
@@ -297,11 +318,11 @@ public class TileMap : MonoBehaviour
             
         }
 
-        foreach(Enemy enemy in enemies) {
+        foreach(GameObject enemy in enemies) {
 
-            
 
-            if (enemy.launchMove == false)
+
+            if (enemy.GetComponent<Enemy>().launchMove == false)
             {
                 Debug.Log(enemy + " path !");
                 //Création du chemin pour l'enemy
@@ -410,14 +431,31 @@ public class TileMap : MonoBehaviour
     /// 
     public void GenerationSalle(GameObject centreSalle)
     {
+        APlusEnnemi(centreSalle);
         this.pos = centreSalle;
         GenerateMapData();
         GeneratePathFfindingGraph();
         GenerateMapVisual();
         target.ChangeMap(this);
     }
+    ///Pour enlever les ennemies de la map mais on les garde en info dans la salle
+    public void APlusEnnemi(GameObject centreSalle)
+    {
+        GameObject[] ennemis = GameObject.FindGameObjectsWithTag("Enemy");
 
-
+        foreach(GameObject e in ennemis)
+        {
+            centreSalle.GetComponent<InfoCentreSalle>().ennemi.Add(e);
+            e.SetActive(false); 
+        }
+    }
+    public void ReEnnemi(GameObject centreSalle)
+    {
+        foreach(GameObject e in centreSalle.GetComponent<InfoCentreSalle>().ennemi)
+        {
+            e.SetActive(true);
+        }
+    }
     public Vector3 VerifyCenter(GameObject centreSalle)
     {
         Vector3 posCentreSalle = centreSalle.transform.position;

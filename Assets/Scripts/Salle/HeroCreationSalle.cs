@@ -33,6 +33,8 @@ public class HeroCreationSalle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
     }
 
     // Lorsque le collider entre en contact avec quelque chose
@@ -88,7 +90,7 @@ public class HeroCreationSalle : MonoBehaviour
         else if (otherObject.CompareTag("Porte"))
         {
             //Destroy(otherObject);
-            Destroy(this);
+            //Destroy(this);
             Debug.Log("nop porte");
         }
     }
@@ -96,7 +98,7 @@ public class HeroCreationSalle : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-      
+       
     }
 
     public void Tirage(GameObject ouverture)

@@ -302,6 +302,7 @@ MonoBehaviour:
   porte: {fileID: 8546700267724893797}
   salle: {fileID: 0}
   centres: []
+  posable: 0
 --- !u!61 &3037148841890326379
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -803,6 +803,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896ee13cc6703da4986282adfcd784f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefEnemi: {fileID: 2437962646427969611, guid: 356a665b38d3b4445aa4b154dc925205, type: 3}
+  prefEnemiMouv: {fileID: 7796537526814754796, guid: 8b7754d17dc3d3f48b736b2668ce8ea6, type: 3}
+  prefEnemiPath: {fileID: 7245150762599860603, guid: d26264d63f9a4364d932fe6d896a3346, type: 3}
   unit: {fileID: 8269061851478436541, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
   enemies: []
   tileTypes:
@@ -824,3 +827,8 @@ MonoBehaviour:
   paEnemy: 0
   i: 0
   j: 0
+  nom: 
+  pos: {fileID: 0}
+  eL:
+    serializedVersion: 2
+    m_Bits: 0

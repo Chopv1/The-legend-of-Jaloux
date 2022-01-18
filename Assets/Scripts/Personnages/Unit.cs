@@ -167,10 +167,11 @@ public class Unit : MonoBehaviour
             launchMove = true;
             boutonFouille.GetComponent<Button>().interactable = true;
 
+            
 
         }
 
-
+        
         //mettre la v�rification de la distance dans une fonction de au clic sur la case et non le bouton
         //permettre donc d'interdire cette fonction de clic sur une case lorsque launchMove est true
     }

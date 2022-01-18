@@ -64,10 +64,10 @@ MonoBehaviour:
   mouse: {fileID: 1788104452917420740, guid: 84046244d4346b4499427db4e5bcd25b, type: 3}
   tileX: 0
   tileY: 0
-  map: {fileID: 4056387242903622628, guid: 2ab3328369d99ea4e9ff71c229e41d09, type: 3}
+  map: {fileID: 0}
   player: {fileID: 8269061851478436541}
   movePoint: {fileID: 8269061851478436542}
-  target: {fileID: -795691446427562611, guid: 999988b1bc4bd4b4389e7f479e91725a, type: 3}
+  target: {fileID: 0}
   path: {fileID: 7696642342631556360, guid: 2d95bcca44c0e1542a142ff843f4bb13, type: 3}
   launchMove: 0
   points: 5

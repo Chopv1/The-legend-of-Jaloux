@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
         isSelected = false;
         fenetre = GameObject.Find("CarréStats");
         stats = GameObject.Find("Stats");
-        
+        path = GameObject.Find("pathPlayer");
 
         boutonAvancer = GameObject.Find("Button Avance");
     }
