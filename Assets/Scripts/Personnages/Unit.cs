@@ -169,7 +169,10 @@ public class Unit : MonoBehaviour
         } 
         compteurPA.GetComponent<Text>().text = "PA : " + map.pa.ToString();
     }
-
+    public float HPPercentage() 
+    {
+        return (currentPv);
+    }
 
     public void Move()
     {
@@ -325,7 +328,7 @@ public class Unit : MonoBehaviour
 
             boutonFouille.GetComponent<Button>().interactable = false;
             Random rand = new Random();
-            int number = rand.Next(11);
+            int number = rand.Next(12);
             switch (number)
             {
                 case 0:
@@ -366,6 +369,9 @@ public class Unit : MonoBehaviour
 
                 case 10:
                     listItems.Add(new Items("Jambière en or", "Jambières", 5));
+                    break;
+                case 11:
+                    listItems.Add(new Items("Grosse Potion", "Soin", 50));
                     break;
             }
             map.pa = map.pa - 1;

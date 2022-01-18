@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Level/Scenes/Deplacement2.unity
     guid: 594946e9b57c1134ebcdcf47c3495204
   - enabled: 0
-    path: Assets/Level/Attaque/Attaque.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Scene2.unity
-    guid: cd9b19d3686217f4a8deea0ecc4cbd81
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

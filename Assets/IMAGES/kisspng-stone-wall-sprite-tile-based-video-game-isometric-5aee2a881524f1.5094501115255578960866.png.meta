@@ -1,0 +1,1212 @@
+fileFormatVersion: 2
+guid: f416a91a248df824aacd27eca360d23e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2946414628005826434
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_0
+  - first:
+      213: -3813686233836391335
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_1
+  - first:
+      213: -6986962139005919141
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_2
+  - first:
+      213: -4451298319367485767
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_3
+  - first:
+      213: -1004116683830546080
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_4
+  - first:
+      213: -200486716069422016
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_5
+  - first:
+      213: -3738830834776807137
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_6
+  - first:
+      213: -8896092852291756464
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_7
+  - first:
+      213: 8512081997419074079
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_8
+  - first:
+      213: -7678235463263910976
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_9
+  - first:
+      213: -5307645642925939773
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_10
+  - first:
+      213: 5944297417604870111
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_11
+  - first:
+      213: -3557592932920748173
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_12
+  - first:
+      213: 4303214016081258466
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_13
+  - first:
+      213: 1112545925015163616
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_14
+  - first:
+      213: -6776232358383925586
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_15
+  - first:
+      213: 6663015692189808625
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_16
+  - first:
+      213: -3352961256894874000
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_17
+  - first:
+      213: 7580580729791391259
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_18
+  - first:
+      213: -7580770087882336517
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_19
+  - first:
+      213: -970191378027990223
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_20
+  - first:
+      213: -1822369613532436826
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_21
+  - first:
+      213: -5105990510099645602
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_22
+  - first:
+      213: -4489542250629413135
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_23
+  - first:
+      213: 7440672361288903767
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_24
+  - first:
+      213: -6828857034149349269
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_25
+  - first:
+      213: 1169823918302321315
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_26
+  - first:
+      213: -4134574144482359289
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_27
+  - first:
+      213: -7929006618065707745
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_28
+  - first:
+      213: -2245374328078263073
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_29
+  - first:
+      213: -6518712403322730373
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_30
+  - first:
+      213: -8699979375445792129
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_31
+  - first:
+      213: -6849371637406647846
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_32
+  - first:
+      213: -476679095246382130
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_33
+  - first:
+      213: -346458161369259981
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_34
+  - first:
+      213: 4137919408511356759
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_35
+  - first:
+      213: 244418472281339844
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_36
+  - first:
+      213: -7353148547811989792
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_37
+  - first:
+      213: -3603608826681557892
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_38
+  - first:
+      213: -7013325833045912090
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_39
+  - first:
+      213: -6775387659873874481
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_40
+  - first:
+      213: -9113656663068052794
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_41
+  - first:
+      213: 4816616936519084360
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_42
+  - first:
+      213: -773432084187918676
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_43
+  - first:
+      213: -4961614467413922766
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_44
+  - first:
+      213: 3371957725243178626
+    second: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_45
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 1
+  spritePivot: {x: 0, y: 1}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 96, y: 480, z: 384, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 506
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e70b2b0b18b3c17d0800000000000000
+      internalID: -2946414628005826434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_1
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 506
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 954726b7390131bc0800000000000000
+      internalID: -3813686233836391335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b50e27df3f2590f90800000000000000
+      internalID: -6986962139005919141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_3
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 506
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b6cec433cfc932c0800000000000000
+      internalID: -4451298319367485767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_4
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 506
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 061bc333239a012f0800000000000000
+      internalID: -1004116683830546080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_5
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04c5f7ad46ab73df0800000000000000
+      internalID: -200486716069422016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_6
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 506
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f19e9d93a210d1cc0800000000000000
+      internalID: -3738830834776807137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_7
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 506
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05e12423faaba8480800000000000000
+      internalID: -8896092852291756464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_8
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 480
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f12592b4a7df02670800000000000000
+      internalID: 8512081997419074079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_9
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 506
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c30956f68d617590800000000000000
+      internalID: -7678235463263910976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_10
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 506
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c3efbba8647756b0800000000000000
+      internalID: -5307645642925939773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_11
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 480
+        width: 192
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdf2c9fc1036e7250800000000000000
+      internalID: 5944297417604870111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_12
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 500
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37791d19314e0aec0800000000000000
+      internalID: -3557592932920748173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_13
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 500
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e76105295618bb30800000000000000
+      internalID: 4303214016081258466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_14
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 500
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e256d0df9e807f00800000000000000
+      internalID: 1112545925015163616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_15
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 500
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea6c403729cf5f1a0800000000000000
+      internalID: -6776232358383925586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_16
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 500
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f7b3d94879c77c50800000000000000
+      internalID: 6663015692189808625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_17
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 500
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07e32296083e771d0800000000000000
+      internalID: -3352961256894874000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_18
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 500
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1623669202a33960800000000000000
+      internalID: 7580580729791391259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_19
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 500
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf6dddb05c1bbc690800000000000000
+      internalID: -7580770087882336517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_20
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 494
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 133be7cf4103982f0800000000000000
+      internalID: -970191378027990223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_21
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 494
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a6eee7ed74a5b6e0800000000000000
+      internalID: -1822369613532436826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_22
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 494
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5bbefa0fa0e329b0800000000000000
+      internalID: -5105990510099645602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_23
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 494
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f640231c11f1b1c0800000000000000
+      internalID: -4489542250629413135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_24
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 494
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75c21b81714924760800000000000000
+      internalID: 7440672361288903767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_25
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 494
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b68b99155b60b31a0800000000000000
+      internalID: -6828857034149349269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_26
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 494
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa5a2cd7ac0c3010800000000000000
+      internalID: 1169823918302321315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_27
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 488
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7084d94b8ba0f96c0800000000000000
+      internalID: -4134574144482359289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_28
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 488
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1dd8749d7286f190800000000000000
+      internalID: -7929006618065707745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_29
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 488
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdc1d13f1f3d6d0e0800000000000000
+      internalID: -2245374328078263073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_30
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 488
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7804075b91e885a0800000000000000
+      internalID: -6518712403322730373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_31
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 488
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7a245d3ad6734780800000000000000
+      internalID: -8699979375445792129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_32
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 488
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad9bdb909c422f0a0800000000000000
+      internalID: -6849371637406647846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_33
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 488
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb1cff63ee7269f0800000000000000
+      internalID: -476679095246382130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_34
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 488
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 330ec0a4322213bf0800000000000000
+      internalID: -346458161369259981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_35
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 482
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75f838547c7dc6930800000000000000
+      internalID: 4137919408511356759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_36
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 482
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c77fd83e49546300800000000000000
+      internalID: 244418472281339844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_37
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 482
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e6acfaba5e54f990800000000000000
+      internalID: -7353148547811989792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_38
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 482
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7cfe286dd86dfdc0800000000000000
+      internalID: -3603608826681557892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_39
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 482
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e55a332059abae90800000000000000
+      internalID: -7013325833045912090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_40
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 482
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd07a522dcf8f1a0800000000000000
+      internalID: -6775387659873874481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_41
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 482
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c2f4f81d89c58180800000000000000
+      internalID: -9113656663068052794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_42
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 482
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 849a950959f08d240800000000000000
+      internalID: 4816616936519084360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_43
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caec6140e973445f0800000000000000
+      internalID: -773432084187918676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 384
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23caa5dfdedc42bb0800000000000000
+      internalID: -4961614467413922766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-stone-wall-sprite-tile-based-video-game-isometric-5aee2a881524f1.5094501115255578960866_45
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 64
+        width: 32
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28ef0ca8fa99bce20800000000000000
+      internalID: 3371957725243178626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

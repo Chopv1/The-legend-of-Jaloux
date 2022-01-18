@@ -149,6 +149,8 @@ public class Enemy : MonoBehaviour
             this.currentPv = 0;
             this.gameObject.SetActive(false);
             ChangeHexagoneColorToWhite(this.gameObject);
+            GameObject BarGuerrier = GameObject.Find("Bar Guerrier");
+            BarGuerrier.GetComponent<Experience>().MonstreTue(8);
         }
     }
     public void IsAttacked(int damage)
@@ -160,6 +162,7 @@ public class Enemy : MonoBehaviour
             IsDead();
             ChangeHexagoneColorToWhite(this.gameObject);
             isSelected = false;
+
         }
 
     }
