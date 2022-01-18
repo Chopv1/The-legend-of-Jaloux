@@ -325,7 +325,7 @@ public class InfoCentreSalle : MonoBehaviour
                 //Debug.Log("Dans Info Centre Salle Tirage  TesTSalles  nbre ouverture :" + testNbreOuverture);
                 if ( testNbreOuverture < 2)
                 {
-                    Debug.Log("Dans Info Centre Salle Tirage  TesTSalles  nbre ouverture :" + testNbreOuverture);
+                    Debug.Log("Dans Info Centre Salle Tirage  TesTSalles  nbre ouverture :" + testNbreOuverture + type[rotation]);
                     type[rotation].transform.GetChild(1).gameObject.GetComponent<MainCentre>().changerTagTest();
                     type[rotation].GetComponent<GeneratorCarte>().changerLayerTest();
                     GameObject carte = Instantiate(type[rotation], transform.position, type[rotation].transform.rotation);

@@ -4584,7 +4584,7 @@ RectTransform:
   - {fileID: 1347981416}
   - {fileID: 1684202261}
   m_Father: {fileID: 647600087}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4746,9 +4746,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1651938540}
-  m_Father: {fileID: 1466788340}
+  m_Children: []
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -9691,7 +9690,7 @@ RectTransform:
   m_Children:
   - {fileID: 483105525}
   m_Father: {fileID: 647600087}
-  m_RootOrder: 2
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10076,7 +10075,7 @@ Transform:
   - {fileID: 464624099}
   - {fileID: 814125018}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -10092,6 +10091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 1444036744}
   SonBouton: {fileID: 2077599964}
+  MainCamera: {fileID: 519420028}
 --- !u!213 &519755977
 Sprite:
   m_ObjectHideFlags: 0
@@ -12176,11 +12176,12 @@ RectTransform:
   m_Children:
   - {fileID: 1048229214}
   - {fileID: 377416825}
-  - {fileID: 491585849}
+  - {fileID: 1101359032}
   - {fileID: 1909372553}
   - {fileID: 17002470}
   - {fileID: 255949018}
   - {fileID: 97948849}
+  - {fileID: 491585849}
   - {fileID: 218349534}
   - {fileID: 1107876488}
   - {fileID: 425715153}
@@ -14786,7 +14787,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 519420032}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &814125019
 MonoBehaviour:
@@ -14801,6 +14802,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1444036744}
+  SonBouton: {fileID: 0}
+  MainCamera: {fileID: 0}
 --- !u!114 &814125020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18647,7 +18650,7 @@ RectTransform:
   m_Children:
   - {fileID: 1109933384}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -20213,7 +20216,7 @@ RectTransform:
   m_Children:
   - {fileID: 1795590593}
   m_Father: {fileID: 647600087}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -21879,7 +21882,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!213 &1240626500
 Sprite:
@@ -23135,7 +23138,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1296263484
 GameObject:
@@ -31967,7 +31970,7 @@ Transform:
   - {fileID: 940828701}
   - {fileID: 95256538}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1904401181
 MonoBehaviour:
@@ -36907,7 +36910,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 519420033}
-      objectReference: {fileID: 1831104092}
     - target: {fileID: 676045014744325787, guid: a791fc583ece9d04795a68470c78eb68, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -36915,12 +36917,10 @@ PrefabInstance:
     - target: {fileID: 676045014744325787, guid: a791fc583ece9d04795a68470c78eb68, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: PlaySonBouton
-      value: enregistrementSignature
       objectReference: {fileID: 0}
     - target: {fileID: 676045014744325787, guid: a791fc583ece9d04795a68470c78eb68, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: GestionCamera, Assembly-CSharp
-      value: SalleTemplate, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 676045014744325787, guid: a791fc583ece9d04795a68470c78eb68, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -38416,7 +38416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4056387242903622629, guid: 2ab3328369d99ea4e9ff71c229e41d09, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4056387242903622629, guid: 2ab3328369d99ea4e9ff71c229e41d09, type: 3}
       propertyPath: m_LocalPosition.x
@@ -38606,7 +38606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8269061851478436542, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8269061851478436542, guid: 9d35f960ad6efe143a22bc40c9a5990b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -38715,7 +38715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8816663246885761145, guid: 614d6360c37e64542a0b2818c5101300, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8816663246885761145, guid: 614d6360c37e64542a0b2818c5101300, type: 3}
       propertyPath: m_LocalPosition.x
