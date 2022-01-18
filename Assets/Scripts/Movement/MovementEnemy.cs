@@ -5,22 +5,27 @@ using UnityEngine;
 public class MovementEnemy : MonoBehaviour
 {
 
-    public float moveSpeed = 5f;
+    public float moveSpeed;
     public Transform movePoint;
-    public Enemy unit;
+    public GameObject unit;
     public float moveDelay = 0f;
     public float nextMove;
     void Start()
     {
         movePoint.position = transform.position;
+        moveSpeed = 0.32f;
     }
 
 
 
     void Update()
     {
+        if(unit.GetComponent<Enemy>().Dead)
+        {
+            Destroy(this.gameObject);
+        }
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime * 30);
-        if (Vector3.Distance(transform.position, movePoint.position) == 0 && unit.currentPath != null){
+        if (Vector3.Distance(transform.position, movePoint.position) == 0 && unit.GetComponent<Enemy>().currentPath != null){
         }
         /*if (Vector3.Distance(transform.position, movePoint.position) == 0){
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f && Time.time > nextMove){

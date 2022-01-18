@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public int MaxPv = 100;
 
 
-
+    private bool isDead;
     public int currentPv;
     private int attack = 20;
     private int defense = 10;
@@ -50,12 +50,14 @@ public class Enemy : MonoBehaviour
     public int Defense { get => defense; set => defense = value; }
     public float Reach { get => reach; set => reach = value; }
     public bool IsSelected { get => isSelected; set => isSelected = value; }
+    public bool Dead { get => isDead; set => isDead = value; }
 
 
     // Start is called before the first frame update
 
     void Start()
     {
+        isDead = false;
         canAttack = false;
         nbAttack = 0;
         this.currentPv = MaxPv;
@@ -66,12 +68,13 @@ public class Enemy : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    // Update ennemi
     public void Update()
     {
         if(currentPath != null && currentPath.Count > 1 && Vector3.Distance(ennemy.transform.position, movePoint.position) == 0 && launchMove == true && pa > 0){
             
             currentPath.RemoveAt(0);
+            Vector2 pos = transform.position;
             transform.position = map.TileCoordToWorldCoord(currentPath[0].x, currentPath[0].y);
             tileX = currentPath[0].x;
             tileY = currentPath[0].y;
@@ -95,6 +98,7 @@ public class Enemy : MonoBehaviour
         }
         else if(currentPath != null && currentPath.Count== 1 && nbAttack<1)
         {
+            ///Attaque de l'ennemi
             CanAttack();
             nbAttack = 1;
         }
@@ -149,9 +153,11 @@ public class Enemy : MonoBehaviour
     {
         if (currentPv <= 0)
         {
+            isDead = true;
             this.currentPv = 0;
-            Destroy(this);
+            Destroy(this.gameObject);
             ChangeHexagoneColorToWhite(this.gameObject);
+            map.GetComponent<TileMap>().EnemyMort(this.gameObject);
         }
     }
     public void IsAttacked(int damage)
@@ -163,6 +169,7 @@ public class Enemy : MonoBehaviour
             IsDead();
             ChangeHexagoneColorToWhite(this.gameObject);
             isSelected = false;
+
         }
 
     }

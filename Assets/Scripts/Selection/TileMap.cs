@@ -62,6 +62,13 @@ public class TileMap : MonoBehaviour
         this.unit.transform.position=unit.transform.position;
     }
 
+    public void EnemyMort(GameObject e)
+    {
+        if(enemies.Contains(e))
+        {
+            enemies.Remove(e);
+        }
+    }
     void GenerateMapData(){
         tiles = new int[mapSizeX, mapSizeY];
 
@@ -183,9 +190,14 @@ public class TileMap : MonoBehaviour
         int e = Random.Range(0, 10);
         if(e==1 && compteur <= nAl && tiles[x,y]!=1 && x!=5 && y!=5)
         {
+            GameObject moov= (GameObject)Instantiate(prefEnemiMouv, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
             GameObject es= (GameObject)Instantiate(prefEnemi, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
+            es.GetComponent<Enemy>().tileX = x;
+            es.GetComponent<Enemy>().tileY = y;
             Instantiate(prefEnemiPath, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
-            Instantiate(prefEnemiMouv, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
+            moov.GetComponent<MovementEnemy>().unit = es;
+            moov.GetComponent<MovementEnemy>().movePoint = es.transform.GetChild(1).transform;
+            moov.GetComponent<MovementEnemy>().moveSpeed = 0.32f;
             enemies.Add(es);
             compteur += 1;
         }
@@ -485,6 +497,7 @@ public class TileMap : MonoBehaviour
         foreach(GameObject e in ennemis)
         {
             centreSalle.GetComponent<InfoCentreSalle>().ennemi.Add(e);
+            enemies.Remove(e);
             Destroy(e); 
         }
         foreach(GameObject p in path)
