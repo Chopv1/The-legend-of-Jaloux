@@ -36036,6 +36036,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5938052004024664697, guid: 362c0c263e083494aa20b453d9d27084, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: boutonStop
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938052004024664697, guid: 362c0c263e083494aa20b453d9d27084, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: 
       objectReference: {fileID: 0}
@@ -36050,6 +36054,12 @@ PrefabInstance:
     - target: {fileID: 5938052004024664699, guid: 362c0c263e083494aa20b453d9d27084, type: 3}
       propertyPath: m_Name
       value: Ne rien faire
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938052004084698116, guid: 362c0c263e083494aa20b453d9d27084, type: 3}
+      propertyPath: m_Text
+      value: 'Stopper l''action
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 362c0c263e083494aa20b453d9d27084, type: 3}

@@ -112,10 +112,19 @@ public class MouseManager : MonoBehaviour
 
         }
     }
-
+    public void boutonStop(){
+        ennemi2Animator.SetBool("isAttacked", false);
+        ennemi1Animator.SetBool("isAttacked", false);
+        herosAnimator.SetBool("isCircleAttacking", false);
+        herosAnimator.SetBool("isDigging", false);
+        herosAnimator.SetBool("isMoving", false);
+        herosAnimator.SetBool("isRightAttacking", false);
+        ClearSelection();
+    }
     public void ClearSelection()
     {
-        
+
+
         if (selectedObject1 != null) //Pour éviter les bugs
         {
             //Verif pour déselectionner dans le bon script
@@ -199,29 +208,45 @@ public class MouseManager : MonoBehaviour
         {
             selectedObject2.GetComponent<Enemy>().IsAttacked(selectedObject1.GetComponent<Unit>().Attack);
             bAttaque.GetComponent<Button>().interactable = false;
+
+            ennemi2Animator.SetBool("isAttacked", false);
+            ennemi1Animator.SetBool("isAttacked", false);
+            herosAnimator.SetBool("isCircleAttacking", false);
+            herosAnimator.SetBool("isDigging", false);
+            herosAnimator.SetBool("isMoving", false);
+
             
+                        if (selectedObject1.transform.position.x > selectedObject2.transform.position.x)
+                        {
+                            herosAnimator.SetBool("isRightAttacking", true);
 
+                        } else if (selectedObject1.transform.position.x < selectedObject2.transform.position.x)
+                        {
+                            herosAnimator.SetBool("isDigging", true);
+                        } else if (selectedObject1.transform.position.y < selectedObject2.transform.position.y)
+                        {
+                            herosAnimator.SetBool("isMoving", true);
+                        } else
+                        {
+                            herosAnimator.SetBool("isCircleAttacking", true);
+                        }
+
+                        
             // MovementEnnemy
-            if (selectedObject2.name == "Enemy")
-            {
-                herosAnimator.SetBool("isCircleAttacking", false);
-                ennemi2Animator.SetBool("isAttacked", false);
-                herosAnimator.SetBool("isDigging", false);
-                herosAnimator.SetBool("isMoving", false);
-                herosAnimator.SetBool("isRightAttacking", true);
-                ennemi1Animator.SetBool("isAttacked", true);
-            }
-            else if (selectedObject2.name == "Enemy2")
-            {
-                herosAnimator.SetBool("isCircleAttacking", false);
-                ennemi1Animator.SetBool("isAttacked", false);
-                herosAnimator.SetBool("isDigging", false);
-                herosAnimator.SetBool("isMoving", false);
-                herosAnimator.SetBool("isRightAttacking", true);
-                ennemi2Animator.SetBool("isAttacked", true);
-            }
+            /* if (selectedObject2.name == "Enemy")
+             {
 
-                
+
+                 ennemi1Animator.SetBool("isAttacked", true);
+
+             }
+             else if (selectedObject2.name == "Enemy2")
+             {
+
+                 ennemi2Animator.SetBool("isAttacked", true);
+             }*/
+
+
             ClearSelection();
             
 
