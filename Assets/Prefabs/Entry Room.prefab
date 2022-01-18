@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 61273959071891808}
   - component: {fileID: 50475196529406120}
   - component: {fileID: 3273276671494698469}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
   m_Icon: {fileID: -6431860639581277017, guid: 0000000000000000d000000000000000, type: 0}
@@ -117,6 +117,7 @@ MonoBehaviour:
   porte: {fileID: 3376237757151171525}
   salle: {fileID: 0}
   centres: []
+  posable: 0
 --- !u!1 &1028094079595516
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +131,7 @@ GameObject:
   - component: {fileID: 61342237357115354}
   - component: {fileID: 50627981948616380}
   - component: {fileID: 8474629391859811228}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Point (2)
   m_TagString: SpawnPoint
   m_Icon: {fileID: -6431860639581277017, guid: 0000000000000000d000000000000000, type: 0}
@@ -234,6 +235,7 @@ MonoBehaviour:
   porte: {fileID: 7330591561908626000}
   salle: {fileID: 0}
   centres: []
+  posable: 0
 --- !u!1 &1117737662058602
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4973329738320384}
   - component: {fileID: 212619269006288490}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4068956518624390}
   - component: {fileID: 212427354182472954}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +412,7 @@ GameObject:
   - component: {fileID: 61153349465182346}
   - component: {fileID: 50110469007180854}
   - component: {fileID: 6152893908330805077}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Point
   m_TagString: SpawnPoint
   m_Icon: {fileID: -6431860639581277017, guid: 0000000000000000d000000000000000, type: 0}
@@ -499,6 +501,7 @@ MonoBehaviour:
   porte: {fileID: 1500319992955764433}
   salle: {fileID: 0}
   centres: []
+  posable: 0
 --- !u!1 &1384366362914734
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +513,7 @@ GameObject:
   - component: {fileID: 4284646200961232}
   - component: {fileID: 114329229263871776}
   - component: {fileID: 3663100102492094399}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Entry Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4150542390612824}
   - component: {fileID: 7698669931750272857}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4815193058831324}
   - component: {fileID: 212540645456655830}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -710,7 +713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4668527206642796}
   - component: {fileID: 212349316071198012}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,7 +795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4569151259376298}
   - component: {fileID: 212962199166113216}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -874,7 +877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4834138704624416}
   - component: {fileID: 212766530941676766}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -956,7 +959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4547730726390868}
   - component: {fileID: 212042553182695800}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1037,7 +1040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4157197769124990}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1082,7 @@ GameObject:
   - component: {fileID: 61527779136517890}
   - component: {fileID: 50128803501875684}
   - component: {fileID: 5660441662802486746}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Point (3)
   m_TagString: SpawnPoint
   m_Icon: {fileID: -6431860639581277017, guid: 0000000000000000d000000000000000, type: 0}
@@ -1183,6 +1186,7 @@ MonoBehaviour:
   porte: {fileID: 4683829108573587827}
   salle: {fileID: 0}
   centres: []
+  posable: 0
 --- !u!1 &1955702126142840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,7 +1197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4859703854177472}
   - component: {fileID: 212609120820056388}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1278,7 +1282,7 @@ GameObject:
   - component: {fileID: 2968279517498156842}
   - component: {fileID: 6034579136230562601}
   - component: {fileID: 6521692564980300376}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Porte (2)
   m_TagString: Porte
   m_Icon: {fileID: 0}
@@ -1425,7 +1429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5213226581556024697}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Portes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1463,7 +1467,7 @@ GameObject:
   - component: {fileID: 4634080328397003734}
   - component: {fileID: 4443056034236185594}
   - component: {fileID: 126672833306183552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Porte (3)
   m_TagString: Porte
   m_Icon: {fileID: 0}
@@ -1596,6 +1600,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 2
   porte: {fileID: 1016950340045986}
+  hero: {fileID: 0}
+  salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
   waitTime: 4
@@ -1612,7 +1618,7 @@ GameObject:
   - component: {fileID: 3609244457187395331}
   - component: {fileID: 1778015592299825968}
   - component: {fileID: 5644925333431980216}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Porte (1)
   m_TagString: Porte
   m_Icon: {fileID: 0}
@@ -1745,6 +1751,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 3
   porte: {fileID: 1815727306996752}
+  hero: {fileID: 0}
+  salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
   waitTime: 4
@@ -1761,7 +1769,7 @@ GameObject:
   - component: {fileID: 5785261780136189349}
   - component: {fileID: 5480133768281858862}
   - component: {fileID: 1136428124678018931}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Porte
   m_TagString: Porte
   m_Icon: {fileID: 0}
@@ -1894,6 +1902,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ouverture: 1
   porte: {fileID: 1028094079595516}
+  hero: {fileID: 0}
+  salles: []
   construction: 0
   forceSaut: {x: 0, y: 500}
   waitTime: 4

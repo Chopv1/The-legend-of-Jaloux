@@ -19,6 +19,7 @@ public class ShopPanel : MonoBehaviour
     public GameObject centre;
     public GameObject porte;
     bool posable = false;
+    public GameObject mainCamera;
 
     public GameObject generationMap;
     private void Start()
@@ -27,6 +28,7 @@ public class ShopPanel : MonoBehaviour
         descriptionTxt.text = salle.description;
         pointActionTxt.text = salle.pointAction.ToString();
         templates = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         changer = false;
 
     }
@@ -95,7 +97,8 @@ public class ShopPanel : MonoBehaviour
 
             centre.GetComponent<VericationConstruction>();
             carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GestionCamera>().changerMap();
+            mainCamera.GetComponent<GestionCamera>().changerSalle(centre);
+            mainCamera.GetComponent<GestionCamera>().changerMap();
             generationMap.GetComponent<TileMap>().GenerationSalle(centre);
             generationMap.GetComponent<TileMap>().TPhero(carte, porte.GetComponent<HeroCreationSalle>().getOuverture());
             generationMap.GetComponent<TileMap>().nom = carte.GetComponent<GeneratorCarte>().title;

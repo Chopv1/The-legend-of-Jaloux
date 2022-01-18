@@ -175,7 +175,7 @@ public class InfoCentreSalle : MonoBehaviour
                     sommesPortes[indice] = (portes[indice] + otherObject.GetComponent<InfoCentreSalle>().GetPorte(indice)) % 2;
                 }
                 int nouveauNbreOuverture = verificationNombreOuverture(sommesPortes);
-                if (!(nouveauNbreOuverture == 0 || verificationAvecSalle(sommesPortes, otherObject.GetComponent<InfoCentreSalle>().salle.GetComponent<GeneratorCarte>().signature) == true))
+                if (!(nouveauNbreOuverture == 0 ||(otherObject.GetComponent<InfoCentreSalle>().salle != null && verificationAvecSalle(sommesPortes, otherObject.GetComponent<InfoCentreSalle>().salle.GetComponent<GeneratorCarte>().signature) == true)))
                 {
                     posable = false;
                     templates.supprimmersalle(transform.parent.parent.gameObject.GetComponent<GeneratorCarte>().title);
@@ -321,6 +321,7 @@ public class InfoCentreSalle : MonoBehaviour
                 {
                     Debug.Log("Dans Info Centre Salle Tirage  TesTSalles  nbre ouverture :" + testNbreOuverture);
                     type[rotation].transform.GetChild(1).gameObject.GetComponent<MainCentre>().changerTagTest();
+                    type[rotation].GetComponent<GeneratorCarte>().changerLayerTest();
                     GameObject carte = Instantiate(type[rotation], transform.position, type[rotation].transform.rotation);
                     
                
@@ -335,9 +336,9 @@ public class InfoCentreSalle : MonoBehaviour
                   
 
                    type[rotation].transform.GetChild(1).gameObject.GetComponent<MainCentre>().changerTagSpwan();
-                   
-                        
-                    
+                    type[rotation].GetComponent<GeneratorCarte>().changerLayerSalle();
+
+
                 }
                
 

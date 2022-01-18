@@ -183,6 +183,13 @@ public class GeneratorCarte : MonoBehaviour
         //Destroy(PorteDestructon);
     }
 
- 
+    public void changerLayerTest()
+    {
+        transform.gameObject.layer = 10;
+    }
+    public void changerLayerSalle()
+    {
+        transform.gameObject.layer = 9;
+    }
 
 }

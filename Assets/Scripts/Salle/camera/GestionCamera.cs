@@ -6,6 +6,7 @@ public class GestionCamera : MonoBehaviour
 
 {
     public GameObject panel;
+    public GameObject MainCamera;
   
     /*
     
@@ -48,6 +49,10 @@ public class GestionCamera : MonoBehaviour
         panel.SetActive(false);
     }
 
+    public void changerSalle(GameObject centre)
+    {
+        MainCamera.transform.position = new Vector3(centre.transform.position.x,centre.transform.position.y,-1) ;
+    }
 
     /*
     public void changerCameraCarte()
