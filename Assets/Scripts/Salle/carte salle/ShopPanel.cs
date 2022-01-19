@@ -81,7 +81,31 @@ public class ShopPanel : MonoBehaviour
         {
           //  button.SetActive(true);
             Debug.Log(" 33333333333333   C'est bon ! ");
-            GameObject carte = Instantiate(salleObject, centre.transform.position, salleObject.transform.rotation);
+
+            Vector3 positionC = new Vector3(0,0,0);
+            switch (porte.GetComponent<HeroCreationSalle>().ouverture)
+            { // [ H,D,B,G]
+                case 1:
+                    // demande ouverture pour haut donc ouverture par le bas  
+                    positionC = new Vector3(centre.transform.position.x, centre.transform.position.y, 0);
+                    break;
+                case 2:
+                    // demande ouverture par la gauche donc ouverture par la droite
+                    positionC = new Vector3(centre.transform.position.x, centre.transform.position.y, 0);
+                    break;
+                case 3:
+                    // demande ouverture pour bas donc ouverture par le haut
+                    positionC = new Vector3(centre.transform.position.x, centre.transform.position.y, 0);
+                    break;
+                case 4:
+                    // demade ouverture par la droite donc ouverture par la gauche
+                    positionC = new Vector3(centre.transform.position.x, centre.transform.position.y, 0);
+                    break;
+                default:
+                    break;
+
+            }
+            GameObject carte = Instantiate(salleObject, positionC, salleObject.transform.rotation);
             centre.GetComponent<InfoCentreSalle>().setSalleCentre( carte);
             centre.GetComponent<InfoCentreSalle>().MiseAjourCentre();
             if (templates.getListeSallesBonnes().Count == 1)
@@ -97,7 +121,7 @@ public class ShopPanel : MonoBehaviour
 
             centre.GetComponent<VericationConstruction>();
             carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
-            mainCamera.GetComponent<GestionCamera>().changerSalle(centre);
+            mainCamera.GetComponent<GestionCamera>().changerSalle(centre, porte);
             mainCamera.GetComponent<GestionCamera>().changerMap();
             generationMap.GetComponent<TileMap>().GenerationSalle(centre);
             generationMap.GetComponent<TileMap>().TPhero(carte, porte.GetComponent<HeroCreationSalle>().getOuverture());
