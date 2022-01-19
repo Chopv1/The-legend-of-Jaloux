@@ -186,7 +186,7 @@ public class GeneratorCarte : MonoBehaviour
 
     public void changerLayerTest()
     {
-        transform.gameObject.layer = 0;
+        transform.gameObject.layer = 10;
     }
     public void changerLayerSalle()
     {

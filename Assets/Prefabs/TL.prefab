@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 50130777966903390}
   - component: {fileID: 114472104872769478}
   - component: {fileID: 8879519415202712025}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
   m_Icon: {fileID: -6431860639581277017, guid: 0000000000000000d000000000000000, type: 0}
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4191811487315630}
   - component: {fileID: 212640998254990780}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4307588025552342}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 114539452026000472}
   - component: {fileID: 4972125972476398372}
   - component: {fileID: 6893809310589464535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Point (2)
   m_TagString: SpawnPoint
   m_Icon: {fileID: -6431860639581277017, guid: 0000000000000000d000000000000000, type: 0}
@@ -364,7 +364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4744056735470498}
   - component: {fileID: 212672127677182756}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,7 +446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4483393414773856}
   - component: {fileID: 212347024131071810}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4214918007393922}
   - component: {fileID: 212393252524384370}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4422253766466760}
   - component: {fileID: 212492526732325190}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4792919933614946}
   - component: {fileID: 7390520848590588596}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 4628452289055200}
   - component: {fileID: 114296676862298420}
   - component: {fileID: 3373125170427881690}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +809,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4089741705516726}
   - component: {fileID: 212461827915940146}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 5141617440127997699}
   - component: {fileID: 7017519446836633774}
   - component: {fileID: 4274198068831860825}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Porte (1)
   m_TagString: Porte
   m_Icon: {fileID: 0}
@@ -1041,7 +1041,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2899783545113728414}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Portes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1077,7 +1077,7 @@ GameObject:
   - component: {fileID: 783232168451981114}
   - component: {fileID: 3063286060562328995}
   - component: {fileID: 6004893781958167211}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Porte (3)
   m_TagString: Porte
   m_Icon: {fileID: 0}

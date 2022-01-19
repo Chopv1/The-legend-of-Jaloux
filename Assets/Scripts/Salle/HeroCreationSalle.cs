@@ -279,9 +279,9 @@ public class HeroCreationSalle : MonoBehaviour
             // creation de la carte 
 
             GameObject.FindGameObjectWithTag("Carte" + (indice + 1)).GetComponent<ShopPanel>().ChangerCarte(tabSalles[type][rotation].GetComponent<GeneratorCarte>(), tabSalles[type][rotation], ouverture, salleRotation, rotation, this.gameObject);
-            
 
-           salles.Add(tabSalles[type][rotation] );
+
+            salles.Add(tabSalles[type][rotation] );
             templates.setListeSallesBonnes(salles);
 
 
