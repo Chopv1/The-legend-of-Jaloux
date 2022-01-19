@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4838ee9b6849042b5c0bf572b13ce6, type: 3}
   m_Name: carte3
   m_EditorClassIdentifier: 
-  title: carte 3
-  description: fuck si je te vois !
+  title: Retourner
+  description: ' '
   pointAction: 0
   salle: {fileID: 0}
