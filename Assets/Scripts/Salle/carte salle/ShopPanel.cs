@@ -121,7 +121,13 @@ public class ShopPanel : MonoBehaviour
 
             centre.GetComponent<VericationConstruction>();
             carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
+<<<<<<< HEAD
             mainCamera.GetComponent<GestionCamera>().changerSalle(centre, porte);
+=======
+            carte.GetComponent<GeneratorCarte>().changerLayerSalle()
+                ;
+            mainCamera.GetComponent<GestionCamera>().changerSalle(centre);
+>>>>>>> SalleEtJeu
             mainCamera.GetComponent<GestionCamera>().changerMap();
             generationMap.GetComponent<TileMap>().GenerationSalle(centre);
             generationMap.GetComponent<TileMap>().TPhero(carte, porte.GetComponent<HeroCreationSalle>().getOuverture());
