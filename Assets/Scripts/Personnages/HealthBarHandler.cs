@@ -16,7 +16,6 @@ public class HealthBarHandler : MonoBehaviour
         GameObject Unit = GameObject.Find("Unit");
 
         Debug.Log(Unit.GetComponent<Unit>().HPPercentage());
-        Debug.Log("bite");
         SetHealthBarValue(Unit.GetComponent<Unit>().HPPercentage());
     }
     public static void SetHealthBarValue(float value)
