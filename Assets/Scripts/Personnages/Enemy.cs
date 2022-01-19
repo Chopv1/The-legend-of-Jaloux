@@ -157,6 +157,8 @@ public class Enemy : MonoBehaviour
             this.currentPv = 0;
             Destroy(this.gameObject);
             ChangeHexagoneColorToWhite(this.gameObject);
+            GameObject BarGuerrier = GameObject.Find("Bar Guerrier");
+            BarGuerrier.GetComponent<Experience>().MonstreTue(8);
             map.GetComponent<TileMap>().EnemyMort(this.gameObject);
         }
     }
