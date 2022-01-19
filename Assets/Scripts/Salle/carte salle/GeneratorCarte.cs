@@ -12,6 +12,7 @@ public class GeneratorCarte : MonoBehaviour
     public string title;
     public string description;
     public int pointAction;
+    
 
     // public GameObject gameObject;
 
@@ -178,6 +179,9 @@ public class GeneratorCarte : MonoBehaviour
         }
         PorteDestructon.GetComponent<BoxCollider2D>().enabled = false;
 
+        PorteDestructon.GetComponent<HeroCreationSalle>().construction = true;
+
+
         // PorteDestructon.GetComponent<HeroCreationSalle>().porte.GetComponent<BoxCollider2D>().enabled = false;
 
         return PorteDestructon.GetComponent<HeroCreationSalle>().porte;
@@ -186,11 +190,47 @@ public class GeneratorCarte : MonoBehaviour
 
     public void changerLayerTest()
     {
-        transform.gameObject.layer = 10;
+        transform.gameObject.layer = 0;
     }
     public void changerLayerSalle()
     {
         transform.gameObject.layer = 9;
     }
 
+
+    public GameObject getSalle(GameObject porte)
+    {
+        int ouverture = porte.GetComponent<HeroCreationSalle>().getOuverture();
+        GameObject porteBonne =null;
+        switch (ouverture)
+        { // 
+            case 1:
+                ouverture = 3;// demande ouverture pour haut donc ouverture par le bas  
+                break;
+            case 2:
+                ouverture = 4; // demande ouverture par la gauche donc ouverture par la droite
+                break;
+            case 3:
+                ouverture = 1; // demande ouverture pour bas donc ouverture par le haut
+                break;
+            case 4:
+                ouverture = 2; // demade ouverture par la droite donc ouverture par la gauche
+                break;
+            default:
+                break;
+
+        }
+
+        foreach ( GameObject portes in portes)
+        {
+            if(portes.GetComponent<HeroCreationSalle>().getOuverture() == ouverture)
+            {
+                portes.GetComponent<HeroCreationSalle>().setSalle(porte);
+                porteBonne = portes;
+            }
+        }
+
+        return porteBonne;
+
+    }
 }

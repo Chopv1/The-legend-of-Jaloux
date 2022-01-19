@@ -27,6 +27,7 @@ public class SalleTemplate : MonoBehaviour
 
 	public List<GameObject> ListSalleBonnes;
 	public List<GameObject> listsalleTest;
+	public GameObject salleActuel;
 
 	private void Start()
     {
@@ -248,5 +249,18 @@ public class SalleTemplate : MonoBehaviour
 		}
 
 	}
+
+	public void activerBocCollider()
+    {
+		
+			GameObject[] portes = salleActuel.GetComponent<GeneratorCarte>().portes;
+
+			foreach(GameObject porte in portes)
+            {
+				porte.GetComponent<BoxCollider2D>().enabled = true;
+			Debug.Log(" boxColllider actif" );
+			}
+        
+    }
 
 }

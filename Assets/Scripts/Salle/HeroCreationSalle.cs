@@ -14,12 +14,15 @@ public class HeroCreationSalle : MonoBehaviour
     private GameObject[] carte;
     private GeneratorCarte info;
     private SalleInfo salleInfo;
-
+    public GameObject map;
     public bool construction = false;
+    public GameObject prochainSalle;
     Collider2D other;
     public Vector2 forceSaut = new Vector2(0, 500);
 
     public float waitTime = 4f;
+    public GameObject camera;
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,9 @@ public class HeroCreationSalle : MonoBehaviour
         hero = GameObject.Find("Unit");
       
         templates = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
+        map = GameObject.FindGameObjectWithTag("Map");
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
+
 
     }
 
@@ -43,7 +49,7 @@ public class HeroCreationSalle : MonoBehaviour
 
         if (otherObject.CompareTag("Unit"))
         { // d�clanchement au contacte d'un hero 
-
+           
             if (construction == false)
             {
 
@@ -84,6 +90,18 @@ public class HeroCreationSalle : MonoBehaviour
 
                 */
                 construction = true;
+            }
+            else
+            {
+                Debug.Log(" je vais à la prochaine porte ");
+
+                map.GetComponent<TileMap>().TPheroSansTirage(ouverture, prochainSalle);
+
+                Debug.Log(" la prochaine salle est ");
+
+                templates.salleActuel = prochainSalle.transform.parent.parent.gameObject;
+                camera.GetComponent<GestionCamera>().changerSalle(porte, this.transform.gameObject);
+
             }
 
         }
@@ -300,6 +318,10 @@ public class HeroCreationSalle : MonoBehaviour
     {
         Debug.Log("bug hero CReation get ouverture " + ouverture);
         return ouverture;
+    }
+    public void setSalle(GameObject salle) // prochaine porte  // salle
+    {
+        prochainSalle = salle;
     }
 
 }

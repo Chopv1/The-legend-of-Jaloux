@@ -45,6 +45,8 @@ public class ShopPanel : MonoBehaviour
 
             changer = false;
             Debug.Log(" resultat changement" + titleTxt.text);
+            templates = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
+            templates.destructionSalleTest();
         }
 
     }
@@ -120,17 +122,26 @@ public class ShopPanel : MonoBehaviour
             GameObject ouverture = carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
 
             centre.GetComponent<VericationConstruction>();
+           
             carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
+            // indiquer la  prochaine salle pour chaque porte
+            GameObject prochainePorte = carte.GetComponent<GeneratorCarte>().getSalle(porte);
+            porte.GetComponent<HeroCreationSalle>().setSalle(prochainePorte);
             mainCamera.GetComponent<GestionCamera>().changerSalle(centre, porte);
             mainCamera.GetComponent<GestionCamera>().changerMap();
             generationMap.GetComponent<TileMap>().GenerationSalle(centre);
             generationMap.GetComponent<TileMap>().TPhero(carte, porte.GetComponent<HeroCreationSalle>().getOuverture());
             generationMap.GetComponent<TileMap>().nom = carte.GetComponent<GeneratorCarte>().title;
             generationMap.GetComponent<TileMap>().finirTour();
+            // ajout ds template liste salles
+            templates.salles.Add(carte);
+            templates.salleActuel = carte;
+
+
         }
-      
-       // Rotate(carte);
-        
+
+        // Rotate(carte);
+
         /*
         if (ouverture == 1)
         {s
@@ -163,13 +174,14 @@ public class ShopPanel : MonoBehaviour
             transform.Translate(Vector2.right * 60f * Time.deltaTime);
         }
         */
-        
+
     }
 
    
     public void Rotate()
     {
-        
+        templates.destructionSalleTest();
+
         Debug.Log(" ROtation Actuel  : " + rotation) ;
         if(rotation+1 < salleTypeRoatation.Length)
         {

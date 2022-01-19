@@ -630,4 +630,37 @@ public class TileMap : MonoBehaviour
         
     }
 
+    public void TPheroSansTirage(int ouverture, GameObject prochainePorte)
+    {
+        int offsetX = 0;
+        int offsetY = 0;
+        switch (ouverture)
+        { // 
+            case 1:
+                ouverture = 3;// demande ouverture pour haut donc ouverture par le bas  
+                offsetY = -10;
+                break;
+            case 2:
+                ouverture = 4; // demande ouverture par la gauche donc ouverture par la droite
+                offsetX = 10;
+                break;
+            case 3:
+                ouverture = 1; // demande ouverture pour bas donc ouverture par le haut
+                offsetY = 10;
+                break;
+            case 4:
+                offsetX = -10;
+                ouverture = 2; // demade ouverture par la droite donc ouverture par la gauche
+
+                break;
+            default:
+                break;
+        }
+        unit.transform.position = prochainePorte.transform.position;
+        unit.GetComponent<Unit>().tileX = unit.GetComponent<Unit>().tileX + offsetX;
+        unit.GetComponent<Unit>().tileY = unit.GetComponent<Unit>().tileY + offsetY;
+        Update();
+
+    }
+
 }

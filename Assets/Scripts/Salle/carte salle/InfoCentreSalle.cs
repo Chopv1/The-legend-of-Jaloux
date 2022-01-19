@@ -329,7 +329,8 @@ public class InfoCentreSalle : MonoBehaviour
                     type[rotation].transform.GetChild(1).gameObject.GetComponent<MainCentre>().changerTagTest();
                     type[rotation].GetComponent<GeneratorCarte>().changerLayerTest();
                     GameObject carte = Instantiate(type[rotation], transform.position, type[rotation].transform.rotation);
-                    
+                    Debug.Log("carte layer " + carte.layer);
+
                
                    
                         sallesBonnes.Add(type[rotation]);
