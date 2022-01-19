@@ -308,9 +308,14 @@ public class TileMap : MonoBehaviour
 
             Node curr = target;
 
+            bool accessible = true;
+
             while (curr != null)
             {
                 i++;
+                if(dist[curr] >= 200) {
+                    accessible = false;
+                }
                 currentPath.Add(curr);
                 curr = prev[curr];
 
@@ -334,8 +339,13 @@ public class TileMap : MonoBehaviour
 
 
             currentPath.Reverse();
-
-            unit.GetComponent<Unit>().currentPath = currentPath;
+            if(accessible){
+                unit.GetComponent<Unit>().currentPath = currentPath;
+            }
+            else {
+                unit.GetComponent<Unit>().currentPath = null;
+            }
+            
 
         }
 
@@ -427,10 +437,14 @@ public class TileMap : MonoBehaviour
             List<Node> currentPath2 = new List<Node>();
 
             Node curr2 = target2;
+            bool accessible = true;
         
             while (curr2 != null)
             {
                 j++;
+                if(dist2[curr2] >= 200) {
+                    accessible = false;
+                }
                 currentPath2.Add(curr2);
                 curr2 = prev2[curr2];
 
@@ -440,7 +454,13 @@ public class TileMap : MonoBehaviour
 
             currentPath2.RemoveAt(currentPath2.Count - 1);
 
-            enemy.GetComponent<Enemy>().currentPath = currentPath2;
+            if(accessible){
+                enemy.GetComponent<Enemy>().currentPath = currentPath2;
+            }
+            else {
+                enemy.GetComponent<Enemy>().currentPath = null;
+            }
+            
             
         }
     }
