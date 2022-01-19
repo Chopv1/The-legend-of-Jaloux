@@ -90,6 +90,7 @@ public class Enemy : MonoBehaviour
                 //target.GetComponent<Renderer>().material.color = new Color(0.5849056f, 0.5403813f, 0.4773051f, 1);
 
             }
+
         } 
         else if (pa < 1) {
             launchMove = false;
