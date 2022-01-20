@@ -8,6 +8,7 @@ public class MouseManager : MonoBehaviour
     private GameObject selectedObject1;
     private GameObject selectedObject2;
     public GameObject mapPreFab;
+    public GameObject unit;
     public LayerMask enemyLayer;
     private int sort = 0;
     private Camera cam;
@@ -78,6 +79,7 @@ public class MouseManager : MonoBehaviour
             GameObject hexagone = hitObject.transform.GetChild(0).gameObject;
             hexagone.GetComponent<SpriteRenderer>().enabled = true;
             hitObject.GetComponent<Enemy>().AfficherStats();
+            
         }
         else if (hitObject.CompareTag("Unit")) //Si c'est un héro on clear la sélection pour le sélectionner
         {
@@ -106,6 +108,7 @@ public class MouseManager : MonoBehaviour
             {
                 selectedObject1.GetComponent<Enemy>().SetIsSelected(true);
 
+                CanMove(false);
             }
 
         }

@@ -125,6 +125,7 @@ public class ShopPanel : MonoBehaviour
            
             carte.GetComponent<GeneratorCarte>().destructionPorte(porte.GetComponent<HeroCreationSalle>().getOuverture());
             // indiquer la  prochaine salle pour chaque porte
+
             GameObject prochainePorte = carte.GetComponent<GeneratorCarte>().getSalle(porte);
             porte.GetComponent<HeroCreationSalle>().setSalle(prochainePorte);
             mainCamera.GetComponent<GestionCamera>().changerSalle(centre, porte);
@@ -132,10 +133,10 @@ public class ShopPanel : MonoBehaviour
             generationMap.GetComponent<TileMap>().GenerationSalle(centre);
             generationMap.GetComponent<TileMap>().TPhero(carte, porte.GetComponent<HeroCreationSalle>().getOuverture());
             generationMap.GetComponent<TileMap>().nom = carte.GetComponent<GeneratorCarte>().title;
-            generationMap.GetComponent<TileMap>().finirTour();
             // ajout ds template liste salles
             templates.salles.Add(carte);
             templates.salleActuel = carte;
+            porte.GetComponent<HeroCreationSalle>().construction = true;
 
 
         }

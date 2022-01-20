@@ -19,6 +19,8 @@ public class HeroCreationSalle : MonoBehaviour
     public GameObject prochainSalle;
     Collider2D other;
     public Vector2 forceSaut = new Vector2(0, 500);
+    public GameObject laSalle;
+    public bool changeSalle;
 
     public float waitTime = 4f;
     public GameObject camera;
@@ -27,8 +29,9 @@ public class HeroCreationSalle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        changeSalle = false;
         hero = GameObject.Find("Unit");
-      
+        laSalle = transform.parent.parent.transform.gameObject;
         templates = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
         map = GameObject.FindGameObjectWithTag("Map");
         camera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -39,21 +42,19 @@ public class HeroCreationSalle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
     }
-
+ 
     // Lorsque le collider entre en contact avec quelque chose
     void OnTriggerEnter2D(Collider2D otherObject)
     {
-
+        Debug.Log("touché");
         if (otherObject.CompareTag("Unit"))
         { // d�clanchement au contacte d'un hero 
            
             if (construction == false)
             {
 
-
+                map.GetComponent<TileMap>().reset.ClearSelection();
                 Tirage(porte);
                 /*
                 if (ouverture == 1)
@@ -89,7 +90,6 @@ public class HeroCreationSalle : MonoBehaviour
                 construction = true;
 
                 */
-                construction = true;
             }
             else
             {
@@ -100,8 +100,11 @@ public class HeroCreationSalle : MonoBehaviour
                 Debug.Log(" la prochaine salle est ");
 
                 templates.salleActuel = prochainSalle.transform.parent.parent.gameObject;
+                prochainSalle.GetComponent<BoxCollider2D>().enabled = false;
                 camera.GetComponent<GestionCamera>().changerSalle(porte, this.transform.gameObject);
+                map.GetComponent<TileMap>().GenerationSalleExistante(porte);
 
+         
             }
 
         }

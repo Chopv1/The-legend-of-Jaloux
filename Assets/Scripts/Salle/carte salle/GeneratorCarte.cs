@@ -12,7 +12,10 @@ public class GeneratorCarte : MonoBehaviour
     public string title;
     public string description;
     public int pointAction;
-    
+    public List<GameObject> ennemi;
+    public List<GameObject> infoMoov;
+    public List<GameObject> infoPath;
+
 
     // public GameObject gameObject;
 
@@ -20,7 +23,9 @@ public class GeneratorCarte : MonoBehaviour
 
     void Start()
     {
-        
+        ennemi = new List<GameObject>();
+        infoMoov = new List<GameObject>();
+        infoPath = new List<GameObject>();
         SalleTemplate template = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
 
         type = 0;

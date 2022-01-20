@@ -15,9 +15,7 @@ public class InfoCentreSalle : MonoBehaviour
     public int[] portes;
     public GameObject porte;
     public GameObject salle;
-    public List<GameObject> ennemi;
-    public List<GameObject> infoMoov;
-    public List<GameObject> infoPath;
+    
     static int touche;
 
     public List<GameObject> centres;
@@ -29,9 +27,7 @@ public class InfoCentreSalle : MonoBehaviour
 
     void Start()
     {
-        ennemi = new List<GameObject>();
-        infoMoov = new List<GameObject>();
-        infoPath = new List<GameObject>();
+       
         templates = GameObject.FindGameObjectWithTag("Salle").GetComponent<SalleTemplate>();
         portes = new int[] { this.porteH, this.porteD, this.porteB, this.porteG };
         nombreOuverture = 1;

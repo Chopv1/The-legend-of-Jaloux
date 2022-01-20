@@ -10,7 +10,7 @@ public class TileMap : MonoBehaviour
     public GameObject prefEnemiMouv;
     public GameObject prefEnemiPath;
 
-
+    public bool heroTp;
     public Unit unit;
     public List<GameObject> enemies;
     public TileType[] tileTypes;
@@ -40,7 +40,7 @@ public class TileMap : MonoBehaviour
     public AudioSource EnemieSong;
 
     void Start() {
-
+        heroTp = false;
         enemies = new List<GameObject>();
         nom = "Map 1";
         pos = null;
@@ -464,19 +464,22 @@ public class TileMap : MonoBehaviour
             
         }
     }
-
-    IEnumerator enemyMovement()
+    
+    public void enemyMovement()
     {
        
+        Debug.Log("Je BUG ennemy wesh" + heroTp);
+
         freezer.SetActive(true);
         foreach (GameObject enemy in enemies) {
-            Debug.Log("Start");
-            EnemieSong.Play();
-            GeneratePathEnemyTo(enemy, unit.GetComponent<Unit>().tileX, unit.GetComponent<Unit>().tileY);
-            enemy.GetComponent<Enemy>().Move();
-            yield return new WaitForSeconds(2);
-            Debug.Log("Stop");
-        }
+             Debug.Log("Je BUG Foreach ta mère");
+
+             Debug.Log("Start");
+             EnemieSong.Play();
+             GeneratePathEnemyTo(enemy, unit.GetComponent<Unit>().tileX, unit.GetComponent<Unit>().tileY);
+             enemy.GetComponent<Enemy>().Move();
+             Debug.Log("Stop");
+         }
         freezer = GameObject.Find("GameFreezer");
         freezer.SetActive(false);
         foreach (GameObject enemy in enemies)
@@ -484,12 +487,11 @@ public class TileMap : MonoBehaviour
             enemy.GetComponent<Enemy>().nbAttack = 0;
         }
     }
-
+    
     public void finirTour()
     {
         if (unit.GetComponent<Unit>().launchMove == false)
         {
-            StartCoroutine(enemyMovement());
             unit.herosAnimator.SetBool("isDigging", false);
             unit.herosAnimator.SetBool("isMoving", false);
             unit.herosAnimator.SetBool("isRightAttacking", false);
@@ -503,6 +505,10 @@ public class TileMap : MonoBehaviour
             unit.GetComponent<Unit>().boutonFouille.GetComponent<Button>().interactable = true;
             reset.GetComponent<MouseManager>().CanMove(false);
             reset.GetComponent<MouseManager>().ClearSelection();
+            Debug.Log("Je BUG fin de tour dlnzefenzfk");
+            enemyMovement();
+
+
         }
     }
     /// 
@@ -512,50 +518,79 @@ public class TileMap : MonoBehaviour
     /// 
     public void GenerationSalle(GameObject centreSalle)
     {
-        APlusEnnemi(centreSalle);
+        APlusEnnemi(centreSalle.transform.parent.parent.gameObject);
         this.pos = centreSalle;
         GenerateMapData();
         GeneratePathFfindingGraph();
         GenerateMapVisual();
         target.ChangeMap(this);
     }
+    public void GenerationSalleExistante(GameObject centreSalle)
+    {
+        heroTp = true;
+        APlusEnnemi(centreSalle.GetComponent<InfoCentreSalle>().porte.transform.parent.parent.gameObject); // Ancienne salle
+        if(centreSalle.GetComponent<InfoCentreSalle>().porte.GetComponent<HeroCreationSalle>().transform.parent.parent.gameObject.name.Equals("Entry Room"))
+        {
+            this.pos=null;
+        }
+        else
+        {
+            this.pos = centreSalle;
+        }
+        GenerateMapData();
+        GeneratePathFfindingGraph();
+        target.ChangeMap(this);
+        ReEnnemi(centreSalle.GetComponent<InfoCentreSalle>().porte.GetComponent<HeroCreationSalle>().transform.parent.parent.gameObject); // Nouvelle salle (donc la salle déjà généré)
+        foreach (GameObject e in enemies)
+        {
+            e.GetComponent<Enemy>().map = this;
+        }
+     
+    }
     ///Pour enlever les ennemies de la map mais on les garde en info dans la salle
     public void APlusEnnemi(GameObject centreSalle)
     {
+
         GameObject[] ennemis = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject[] path = GameObject.FindGameObjectsWithTag("PathEnemy");
         GameObject[] moov = GameObject.FindGameObjectsWithTag("MouvEnemy");
 
         foreach(GameObject e in ennemis)
         {
-            centreSalle.GetComponent<InfoCentreSalle>().ennemi.Add(e);
+            centreSalle.GetComponent<GeneratorCarte>().ennemi.Add(e);
+            e.SetActive(false);
+            Debug.Log("Ajoute mon insta");
             enemies.Remove(e);
-            Destroy(e); 
         }
         foreach(GameObject p in path)
         {
-            centreSalle.GetComponent<InfoCentreSalle>().infoPath.Add(p);
-            Destroy(p);
+            centreSalle.GetComponent<GeneratorCarte>().infoPath.Add(p);
+            p.SetActive(false);
         }
         foreach(GameObject m in moov)
         {
-            centreSalle.GetComponent<InfoCentreSalle>().infoMoov.Add(m);
-            Destroy(m);
+            centreSalle.GetComponent<GeneratorCarte>().infoMoov.Add(m);
+            m.SetActive(false);
         }
+        
     }
     public void ReEnnemi(GameObject centreSalle)
     {
-        foreach(GameObject e in centreSalle.GetComponent<InfoCentreSalle>().ennemi)
+        Debug.Log(centreSalle);
+        foreach(GameObject e in centreSalle.GetComponent<GeneratorCarte>().ennemi)
         {
-            Instantiate(e);
+            e.SetActive(true);
+            Debug.Log("Bloque moi");
+
+            enemies.Add(e);
         }
-        foreach (GameObject p in centreSalle.GetComponent<InfoCentreSalle>().infoPath)
+        foreach (GameObject p in centreSalle.GetComponent<GeneratorCarte>().infoPath)
         {
-            Instantiate(p);
+            p.SetActive(true);
         }
-        foreach (GameObject m in centreSalle.GetComponent<InfoCentreSalle>().infoMoov)
+        foreach (GameObject m in centreSalle.GetComponent<GeneratorCarte>().infoMoov)
         {
-            Instantiate(m);
+            m.SetActive(true);
         }
     }
     public Vector3 VerifyCenter(GameObject centreSalle)

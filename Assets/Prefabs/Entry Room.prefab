@@ -38,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: 1}
+  m_AnchoredPosition: {x: -12.5, y: 0.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114391489058514274
@@ -204,7 +204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -12}
+  m_AnchoredPosition: {x: 0.5, y: -12.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114724521025756804
@@ -533,7 +533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12, y: 0}
+  m_AnchoredPosition: {x: 12.5, y: 0.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &61153349465182346
@@ -1251,7 +1251,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 13}
+  m_AnchoredPosition: {x: 0.5, y: 12.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114504386007222772
@@ -1609,9 +1609,12 @@ MonoBehaviour:
   porte: {fileID: 1327667041507466}
   hero: {fileID: 0}
   salles: []
+  map: {fileID: 0}
   construction: 0
+  prochainSalle: {fileID: 0}
   forceSaut: {x: 0, y: 500}
   waitTime: 4
+  camera: {fileID: 0}
 --- !u!1 &2632481249026660828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,9 +1797,12 @@ MonoBehaviour:
   porte: {fileID: 1016950340045986}
   hero: {fileID: 0}
   salles: []
+  map: {fileID: 0}
   construction: 0
+  prochainSalle: {fileID: 0}
   forceSaut: {x: 0, y: 500}
   waitTime: 4
+  camera: {fileID: 0}
 --- !u!1 &4683829108573587827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,9 +1951,12 @@ MonoBehaviour:
   porte: {fileID: 1815727306996752}
   hero: {fileID: 0}
   salles: []
+  map: {fileID: 0}
   construction: 0
+  prochainSalle: {fileID: 0}
   forceSaut: {x: 0, y: 500}
   waitTime: 4
+  camera: {fileID: 0}
 --- !u!1 &7330591561908626000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2096,6 +2105,9 @@ MonoBehaviour:
   porte: {fileID: 1028094079595516}
   hero: {fileID: 0}
   salles: []
+  map: {fileID: 0}
   construction: 0
+  prochainSalle: {fileID: 0}
   forceSaut: {x: 0, y: 500}
   waitTime: 4
+  camera: {fileID: 0}

@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004506553876976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 12, z: 0}
+  m_LocalPosition: {x: 0.49999976, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4428478080873430}
@@ -117,6 +117,9 @@ MonoBehaviour:
   portes: 
   porte: {fileID: 4789398232755067429}
   salle: {fileID: 0}
+  ennemi: []
+  infoMoov: []
+  infoPath: []
   centres: []
   posable: 0
 --- !u!61 &3699982727812850891
@@ -883,6 +886,9 @@ MonoBehaviour:
   porte: {fileID: 1004506553876976}
   hero: {fileID: 0}
   salles: []
+  map: {fileID: 0}
   construction: 0
+  prochainSalle: {fileID: 0}
   forceSaut: {x: 0, y: 500}
   waitTime: 4
+  camera: {fileID: 0}
