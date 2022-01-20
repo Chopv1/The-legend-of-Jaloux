@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 406907466276676868}
   - component: {fileID: 8091988270856605229}
   - component: {fileID: 2523532822724717274}
+  - component: {fileID: 3190864352835886034}
   m_Layer: 0
   m_Name: MovementEnnemy
   m_TagString: MouvEnemy
@@ -122,3 +123,22 @@ MonoBehaviour:
   unit: {fileID: 0}
   moveDelay: 1
   nextMove: 0
+--- !u!95 &3190864352835886034
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4741950381782557291}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0167600e9e277b04f95b8529636be3c4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
