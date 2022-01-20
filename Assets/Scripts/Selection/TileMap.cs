@@ -67,6 +67,7 @@ public class TileMap : MonoBehaviour
         if(enemies.Contains(e))
         {
             enemies.Remove(e);
+            tiles[e.GetComponent<Enemy>().tileX, e.GetComponent<Enemy>().tileY] = 0;
         }
     }
     void GenerateMapData(){
