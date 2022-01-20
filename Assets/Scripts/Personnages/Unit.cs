@@ -333,19 +333,19 @@ public class Unit : MonoBehaviour
             switch (number)
             {
                 case 0:
-                    listItems.Add(new Items("Casque en bronze", "Casque", 2));
+                    listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
                     break;
                 case 1:
                     listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
                     break;
                 case 2:
-                    listItems.Add(new Items("Potion", "Soin", 10));
+                    listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
                     break;
                 case 3:
-                    listItems.Add(new Items("Armure en bronze", "Armure", 2));
+                    listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
                     break;
                 case 4:
-                    listItems.Add(new Items("Armure de Jaloux", "Armure", 5));
+                    listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
                     break;
                 case 5:
                     listItems.Add(new Items("Epée Divive", "Arme", 5));

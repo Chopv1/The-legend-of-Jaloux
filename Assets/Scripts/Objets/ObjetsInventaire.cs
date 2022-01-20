@@ -20,14 +20,33 @@ public class ObjetsInventaire : MonoBehaviour
     public GameObject Jeter;
     public GameObject Utiliser;
     public Animator herosAnimator;
+
+    public Sprite GrossePotion;
+    public Sprite PetitePotion;
+    public Sprite CasqueBronze;
+    public Sprite BottesBronze;
+    public Sprite ArmureBronze;
+    public Sprite ArmureJaloux;
+    public Sprite EpeeDivine;
+    public Sprite EpeeBronze;
+    public Sprite CasqueOr;
+    public Sprite BottesOr;
+    public Sprite JambiereOr;
+    public Sprite JambiereBronze;
+    public Sprite BasicSprite;
+
+
     // Update is called once per frame
 
     public AudioSource Songequiper;
 
 
     private Button CaseInventaire;
+    private Button Objet;
     void Start()
     {
+        Objet = GameObject.Find("Casque").GetComponent<Button>();
+        BasicSprite = Objet.GetComponent<Image>().sprite;
         listItemsEquipés = new Items[] { new Items(null, null, 0), new Items(null, null, 0), new Items(null, null, 0), new Items(null, null, 0), new Items(null, null, 0) };
         Equiper.SetActive(false);
         Desequiper.SetActive(false);
@@ -65,9 +84,48 @@ public class ObjetsInventaire : MonoBehaviour
 
                 CaseInventaire = GameObject.Find(NomObjet).GetComponent<Button>();
                 CaseInventaire.interactable = true;
-                GameObject TexteObjet = CaseInventaire.transform.GetChild(0).gameObject;
-                TexteObjet.GetComponent<UnityEngine.UI.Text>().text = o.getNomItem();
 
+                switch (o.getNomItem())
+                {
+                   case "Casque en bronze":
+                        CaseInventaire.GetComponent<Image>().sprite = CasqueBronze;
+                        break;
+                    case "Bottes de bronze":
+                        CaseInventaire.GetComponent<Image>().sprite = BottesBronze;
+        
+
+                        break;
+                    case "Potion":
+                        CaseInventaire.GetComponent<Image>().sprite = PetitePotion;
+                        break;
+                    case "Armure en bronze":
+                        CaseInventaire.GetComponent<Image>().sprite = ArmureBronze;
+                        break;
+                    case "Armure de Jaloux":
+                        CaseInventaire.GetComponent<Image>().sprite = ArmureJaloux;
+                        break;
+                    case "Epée Divive":
+                        CaseInventaire.GetComponent<Image>().sprite = EpeeDivine;
+                        break;
+                    case "Epée de bronze":
+                        CaseInventaire.GetComponent<Image>().sprite = EpeeBronze;
+                        break;
+                    case "Casque en or":
+                        CaseInventaire.GetComponent<Image>().sprite = CasqueOr;
+                        break;
+                    case "Bottes en or":
+                        CaseInventaire.GetComponent<Image>().sprite = BottesOr;
+                        break;
+                    case "Jambière en bronze":
+                        CaseInventaire.GetComponent<Image>().sprite = JambiereBronze;
+                        break;
+                    case "Jambière en or":
+                        CaseInventaire.GetComponent<Image>().sprite = JambiereOr;
+                        break; 
+                    case "Grosse Potion":
+                        CaseInventaire.GetComponent<Image>().sprite = GrossePotion;
+                        break; 
+                }
                 indice++;
             }
         }
@@ -83,8 +141,6 @@ public class ObjetsInventaire : MonoBehaviour
             Jeter.SetActive(false);
             Desequiper.SetActive(true);
             Equiper.SetActive(false);
-
-
         }
         else
         {
@@ -151,10 +207,10 @@ public class ObjetsInventaire : MonoBehaviour
                 HeroGuerrier.listItems.Add(listItemsEquipés[0]);
             }
             listItemsEquipés[0] = HeroGuerrier.listItems[IndiceObjetVisé];
-            Button Casque = GameObject.Find("Casque").GetComponent<Button>();
-            Casque.interactable = true;
-            GameObject CasqueTexte = GameObject.Find("Casque").transform.GetChild(0).gameObject;
-            CasqueTexte.GetComponent<UnityEngine.UI.Text>().text = listItemsEquipés[0].getNomItem();
+            Objet = GameObject.Find("Casque").GetComponent<Button>();
+            Objet.interactable = true;
+            GameObject CasqueTexte = GameObject.Find(HeroGuerrier.listItems[IndiceObjetVisé].getTypeItem()).transform.GetChild(0).gameObject;
+            CasqueTexte.GetComponent<UnityEngine.UI.Text>().text = "";
         }
 
         else if(HeroGuerrier.listItems[IndiceObjetVisé].getTypeItem() == "Armure")
@@ -164,11 +220,11 @@ public class ObjetsInventaire : MonoBehaviour
                 HeroGuerrier.listItems.Add(listItemsEquipés[1]);
             }
             listItemsEquipés[1] = HeroGuerrier.listItems[IndiceObjetVisé];
-            Button Plastron = GameObject.Find("Plastron").GetComponent<Button>();
-            Plastron.interactable = true;
-            GameObject PlastronTexte = GameObject.Find("Plastron").transform.GetChild(0).gameObject;
-            PlastronTexte.GetComponent<UnityEngine.UI.Text>().text = listItemsEquipés[1].getNomItem();
+            Objet = GameObject.Find("Plastron").GetComponent<Button>();
+            Objet.interactable = true;
             HeroGuerrier.herosAnimator.SetBool("isMailled", true);
+            GameObject CasqueTexte = GameObject.Find("Plastron").transform.GetChild(0).gameObject;
+            CasqueTexte.GetComponent<UnityEngine.UI.Text>().text = "";
         }
         else if (HeroGuerrier.listItems[IndiceObjetVisé].getTypeItem() == "Jambières")
         {
@@ -177,10 +233,10 @@ public class ObjetsInventaire : MonoBehaviour
                 HeroGuerrier.listItems.Add(listItemsEquipés[2]);
             }
             listItemsEquipés[2] = HeroGuerrier.listItems[IndiceObjetVisé];
-            Button Jambieres = GameObject.Find("Jambières").GetComponent<Button>();
-            Jambieres.interactable = true;
-            GameObject JambieresTexte = GameObject.Find("Jambières").transform.GetChild(0).gameObject;
-            JambieresTexte.GetComponent<UnityEngine.UI.Text>().text = listItemsEquipés[2].getNomItem();
+            Objet = GameObject.Find("Jambières").GetComponent<Button>();
+            Objet.interactable = true;
+            GameObject CasqueTexte = GameObject.Find(HeroGuerrier.listItems[IndiceObjetVisé].getTypeItem()).transform.GetChild(0).gameObject;
+            CasqueTexte.GetComponent<UnityEngine.UI.Text>().text = "";
         }
         else if (HeroGuerrier.listItems[IndiceObjetVisé].getTypeItem() == "Bottes")
         {
@@ -189,10 +245,10 @@ public class ObjetsInventaire : MonoBehaviour
                 HeroGuerrier.listItems.Add(listItemsEquipés[3]);
             }
             listItemsEquipés[3] = HeroGuerrier.listItems[IndiceObjetVisé];
-            Button Bottes = GameObject.Find("Bottes").GetComponent<Button>();
-            Bottes.interactable = true;
-            GameObject BottesTexte = GameObject.Find("Bottes").transform.GetChild(0).gameObject;
-            BottesTexte.GetComponent<UnityEngine.UI.Text>().text = listItemsEquipés[3].getNomItem();
+            Objet = GameObject.Find("Bottes").GetComponent<Button>();
+            Objet.interactable = true;
+            GameObject CasqueTexte = GameObject.Find(HeroGuerrier.listItems[IndiceObjetVisé].getTypeItem()).transform.GetChild(0).gameObject;
+            CasqueTexte.GetComponent<UnityEngine.UI.Text>().text = "";
         }
         else if (HeroGuerrier.listItems[IndiceObjetVisé].getTypeItem() == "Arme")
         {
@@ -201,11 +257,54 @@ public class ObjetsInventaire : MonoBehaviour
                 HeroGuerrier.listItems.Add(listItemsEquipés[4]);
             }
             listItemsEquipés[4] = HeroGuerrier.listItems[IndiceObjetVisé];
-            Button Arme = GameObject.Find("Arme").GetComponent<Button>();
-            Arme.interactable = true;
-            GameObject ArmeTexte = GameObject.Find("Arme").transform.GetChild(0).gameObject;
-            ArmeTexte.GetComponent<UnityEngine.UI.Text>().text = listItemsEquipés[4].getNomItem();
+            Objet = GameObject.Find("Arme").GetComponent<Button>();
+            Objet.interactable = true;
+            GameObject CasqueTexte = GameObject.Find(HeroGuerrier.listItems[IndiceObjetVisé].getTypeItem()).transform.GetChild(0).gameObject;
+            CasqueTexte.GetComponent<UnityEngine.UI.Text>().text = "";
         }
+        string aa = HeroGuerrier.listItems[IndiceObjetVisé].getNomItem();
+        switch (aa)
+        {
+            case "Casque en bronze":
+                Objet.GetComponent<Image>().sprite = CasqueBronze;
+                break;
+            case "Bottes de bronze":
+                Objet.GetComponent<Image>().sprite = BottesBronze;
+                break;
+            case "Potion":
+                Objet.GetComponent<Image>().sprite = PetitePotion;
+                break;
+            case "Armure en bronze":
+                Objet.GetComponent<Image>().sprite = ArmureBronze;
+                break;
+            case "Armure de Jaloux":
+                Objet.GetComponent<Image>().sprite = ArmureJaloux;
+                break;
+            case "Epée Divive":
+                Objet.GetComponent<Image>().sprite = EpeeDivine;
+                break;
+            case "Epée de bronze":
+                Objet.GetComponent<Image>().sprite = EpeeBronze;
+                break;
+            case "Casque en or":
+                Objet.GetComponent<Image>().sprite = CasqueOr;
+                break;
+            case "Bottes en or":
+                Objet.GetComponent<Image>().sprite = BottesOr;
+                break;
+            case "Jambière en bronze":
+                Objet.GetComponent<Image>().sprite = JambiereBronze;
+                break;
+            case "Jambière en or":
+                Objet.GetComponent<Image>().sprite = JambiereOr;
+                break;
+            case "Grosse Potion":
+                Objet.GetComponent<Image>().sprite = GrossePotion;
+                break;
+        }
+
+
+
         Songequiper.Play();
         JeterObjet();
         Utiliser.SetActive(false);
@@ -240,6 +339,7 @@ public class ObjetsInventaire : MonoBehaviour
         {
             HeroGuerrier.listItems.Add(listItemsEquipés[0]);
             listItemsEquipés[0] = new Items(null, null, 0);
+
         }
         else if (ObjetVisé.name == "Plastron")
         {
@@ -261,11 +361,10 @@ public class ObjetsInventaire : MonoBehaviour
         {
             HeroGuerrier.listItems.Add(listItemsEquipés[4]);
             listItemsEquipés[4] = new Items(null, null, 0);
-        }
-
-        
+        }      
 
         Button Casque = GameObject.Find(ObjetVisé.name).GetComponent<Button>();
+        Casque.GetComponent<Image>().sprite = BasicSprite;
         Casque.interactable = false;
         GameObject CasqueTexte = GameObject.Find(ObjetVisé.name).transform.GetChild(0).gameObject;
         CasqueTexte.GetComponent<UnityEngine.UI.Text>().text = ObjetVisé.name;
@@ -310,6 +409,8 @@ public class ObjetsInventaire : MonoBehaviour
         CaseInventaire.interactable = false;
         GameObject TexteObjet = CaseInventaire.transform.GetChild(0).gameObject;
         TexteObjet.GetComponent<UnityEngine.UI.Text>().text = "";
+
+        CaseInventaire.GetComponent<Image>().sprite = BasicSprite;
 
         Utiliser.SetActive(false);
         Jeter.SetActive(false);
