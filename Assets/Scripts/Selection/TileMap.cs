@@ -194,7 +194,8 @@ public class TileMap : MonoBehaviour
     public void GenerationEnnemi(int x, int y, int nAl, Vector3 pos)
     {
         int e = Random.Range(0, 15);
-        if (e == 1 && compteur <= nAl && tiles[x,y]!=1 && (x != 10 && y != 5) && (x != 5 && y != 10) && (x != 0 && y != 5) && (x != 5 && y != 0) && (x != 0 && y != 0))
+        int boss = Random.Range(1, 10);
+        if (e == 1 && boss !=0 && compteur <= nAl && tiles[x,y]!=1 && (x != 10 && y != 5) && (x != 5 && y != 10) && (x != 0 && y != 5) && (x != 5 && y != 0) && (x != 0 && y != 0))
         {
             GameObject moov= (GameObject)Instantiate(prefEnemiMouv, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
             GameObject es= (GameObject)Instantiate(prefEnemi, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
@@ -207,6 +208,22 @@ public class TileMap : MonoBehaviour
             moov.GetComponent<MovementEnemy>().moveSpeed = 0.32f;
             enemies.Add(es);
             compteur += 1;
+        }
+        else if(boss == 1 && compteur <= nAl && tiles[x, y] != 1 && (x != 10 && y != 5) && (x != 5 && y != 10) && (x != 0 && y != 5) && (x != 5 && y != 0) && (x != 0 && y != 0))
+        {
+            GameObject moov = (GameObject)Instantiate(prefEnemiMouv, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
+            GameObject es = (GameObject)Instantiate(prefEnemi, new Vector3(x + pos.x, y + pos.y, 0),Quaternion.identity);
+            es.GetComponent<Enemy>().tileX = x;
+            es.GetComponent<Enemy>().tileY = y;
+            es.GetComponent<Enemy>().ennemy = moov;
+            es.GetComponent<Enemy>().boss = true;
+            Instantiate(prefEnemiPath, new Vector3(x + pos.x, y + pos.y, 0), Quaternion.identity);
+            moov.GetComponent<MovementEnemy>().unit = es;
+            moov.GetComponent<MovementEnemy>().movePoint = es.transform.GetChild(1).transform;
+            moov.GetComponent<MovementEnemy>().moveSpeed = 0.32f;
+            enemies.Add(es);
+            compteur += 1;
+
         }
     }
     public Vector3 TileCoordToWorldCoord(int x, int y){

@@ -106,6 +106,8 @@ MonoBehaviour:
     m_Bits: 128
   fenetre: {fileID: 0}
   stats: {fileID: 0}
+  boss: 0
+  win: {fileID: 5094669788968288798, guid: 7ea2fe2015f9fc14991e248ba01c9c09, type: 3}
   tileX: 8
   tileY: 8
   nbAttack: 0

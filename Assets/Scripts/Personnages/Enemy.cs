@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
     public LayerMask heroLayer;
     public GameObject fenetre;
     public GameObject stats;
+    public bool boss;
+    public GameObject win;
 
 
 
@@ -57,6 +59,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        boss = false;
         isDead = false;
         canAttack = false;
         nbAttack = 0;
@@ -152,7 +155,7 @@ public class Enemy : MonoBehaviour
     }
     private void IsDead()
     {
-        if (currentPv <= 0)
+        if (currentPv <= 0 && !boss)
         {
             isDead = true;
             this.currentPv = 0;
@@ -161,6 +164,17 @@ public class Enemy : MonoBehaviour
             GameObject BarGuerrier = GameObject.Find("Bar Guerrier");
             BarGuerrier.GetComponent<Experience>().MonstreTue(8);
             map.GetComponent<TileMap>().EnemyMort(this.gameObject);
+            
+        }
+        else if(currentPv <= 0 && boss)
+        {
+            isDead = true;
+            this.currentPv = 0;
+            Destroy(this.gameObject);
+            ChangeHexagoneColorToWhite(this.gameObject);
+            map.GetComponent<TileMap>().EnemyMort(this.gameObject);
+            win.GetComponent<GameOverEnd>().LaLoose();
+
         }
     }
     public void IsAttacked(int damage)
@@ -172,7 +186,7 @@ public class Enemy : MonoBehaviour
             IsDead();
             ChangeHexagoneColorToWhite(this.gameObject);
             isSelected = false;
-
+            win.GetComponent<GameOverEnd>().LaLoose();
         }
 
     }
