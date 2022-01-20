@@ -39553,6 +39553,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinBack
       objectReference: {fileID: 0}
+    - target: {fileID: 5094669788968288798, guid: 7ea2fe2015f9fc14991e248ba01c9c09, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5094669788968288799, guid: 7ea2fe2015f9fc14991e248ba01c9c09, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
