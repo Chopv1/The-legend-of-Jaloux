@@ -333,35 +333,39 @@ public class Unit : MonoBehaviour
             switch (number)
             {
                 case 0:
-                    listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
+                    listItems.Add(new Items("Casque en bronze", "Casque", 2));
                     break;
                 case 1:
                     listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
                     break;
                 case 2:
-                    listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
+                    listItems.Add(new Items("Potion", "Soin", 10));
                     break;
                 case 3:
-                    listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
+                    listItems.Add(new Items("Armure en bronze", "Armure", 2));
                     break;
                 case 4:
-                    listItems.Add(new Items("Bottes de bronze", "Bottes", 2));
+                    listItems.Add(new Items("Armure de Jaloux", "Armure", 5));
                     break;
+
                 case 5:
                     listItems.Add(new Items("Epée Divive", "Arme", 5));
                     break;
                 case 6:
                     listItems.Add(new Items("Epée de bronze", "Arme", 2));
                     break;
+
                 case 7:
                     listItems.Add(new Items("Casque en or", "Casque", 5));
                     break;
+
                 case 8:
                     listItems.Add(new Items("Bottes en or", "Bottes", 5));
                     break;
                 case 9:
                     listItems.Add(new Items("Jambière en bronze", "Jambières", 2));
                     break;
+
                 case 10:
                     listItems.Add(new Items("Jambière en or", "Jambières", 5));
                     break;
@@ -369,10 +373,10 @@ public class Unit : MonoBehaviour
                     listItems.Add(new Items("Grosse Potion", "Soin", 50));
                     break;
             }
-            
             map.pa = map.pa - 1;
         }
     }
+            
     public void Sort(int sort)
     {
         switch (sort)
